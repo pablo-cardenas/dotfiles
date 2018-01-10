@@ -1,0 +1,40 @@
+URxvt*geometry: 80x30
+URxvt*font:     xft:xos4 Terminus:pixelsize=12
+URxvt*boldFont: xft:xos4 Terminus:pixelsize=12
+URxvt.intensityStyles: false
+URxvt.scrollBar: false
+URxvt.internalBorder: 0
+URxvt.saveLines: 20000
+
+!Total Transparency
+!urxvt.background:       black
+!urxvt.foreground:       white
+!urxvt.tintColor:        white
+!urxvt.fading:           15
+!urxvt.fadeColor:        black
+!urxvt.shading:          75
+!urxvt.inheritPixmap:    true
+!urxvt.pointerColor:     black
+!urxvt.pointerColor2:    white
+
+!Fake Transparency
+!urxvt*transparent: true
+!urxvt*shading: 30
+
+!True Transparency
+!URxvt*depth: 32
+!URxvt*background: rgba:2828/2828/2828/C000
+!URxvt*background: rgba:0000/0000/0000/C000
+
+
+! Para clases 480p
+!URxvt*font:     xft:xos4 Terminus:pixelsize=16:bold
+!URxvt*boldFont: xft:xos4 Terminus:pixelsize=16:bold
+!URxvt.cursorBlink: true
+
+! Para clases 720p
+!URxvt*font:           xft:Dejavu Sans Mono:size=13:style=Regular
+!URxvt*boldFont:       xft:Dejavu Sans Mono:size=13:style=Bold
+!URxvt*italicFont:     xft:Dejavu Sans Mono:size=13:style=Italic
+!URxvt*boldItalicFont: xft:Dejavu Sans Mono:size=13:style=Bold Italic
+!URxvt.cursorBlink: true

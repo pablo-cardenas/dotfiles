@@ -1,0 +1,3 @@
+#include ".Xresources.d/themes/gruvbox-light.xresources"
+#include ".Xresources.d/rxvt-unicode"
+#include ".Xresources.d/fonts"

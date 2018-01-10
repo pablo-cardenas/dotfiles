@@ -1,0 +1,2 @@
+conky --daemonize
+tint2 &
