@@ -20,8 +20,13 @@ fi
 
 setxkbmap es
 [[ -d /usr/share/fonts/terminus ]] && xset +fp /usr/share/fonts/terminus
+command -v compton >/dev/null 2>&1 && compton -b &
+command -v feh >/dev/null 2>&1 && feh --bg-scale $HOME/.wallpaper
+udiskie &
+dunst &
+redshift &
+xset -b
 
-#command -v compton >/dev/null 2>&1 && compton -b &
 
 session=${1:-i3}
 case $session in

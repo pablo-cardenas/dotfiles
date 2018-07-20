@@ -20,8 +20,8 @@ set columns=120
 " Set font. It depends on which operating system I'm using.
 if has("win32") || has("win64")
     set guifont=Terminus:h12,Consolas:h11,Courier\ New:h10
-elseif has("gui_gtk2")
-    set guifont=Terminus\ 12,Monospace\ 10
+elseif has("gui_gtk2") || has("gui_gtk3")
+    set guifont=xos4\ Terminus\ 12,Terminus\ 12,Monospace\ 10
 elseif has("x11")
     set guifont=-*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
 endif

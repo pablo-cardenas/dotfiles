@@ -22,5 +22,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+export EDITOR=nvim
+
 # Para clases
-#export PS1='\[\033[01;31m\]$\[\033[00m\] '
+#export PS1='\[\033[01;31m\]\W $\[\033[00m\] '
