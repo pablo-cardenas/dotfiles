@@ -1,0 +1,229 @@
+[colors]
+base00 = ${xrdb:color0:#000000}
+base01 = ${xrdb:color10:#000000}
+base02 = ${xrdb:color11:#000000}
+base03 = ${xrdb:color8:#000000}
+base04 = ${xrdb:color12:#000000}
+base05 = ${xrdb:color7:#000000}
+base06 = ${xrdb:color13:#000000}
+base07 = ${xrdb:color15:#000000}
+base08 = ${xrdb:color1:#000000}
+base09 = ${xrdb:color9:#000000}
+base0A = ${xrdb:color3:#000000}
+base0B = ${xrdb:color2:#000000}
+base0C = ${xrdb:color6:#000000}
+base0D = ${xrdb:color4:#000000}
+base0E = ${xrdb:color5:#000000}
+base0F = ${xrdb:color14:#000000}
+
+[bar/base]
+width = 100%
+height = 18
+offset-x = 0%
+offset-y = 0%
+module-margin = 2
+padding = 2
+radius = 0.0
+fixed-center = false
+
+; font-N = <fontconfig pattern>;<vertical offset><Paste>
+font-0 = Fira Mono:pixelsize=9;2
+font-1 = FontAwesome5Free:style=Solid:pixelsize=9;1
+font-2 = FontAwesome5Brands:style=Solid:pixelsize=9;1
+font-3 = Dejavu:pixelsize=13;3
+
+background = ${colors.base00}
+foreground = ${colors.base05}
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[bar/top]
+inherit = bar/base
+padding-left = 0
+modules-left = i3 xwindow
+modules-right = backlight volume date
+
+[bar/bottom]
+inherit = bar/base
+bottom = true
+tray-position = right
+tray-margin-right = 5
+modules-left = cpu memory
+modules-right = network
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+label-maxlen = 120
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+
+label-mode-padding = 1
+label-mode-foreground = ${colors.base05}
+label-mode-background = ${colors.base01}
+label-mode-underline = ${colors.base09}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon% %index%
+label-focused-foreground = ${colors.base05}
+label-focused-background = ${colors.base01}
+label-focused-underline = ${colors.base0B}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon% %index%
+label-unfocused-padding = 1
+label-unfocused-foreground = ${colors.base03}
+label-unfocused-background = ${colors.base00}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-foreground = ${colors.base05}
+label-visible-background = ${colors.base00}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-foreground = ${colors.base07}
+label-urgent-background = ${colors.base03}
+label-urgent-underline = ${colors.base0A}
+label-urgent-padding = 1
+
+[module/date]
+type = internal/date
+interval = 5
+date = %a
+date-alt = %Y-%m-%d
+time = %H:%M
+time-alt = %H:%M:%S
+format-prefix = " "
+label = %date% %time%
+
+[module/volume]
+type = internal/pulseaudio
+
+format-volume = "<label-volume> <bar-volume>"
+label-volume =  %percentage:2%%
+
+format-muted-prefix = " "
+format-muted-prefix-foreground = ${colors.base03}
+label-muted = "AUDIO MUTE"
+label-muted-foreground = ${colors.base03}
+
+bar-volume-width = 11
+bar-volume-foreground-0 = ${colors.base0B}
+bar-volume-foreground-1 = ${colors.base0B}
+bar-volume-foreground-2 = ${colors.base0B}
+bar-volume-foreground-3 = ${colors.base0B}
+bar-volume-foreground-4 = ${colors.base0A}
+bar-volume-foreground-5 = ${colors.base0A}
+bar-volume-foreground-6 = ${colors.base09}
+bar-volume-foreground-7 = ${colors.base09}
+bar-volume-foreground-8 = ${colors.base08}
+bar-volume-foreground-9 = ${colors.base08}
+bar-volume-gradient = true
+bar-volume-indicator = ●
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.base03}
+
+[module/network]
+type = internal/network
+interface = wlp9s0
+ 
+format-connected = <label-connected> <ramp-signal>
+ 
+format-disconnected = offline 
+format-disconnected-foreground = ${colors.base03}
+
+ramp-signal-0 = 😱
+ramp-signal-0-foreground = ${colors.base08}
+ramp-signal-1 = 😠
+ramp-signal-1-foreground = ${colors.base0A}
+ramp-signal-2 = 😒
+ramp-signal-2-foreground = ${colors.base0A}
+ramp-signal-3 = 😊
+ramp-signal-3-foreground = ${colors.base0B}
+ramp-signal-4 = 😃
+ramp-signal-4-foreground = ${colors.base0B}
+ramp-signal-5 = 😈
+ramp-signal-5-foreground = ${colors.base0B}
+ 
+label-connected = %local_ip%   %essid% %downspeed:8%  %upspeed:8% 
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label> <ramp-coreload>
+label = CPU %percentage:2%%
+ 
+ramp-coreload-0 = ▁
+ramp-coreload-0-foreground = ${colors.base0B}
+ramp-coreload-1 = ▂
+ramp-coreload-1-foreground = ${colors.base0B}
+ramp-coreload-2 = ▃
+ramp-coreload-2-foreground = ${colors.base0B}
+ramp-coreload-3 = ▄
+ramp-coreload-3-foreground = ${colors.base0A}
+ramp-coreload-4 = ▅
+ramp-coreload-4-foreground = ${colors.base0A}
+ramp-coreload-5 = ▆
+ramp-coreload-5-foreground = ${colors.base09}
+ramp-coreload-6 = ▇
+ramp-coreload-6-foreground = ${colors.base09}
+ramp-coreload-7 = █
+ramp-coreload-7-foreground = ${colors.base08}
+
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+interval = 3
+label = RAM %gb_used%/%gb_free%
+ 
+bar-used-indicator =
+bar-used-width = 25
+bar-used-foreground-0 = ${colors.base0B}
+bar-used-foreground-1 = ${colors.base0B}
+bar-used-foreground-2 = ${colors.base0A}
+bar-used-foreground-3 = ${colors.base08}
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = ${colors.base02}
+
+[module/backlight]
+type = internal/xbacklight
+output = eDP1
+format = <label> <ramp>
+ 
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
