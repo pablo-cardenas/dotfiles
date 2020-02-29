@@ -18,14 +18,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
   unset f
 fi
 
-setxkbmap es
+setxkbmap -model pc104 -layout us,es  -option grp:ctrls_toggle
 [[ -d /usr/share/fonts/terminus ]] && xset +fp /usr/share/fonts/terminus
-command -v compton >/dev/null 2>&1 && compton -b &
-command -v feh >/dev/null 2>&1 && feh --bg-scale $HOME/.wallpaper
+command -v picom >/dev/null 2>&1 && picom -bc &
+#command -v feh >/dev/null 2>&1 && feh --bg-scale $HOME/.wallpaper
 udiskie &
 dunst &
 redshift &
 xset -b
+hsetroot -solid gray95
 
 
 session=${1:-i3}

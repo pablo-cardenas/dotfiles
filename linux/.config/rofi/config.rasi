@@ -1,0 +1,98 @@
+configuration {
+ modi: "window,drun,ssh,combi";
+ font: "Fira Mono 9";
+ combi-modi: "window,drun,ssh";
+ kb-row-down: "Super+n";
+ kb-row-up: "Super+p";
+}
+
+* {
+  black:      #000000;
+  red:        #cd0000;
+  green:      #00cd00;
+  yellow:     #cdcd00;
+  blue:       #0000cd;
+  mangenta:   #cd00cd;
+  cyan:       #00cdcd;
+  fg0: #ffffff;
+  fg1: #e5e5e5;
+  bg0: #000000;
+  bg1: #4d4d4d;
+
+  spacing: 0;
+
+  background-color: transparent;
+  text-color: @red;
+}
+
+window {
+  background-color: #000000ee;
+  border: 1;
+  border-color: #ffffff;
+  padding: 5;
+}
+
+mainbox {
+  border: 0;
+  padding: 0;
+}
+
+inputbar {
+  margin: 0px 0px 5px 0px;
+  children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+  text-color: @fg0;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: ":";
+  text-color: @bg1;
+}
+
+entry {
+  margin: 0px 5px;
+  text-color: #e5e5e5;
+}
+
+listview {
+  spacing: 1px;
+  dynamic: true;
+  scrollbar: false;
+}
+
+element {
+  padding: 1px;
+  text-color: @bg1;
+  highlight: bold #00cd00;
+  border-radius: 3px;
+}
+
+element selected {
+  background-color: @bg1;
+  text-color: @fg0;
+}
+
+element urgent, element selected urgent {
+  text-color: @red;
+}
+
+element active, element selected active {
+  text-color: @magenta;
+}
+
+message {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @bg1;
+  border: 1px;
+  border-color: @cyan;
+}
+
+button selected {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @bg1;
+}

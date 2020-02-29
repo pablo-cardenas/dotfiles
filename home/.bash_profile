@@ -1,5 +1,13 @@
-# This file is sourced by bash for login shells.  The following line
-# runs your .bashrc and is recommended by the bash info pages.
-if [[ -f ~/.bashrc ]] ; then
-	. ~/.bashrc
-fi
+source ~/.bash/env.bash
+
+# Add local bin directories to PATH.
+[ -d $HOME/.bin ] && PATH="$PATH:$HOME/.bin"
+[ -d $HOME/.local/bin ] && PATH="$PATH:$HOME/.local/bin"
+[ -d $HOME/.node_modules/bin ] && PATH="$PATH:$HOME/.node_modules/bin"
+export npm_config_prefix=~/.node_modules
+
+source ~/.bashrc
+
+export PATH
+
+unset try_source

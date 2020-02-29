@@ -1,29 +1,18 @@
 URxvt*geometry: 80x25
-URxvt.font:     xft:Fira Mono:book:pixelsize=12,\
-                xft:Font Awesome 5 Brands:pixelsize=12,\
+URxvt.font:     xft:Fira Mono:book:pixelsize=11,\
+                xft:Font Awesome 5 Brands:pixelsize=11,\
                 xft:Font Awesome 5 Free
 
-URxvt.boldFont: xft:Fira Mono:bold:pixelsize=12,\
-                xft:Font Awesome 5 Brands:pixelsize=12,\
+URxvt.boldFont: xft:Fira Mono:bold:pixelsize=11,\
+                xft:Font Awesome 5 Brands:pixelsize=11,\
                 xft:Font Awesome 5 Free
 
-URxvt.intensityStyles: false
+!URxvt.intensityStyles: false
 URxvt.scrollBar: false
 URxvt.internalBorder: 10
+
 URxvt.cursorBlink: true
 
-! Transparency
+URxvt.perl-ext-common:  resize-font
+
 URxvt.depth: 32
-#define background_opacity 80
-
-! Para clases 480p
-!URxvt*font:     xft:xos4 Terminus:pixelsize=16:bold
-!URxvt*boldFont: xft:xos4 Terminus:pixelsize=16:bold
-!URxvt.cursorBlink: true
-
-! Para clases 720p
-!URxvt*font:           xft:Dejavu Sans Mono:size=13:style=Regular
-!URxvt*boldFont:       xft:Dejavu Sans Mono:size=13:style=Bold
-!URxvt*italicFont:     xft:Dejavu Sans Mono:size=13:style=Italic
-!URxvt*boldItalicFont: xft:Dejavu Sans Mono:size=13:style=Bold Italic
-!URxvt.cursorBlink: true

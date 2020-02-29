@@ -7,33 +7,27 @@ HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=2000
 
-
-# TODO: What's a portable way for doing this?
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 # Bash completions
 if ! shopt -oq posix; then
     [ -f /etc/bash_completion ] && source /etc/bash_completion
     [ -f /usr/local/etc/bash_completion ] && source /usr/local/etc/bash_completion
 fi
 
-source ~/.bash/colors.bash
 source ~/.bash/aliases.bash
-source ~/.bash/functions.bash
-source ~/.bash/prompt.bash
 
 for f in ~/.bash/local.d/*.bash; do
-    if [ -x $f ]; then . $f; fi
+    if [ -x $f ]; then source $f; fi
 done
-
-export EDITOR=nvim
 
 # Para clases
 #export PS1='\[\033[01;31m\]\W $\[\033[00m\] '
 
-# Base16 Shell
-BASE16_SHELL_SET_BACKGROUND=false    
-BASE16_SHELL="$HOME/.base16-manager/chriskempson/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+export LESS=-R
+export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
+export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
