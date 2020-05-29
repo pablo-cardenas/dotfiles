@@ -303,7 +303,7 @@ tail = true
 
 [module/updates-arch-combined]
 type = custom/script
-exec = /usr/share/polybar/scripts/updates-arch-combined.sh
+exec = /usr/share/polybar/scripts/updates-pacman-aurhelper.sh
 interval = 600
 
 ;[module/gmail]
