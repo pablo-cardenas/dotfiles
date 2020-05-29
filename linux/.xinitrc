@@ -26,7 +26,7 @@ udiskie &
 dunst &
 redshift &
 xset -b
-hsetroot -solid gray95
+hsetroot -solid gray50
 
 
 session=${1:-i3}

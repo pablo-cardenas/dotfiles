@@ -25,11 +25,9 @@ primary   = ${xrdb:color1:#cd0000}
 secondary = ${xrdb:color2:#00cd00}
 alert     = ${xrdb:color3:#cdcd00}
 
-[bar/bar]
+[bar/base]
 background = ${colors.bg0}
 foreground = ${colors.fg1}
-
-[bar/base]
 width = 100%
 height = 18
 offset-x = 0%
@@ -52,7 +50,8 @@ scroll-down = i3wm-wsprev
 inherit = bar/base
 padding-left = 0
 modules-left = i3 xwindow
-modules-right = xkeyboard battery backlight volume date
+#modules-right = gmail xkeyboard battery backlight volume date
+modules-right = updates-arch-combined info-hackspeed xkeyboard backlight volume date
 
 [bar/bottom]
 inherit = bar/base
@@ -60,7 +59,7 @@ bottom = true
 tray-position = right
 tray-margin-right = 5
 modules-left = cpu memory filesystem
-modules-right = uptime network
+modules-right = battery system-uptime-pretty network
 
 [module/xwindow]
 type = internal/xwindow
@@ -73,6 +72,7 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
+; Mode
 label-mode-padding = 1
 label-mode-foreground = ${colors.fg0}
 label-mode-background = ${colors.red3}
@@ -187,7 +187,7 @@ ramp-coreload-3-foreground = ${colors.yellow3}
 ramp-coreload-4 = ▅
 ramp-coreload-4-foreground = ${colors.yellow3}
 ramp-coreload-5 = ▆
-ramp-coreload-5-foreground = ${colors.red3}
+ramp-coreload-5-foreground = ${colors.yellow3}
 ramp-coreload-6 = ▇
 ramp-coreload-6-foreground = ${colors.red3}
 ramp-coreload-7 = █
@@ -195,20 +195,55 @@ ramp-coreload-7-foreground = ${colors.red3}
 
 [module/memory]
 type = internal/memory
-format = <label> <bar-used>
+format = <label> <ramp-used>
 interval = 3
 label = RAM %gb_used%/%gb_free%
 
-bar-used-indicator =
-bar-used-width = 15
-bar-used-foreground-0 = ${colors.green3}
-bar-used-foreground-1 = ${colors.green3}
-bar-used-foreground-2 = ${colors.yellow3}
-bar-used-foreground-3 = ${colors.yellow3}
-bar-used-foreground-4 = ${colors.red3}
-bar-used-fill = ▐
-bar-used-empty = ▐
-bar-used-empty-foreground = ${colors.fg1}
+ramp-used-0 = ▁
+ramp-used-0-foreground = ${colors.green3}
+ramp-used-1 = ▂
+ramp-used-1-foreground = ${colors.green3}
+ramp-used-2 = ▃
+ramp-used-2-foreground = ${colors.green3}
+ramp-used-3 = ▄
+ramp-used-3-foreground = ${colors.yellow3}
+ramp-used-4 = ▅
+ramp-used-4-foreground = ${colors.yellow3}
+ramp-used-5 = ▆
+ramp-used-5-foreground = ${colors.yellow3}
+ramp-used-6 = ▇
+ramp-used-6-foreground = ${colors.red3}
+ramp-used-7 = █
+ramp-used-7-foreground = ${colors.red3}
+
+[module/filesystem]
+type = internal/fs
+
+mount-0 = /
+mount-1 = /home
+
+interval = 10
+fixed-values = true
+spacing = 2
+format-mounted = <label-mounted> <ramp-capacity>
+label-mounted = %mountpoint% %used%/%free%
+
+ramp-capacity-0 = ▁
+ramp-capacity-0-foreground = ${colors.red3}
+ramp-capacity-1 = ▂
+ramp-capacity-1-foreground = ${colors.red3}
+ramp-capacity-2 = ▃
+ramp-capacity-2-foreground = ${colors.yellow3}
+ramp-capacity-3 = ▄
+ramp-capacity-3-foreground = ${colors.yellow3}
+ramp-capacity-4 = ▅
+ramp-capacity-4-foreground = ${colors.yellow3}
+ramp-capacity-5 = ▆
+ramp-capacity-5-foreground = ${colors.green3}
+ramp-capacity-6 = ▇
+ramp-capacity-6-foreground = ${colors.green3}
+ramp-capacity-7 = █
+ramp-capacity-7-foreground = ${colors.green3}
 
 [module/backlight]
 type = internal/xbacklight
@@ -253,25 +288,29 @@ ramp-capacity-4 = 
 ramp-capacity-4-foreground = ${colors.green3}
 
 
-[module/filesystem]
-type = internal/fs
-
-mount-0 = /
-mount-1 = /home
-
-interval = 10
-fixed-values = true
-spacing = 2
-label-mounted = %mountpoint%(%used%/%free%)
-
 [module/xkeyboard]
 type = internal/xkeyboard
 
-[module/uptime]
+[module/system-uptime-pretty]
 type = custom/script
-exec = uptime | sed -r "s/^.*up (.*),  [0-9]* user.*$/\1/" | sed -r "s/  / /"
-interval = 100
-label = UP %output%
+exec = /usr/share/polybar/scripts/system-uptime-pretty.sh
+interval = 60
+
+[module/info-hackspeed]
+type = custom/script
+exec = /usr/share/polybar/scripts/info-hackspeed.sh
+tail = true
+
+[module/updates-arch-combined]
+type = custom/script
+exec = /usr/share/polybar/scripts/updates-arch-combined.sh
+interval = 600
+
+;[module/gmail]
+;type = custom/script
+;exec = ~/.config/polybar/gmail/launch.py
+;tail = true
+;click-left = xdg-open https://mail.google.com
 
 [settings]
 screenchange-reload = true
@@ -279,6 +318,5 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
-
 
 ; vim:ft=dosini

@@ -15,4 +15,4 @@ URxvt.cursorBlink: true
 
 URxvt.perl-ext-common:  resize-font
 
-URxvt.depth: 32
+!URxvt.depth: 32

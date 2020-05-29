@@ -1,6 +1,6 @@
-*.foreground:	#e5e5e5
+*.foreground:	#ffffff
 *.background:	#000000
-URxvt.foreground:	#e5e5e5
+URxvt.foreground:	#ffffff
 URxvt.background:	#000000
 i3wm.fg0:	#ffffff
 i3wm.fg1:	#e5e5e5

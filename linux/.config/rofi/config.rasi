@@ -2,8 +2,8 @@ configuration {
  modi: "window,drun,ssh,combi";
  font: "Fira Mono 9";
  combi-modi: "window,drun,ssh";
- kb-row-down: "Super+n";
- kb-row-up: "Super+p";
+ kb-row-down: "Down,Control+n,Super+n";
+ kb-row-up: "Up,Control+p,Super+p";
 }
 
 * {
