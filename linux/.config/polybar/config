@@ -2,7 +2,7 @@
 fg0 = ${xrdb:i3wm.fg0:#000000}
 fg1 = ${xrdb:i3wm.fg1:#4d4d4d}
 bg0 = ${xrdb:i3wm.bg0:#ffffff}
-bg1 = ${xrdb:i3wm.bg1:#e5e5e5}
+bg1 = ${Xrdb:i3wm.bg1:#e5e5e5}
 
 black    = ${xrdb:color0:#000000}
 red3     = ${xrdb:color1:#cd0000}
@@ -26,6 +26,7 @@ secondary = ${xrdb:color2:#00cd00}
 alert     = ${xrdb:color3:#cdcd00}
 
 [bar/base]
+monitor = ${env:MONITOR:HDMI1}
 background = ${colors.bg0}
 foreground = ${colors.fg1}
 width = 100%
@@ -41,7 +42,8 @@ fixed-center = false
 font-0 = Fira Mono:pixelsize=9;2
 font-1 = FontAwesome5Free:style=Solid:pixelsize=9;1
 font-2 = FontAwesome5Brands:style=Solid:pixelsize=9;1
-font-3 = Dejavu:pixelsize=13;3
+font-3 = Fira Mono:pixelsize=9:style=bold;2
+font-4 = Dejavu:pixelsize=13;3
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -51,15 +53,16 @@ inherit = bar/base
 padding-left = 0
 modules-left = i3 xwindow
 #modules-right = gmail xkeyboard battery backlight volume date
-modules-right = updates-arch-combined info-hackspeed xkeyboard backlight volume date
+modules-right = timer taskwarrior updates-arch-combined info-hackspeed xkeyboard backlight volume date
 
 [bar/bottom]
 inherit = bar/base
 bottom = true
 tray-position = right
 tray-margin-right = 5
-modules-left = cpu memory filesystem
-modules-right = battery system-uptime-pretty network
+modules-left = cpu memory filesystem system-gpu-intel
+#modules-left = cpu memory filesystem system-gpu-intel
+modules-right = battery system-uptime-pretty wired-network wireless-network
 
 [module/xwindow]
 type = internal/xwindow
@@ -78,8 +81,9 @@ label-mode-foreground = ${colors.fg0}
 label-mode-background = ${colors.red3}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-foreground = ${colors.fg0}
+label-focused =  %{T4}%index%
+label-focused-font = 3
+label-focused-foreground = ${colors.fg1}
 label-focused-background = ${colors.bg1}
 label-focused-underline = ${colors.yellow3}
 label-focused-padding = 1
@@ -92,9 +96,9 @@ label-unfocused-background = ${colors.bg0}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
-label-visible-foreground = ${colors.bg1}
-label-visible-background = ${colors.bg0}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-foreground = ${colors.fg1}
+label-visible-background = ${colors.bg1}
+label-visible-padding = 1
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
@@ -116,7 +120,8 @@ label = %date% %time%
 [module/volume]
 type = internal/pulseaudio
 
-sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+#sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+sink = alsa_output.usb-BurrBrown_from_Texas_Instruments_USB_AUDIO_CODEC-00.analog-stereo
 
 format-volume = "<label-volume> <bar-volume>"
 label-volume =  %percentage:2%%
@@ -146,7 +151,15 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.fg1}
 
-[module/network]
+[module/wired-network]
+type = internal/network
+interface = eno1
+
+format-connected = <label-connected>
+
+label-connected = %local_ip%  %downspeed:8%  %upspeed:8% 
+
+[module/wireless-network]
 type = internal/network
 interface = wlp9s0
 
@@ -296,6 +309,11 @@ type = custom/script
 exec = /usr/share/polybar/scripts/system-uptime-pretty.sh
 interval = 60
 
+#[module/system-gpu-intel]
+#type = custom/script
+#exec = /usr/share/polybar/scripts/system-gpu-intel.sh
+#interval = 20
+
 [module/info-hackspeed]
 type = custom/script
 exec = /usr/share/polybar/scripts/info-hackspeed.sh
@@ -305,6 +323,29 @@ tail = true
 type = custom/script
 exec = /usr/share/polybar/scripts/updates-pacman-aurhelper.sh
 interval = 600
+
+[module/timer]
+type = custom/script
+exec = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh tail 'TIMER' 5
+tail = true
+click-left = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh new 25 'Pomo session' 'notify-send "Session finished"' ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
+click-middle = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh cancel ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
+click-right = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh new 5 'Pomo break' 'notify-send "Break finished"' ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
+scroll-up = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh increase 60 || ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh new 1 'TIMER:' 'notify-send -u critical "Timer expired."' ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
+scroll-down = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh increase -60 ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
+
+[module/taskwarrior]
+type = custom/script
+interval = 10
+exec = ~/.config/polybar/scripts/taskwarrior.sh
+tail = true
+format = <label>
+format-foreground = #fff
+format-background = #000
+label-padding = 1
+label= "%output%"
+click-right = kill -USR2 %pid%
+click-left = kill -USR1 %pid%
 
 ;[module/gmail]
 ;type = custom/script

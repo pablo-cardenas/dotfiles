@@ -3,9 +3,9 @@
 
 shopt -s checkwinsize histappend
 
-HISTCONTROL=ignoreboth
-HISTSIZE=10000
-HISTFILESIZE=2000
+export HISTCONTROL=ignoreboth:erasedups
+export HISTSIZE=100000
+export HISTFILESIZE=20000
 
 # Bash completions
 if ! shopt -oq posix; then
@@ -25,7 +25,6 @@ done
 # Para clases
 #export PS1='\[\033[01;31m\]\W $\[\033[00m\] '
 
-
 export LESS=-R
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
 export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
@@ -35,8 +34,4 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-PATH="/home/pablo/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/pablo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/pablo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/pablo/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/pablo/perl5"; export PERL_MM_OPT;
+export PYTHONSTARTUP=${HOME}/.pythonrc.py

@@ -14,10 +14,10 @@ configuration {
   blue:       #0000cd;
   mangenta:   #cd00cd;
   cyan:       #00cdcd;
-  fg0: #ffffff;
-  fg1: #e5e5e5;
-  bg0: #000000;
-  bg1: #4d4d4d;
+  bg0: #ffffff;
+  bg1: #e5e5e5;
+  fg0: #000000;
+  fg1: #4d4d4d;
 
   spacing: 0;
 
@@ -26,9 +26,9 @@ configuration {
 }
 
 window {
-  background-color: #000000ee;
+  background-color: #ffffffee;
   border: 1;
-  border-color: #ffffff;
+  border-color: @fg0;
   padding: 5;
 }
 
@@ -54,7 +54,7 @@ textbox-prompt-colon {
 
 entry {
   margin: 0px 5px;
-  text-color: #e5e5e5;
+  text-color: @fg1;
 }
 
 listview {
@@ -65,7 +65,7 @@ listview {
 
 element {
   padding: 1px;
-  text-color: @bg1;
+  text-color: @fg1;
   highlight: bold #00cd00;
   border-radius: 3px;
 }

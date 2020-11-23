@@ -20,19 +20,25 @@ fi
 
 setxkbmap -model pc104 -layout us,es  -option grp:ctrls_toggle
 [[ -d /usr/share/fonts/terminus ]] && xset +fp /usr/share/fonts/terminus
-command -v picom >/dev/null 2>&1 && picom -bc &
-#command -v feh >/dev/null 2>&1 && feh --bg-scale $HOME/.wallpaper
+#command -v picom >/dev/null 2>&1 && picom --experimental-backends --backend glx &
+#command -v picom >/dev/null 2>&1 && picom -bc
 udiskie &
 dunst &
 redshift &
-xset -b
-hsetroot -solid gray50
+xset -b &
+xsetwacom set 16 MapToOutput HDMI1
+xsetwacom set 17 MapToOutput HDMI1
+#hsetroot -solid gray50
+xrandr \
+    --output HDMI1 --mode 1920x1080 \
+    --output VGA1 --mode 1440x900 \
+    --right-of HDMI1
+command -v feh >/dev/null 2>&1 && feh --bg-scale $HOME/.wallpaper
 
 
 session=${1:-i3}
 case $session in
     i3|i3wm           ) exec i3;;
     openbox           ) exec openbox-session;;
-    # No known session, try to run it as command
     *                 ) exec $1;;
 esac

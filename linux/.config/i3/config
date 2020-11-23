@@ -1,5 +1,5 @@
 set_from_resource $black    color0  #000000
-set_from_resource $red3     color1  #cd0000
+SET_FROM_resource $red3     color1  #cd0000
 set_from_resource $green3   color2  #00cd00
 set_from_resource $yellow3  color3  #cdcd00
 set_from_resource $blue3    color4  #0000cd
@@ -166,8 +166,27 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-new_window pixel 2
-new_float pixel 2
-gaps vertical 6
-gaps horizontal 43
+#new_window pixel 2
+#new_float pixel 2
+#gaps vertical 162
+#gaps horizontal 320
+
+# You can also use any non-zero value if you'd like to have a border
+#default_border pixel 0
+for_window [class=".*"] border pixel 0
+for_window [class=".*"] child_border pixel 0
+
+gaps vertical 8
+gaps horizontal 20
 gaps inner 8
+
+#smart_gaps on
+#smart_gaps inverse_outer
+#smart_borders no_gaps
+#hide_edge_borders smart_no_gaps
+
+
+
+#gaps vertical 0
+#gaps horizontal 0
+#gaps inner 0
