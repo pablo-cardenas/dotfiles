@@ -1,9 +1,6 @@
 [user]
 	name  = Pablo Cárdenas
 	email = pablo-cardenas@outlook.com
-[alias]
-	lod = log --oneline --decorate
-	unstage = reset HEAD --
 
 [diff]
 	tool = vimdiff

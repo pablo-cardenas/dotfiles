@@ -1,0 +1,3 @@
+[submodule "linux/.config/polybar/scripts/polybar-timer"]
+	path = linux/.config/polybar/scripts/polybar-timer
+	url = https://github.com/jbirnick/polybar-timer
