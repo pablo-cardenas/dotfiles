@@ -1,11 +1,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-shopt -s checkwinsize histappend
+shopt -s checkwinsize histappend histreedit
 
-export HISTCONTROL=ignoreboth:erasedups
+export HISTCONTROL=ignoreboth
 export HISTSIZE=100000
-export HISTFILESIZE=20000
+export HISTFILESIZE=200000
+HISTTIMEFORMAT="%d/%m/%y %T "
 
 # Bash completions
 if ! shopt -oq posix; then
@@ -35,3 +36,9 @@ export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 export PYTHONSTARTUP=${HOME}/.pythonrc.py
+
+
+source /usr/share/git/completion/git-prompt.sh
+export GIT_PS1_SHOWCOLORHINTS=1
+export GIT_PS1_SHOWDIRTYSTATE=1
+export PS1='[\u@\h \W]$(__git_ps1) \$ '

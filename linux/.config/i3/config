@@ -1,5 +1,5 @@
 set_from_resource $black    color0  #000000
-SET_FROM_resource $red3     color1  #cd0000
+set_from_resource $red3     color1  #cd0000
 set_from_resource $green3   color2  #00cd00
 set_from_resource $yellow3  color3  #cdcd00
 set_from_resource $blue3    color4  #0000cd
@@ -14,9 +14,9 @@ set_from_resource $blue     color12 #0000ff
 set_from_resource $magenta  color13 #ff00ff
 set_from_resource $cyan     color14 #00ffff
 set_from_resource $white    color15 #ffffff
-set_from_resource $fg0 i3wm.fg0 #000000
+set_from_resource $fg0 foreground #000000
 set_from_resource $fg1 i3wm.fg1 #4d4d4d
-set_from_resource $bg0 i3wm.bg0 #ffffff
+set_from_resource $bg0 background #ffffff
 set_from_resource $bg1 i3wm.bg1 #e5e5e5
 
 set $mod Mod4
@@ -145,10 +145,10 @@ bindsym $mod+r mode "resize"
 
 # class                 border  backgr. text    indicator child_border
 client.focused          $fg0    $bg0    $fg0    $green    $fg0
-client.focused_inactive $bg1    $bg0    $fg1    $green    $bg1
-client.unfocused        $bg1    $bg0    $bg1    $green    $bg1
+client.focused_inactive $bg1    $bg0    $fg0    $green    $bg1
+client.unfocused        $bg1    $bg0    $fg1    $green    $bg1
 client.urgent           $red    $bg0    $red    $green    $red
-client.placeholder      $000000 $blue   $blue   $000000   $blue
+client.placeholder      $magenta $magenta   $magenta   $magenta  $magenta
 client.background       $magenta
 
 # Pulse Audio controls
@@ -166,27 +166,49 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-#new_window pixel 2
-#new_float pixel 2
-#gaps vertical 162
-#gaps horizontal 320
+default_border pixel 2
+default_floating_border pixel 4
 
 # You can also use any non-zero value if you'd like to have a border
-#default_border pixel 0
-for_window [class=".*"] border pixel 0
-for_window [class=".*"] child_border pixel 0
+#for_window [class=".*"] border pixel 0
+#for_window [class=".*"] child_border pixel 0
 
-gaps vertical 8
-gaps horizontal 20
+
+# 4.13. Arbitrary commands for specific windows (for_window)
+for_window [class="Blender" instance="Blender" title="Blender Preferences"] floating enable
+for_window [class="Blender" instance="Blender" title="Blender Preferences"] move position center
+for_window [class="zoom" instance="zoom" title="zoom"] floating enable
+for_window [class="zoom" instance="zoom" title="zoom"] move position center
+for_window [class="zoom" instance="zoom" title="Chat"] floating enable
+for_window [class="zoom" instance="zoom" title="Chat"] move position center
+for_window [class="zoom" instance="zoom" title="Participants*"] floating enable
+for_window [class="zoom" instance="zoom" title="Participants*"] move position center
+for_window [class="zoom" instance="zoom" title="Settings"] floating enable
+for_window [class="zoom" instance="zoom" title="Settings"] move position center
+for_window [class="URxvt" instance="urxvt"] client.focused $white $bg0 $bg1 $green $bg1
+
+
+# 4.19. Automatically putting workspaces on specific screens
+workspace 1 output VGA1
+workspace 2 output HDMI-0
+workspace 3 output VGA1
+workspace 4 output HDMI-0
+workspace 5 output VGA1
+workspace 6 output HDMI-0
+workspace 7 output VGA1
+workspace 8 output HDMI-0
+
+
+# 6.20. Scratchpad
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+
+# i3-gaps
+gaps vertical 0
+gaps horizontal 8
 gaps inner 8
-
-#smart_gaps on
-#smart_gaps inverse_outer
-#smart_borders no_gaps
-#hide_edge_borders smart_no_gaps
-
-
-
-#gaps vertical 0
-#gaps horizontal 0
-#gaps inner 0

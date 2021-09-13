@@ -1,9 +1,4 @@
 [colors]
-fg0 = ${xrdb:i3wm.fg0:#000000}
-fg1 = ${xrdb:i3wm.fg1:#4d4d4d}
-bg0 = ${xrdb:i3wm.bg0:#ffffff}
-bg1 = ${Xrdb:i3wm.bg1:#e5e5e5}
-
 black    = ${xrdb:color0:#000000}
 red3     = ${xrdb:color1:#cd0000}
 green3   = ${xrdb:color2:#00cd00}
@@ -21,14 +16,25 @@ magenta  = ${xrdb:color13:#ff00ff}
 cyan     = ${xrdb:color14:#00ffff}
 white    = ${xrdb:color15:#ffffff}
 
+background = ${xrdb:background}
+background-accent-1 = ${xrdb:color8}
+background-accent-2 = ${xrdb:color6}
+foreground = ${xrdb:foreground}
+foreground-accent-1 = ${xrdb:foreground}
+foreground-accent-2 = ${xrdb:color0}
+fg0 = ${colors:white}
+fg1 = ${xrdb:i3wm.foreground:#000000}
+bg0 = ${xrdb:i3wm.background:#ffffff}
+bg1 = ${colors:gray30}
+
 primary   = ${xrdb:color1:#cd0000}
 secondary = ${xrdb:color2:#00cd00}
 alert     = ${xrdb:color3:#cdcd00}
 
 [bar/base]
 monitor = ${env:MONITOR:HDMI1}
-background = ${colors.bg0}
-foreground = ${colors.fg1}
+background = ${colors.background}
+foreground = ${colors.foreground}
 width = 100%
 height = 18
 offset-x = 0%
@@ -52,16 +58,14 @@ scroll-down = i3wm-wsprev
 inherit = bar/base
 padding-left = 0
 modules-left = i3 xwindow
-#modules-right = gmail xkeyboard battery backlight volume date
-modules-right = timer taskwarrior updates-arch-combined info-hackspeed xkeyboard backlight volume date
+modules-right = timer taskwarrior updates-arch-combined xkeyboard backlight volume date
 
 [bar/bottom]
 inherit = bar/base
 bottom = true
 tray-position = right
 tray-margin-right = 5
-modules-left = cpu memory filesystem system-gpu-intel
-#modules-left = cpu memory filesystem system-gpu-intel
+modules-left = cpu system-nvidia-smi memory filesystem
 modules-right = battery system-uptime-pretty wired-network wireless-network
 
 [module/xwindow]
@@ -75,41 +79,38 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
+padding = 1
+
 ; Mode
-label-mode-padding = 1
-label-mode-foreground = ${colors.fg0}
-label-mode-background = ${colors.red3}
+label-mode-background = ${colors.primary}
+label-mode-padding = ${self.padding}
 
 ; focused = Active workspace on focused monitor
 label-focused =  %{T4}%index%
 label-focused-font = 3
-label-focused-foreground = ${colors.fg1}
-label-focused-background = ${colors.bg1}
-label-focused-underline = ${colors.yellow3}
-label-focused-padding = 1
+label-focused-background = ${colors.background-accent-2}
+label-focused-foreground = ${colors.foreground-accent-2}
+label-focused-padding = ${self.padding}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
-label-unfocused-padding = 1
-label-unfocused-foreground = ${colors.fg1}
-label-unfocused-background = ${colors.bg0}
+label-unfocused-background = ${colors.background-accent-1}
+label-unfocused-foreground = ${colors.foreground-accent-1}
+label-unfocused-padding = ${self.padding}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
-label-visible-foreground = ${colors.fg1}
-label-visible-background = ${colors.bg1}
-label-visible-padding = 1
+label-visible-background = ${self.label-focused-background}
+label-visible-padding = ${self.padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
-label-urgent-foreground = ${colors.fg0}
-label-urgent-background = ${colors.yellow3}
-label-urgent-underline = ${colors.green3}
-label-urgent-padding = 1
+label-urgent-background = ${colors.alert}
+label-urgent-padding = ${self.padding}
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 60
 date = %a
 date-alt = %Y-%m-%d
 time = %H:%M
@@ -127,9 +128,9 @@ format-volume = "<label-volume> <bar-volume>"
 label-volume =  %percentage:2%%
 
 format-muted-prefix = " "
-format-muted-prefix-foreground = ${colors.fg1}
+format-muted-prefix-foreground = ${colors.foreground}
 label-muted = "AUDIO MUTE"
-label-muted-foreground = ${colors.bg1}
+label-muted-foreground = ${colors.background}
 
 bar-volume-width = 11
 bar-volume-foreground-0 = ${colors.green3}
@@ -209,7 +210,7 @@ ramp-coreload-7-foreground = ${colors.red3}
 [module/memory]
 type = internal/memory
 format = <label> <ramp-used>
-interval = 3
+interval = 2
 label = RAM %gb_used%/%gb_free%
 
 ramp-used-0 = ▁
@@ -238,25 +239,9 @@ mount-1 = /home
 interval = 10
 fixed-values = true
 spacing = 2
-format-mounted = <label-mounted> <ramp-capacity>
+format-mounted = <label-mounted>
 label-mounted = %mountpoint% %used%/%free%
 
-ramp-capacity-0 = ▁
-ramp-capacity-0-foreground = ${colors.red3}
-ramp-capacity-1 = ▂
-ramp-capacity-1-foreground = ${colors.red3}
-ramp-capacity-2 = ▃
-ramp-capacity-2-foreground = ${colors.yellow3}
-ramp-capacity-3 = ▄
-ramp-capacity-3-foreground = ${colors.yellow3}
-ramp-capacity-4 = ▅
-ramp-capacity-4-foreground = ${colors.yellow3}
-ramp-capacity-5 = ▆
-ramp-capacity-5-foreground = ${colors.green3}
-ramp-capacity-6 = ▇
-ramp-capacity-6-foreground = ${colors.green3}
-ramp-capacity-7 = █
-ramp-capacity-7-foreground = ${colors.green3}
 
 [module/backlight]
 type = internal/xbacklight
@@ -306,52 +291,39 @@ type = internal/xkeyboard
 
 [module/system-uptime-pretty]
 type = custom/script
-exec = /usr/share/polybar/scripts/system-uptime-pretty.sh
+exec = ~/.config/polybar/scripts/system-uptime-pretty.sh
 interval = 60
-
-#[module/system-gpu-intel]
-#type = custom/script
-#exec = /usr/share/polybar/scripts/system-gpu-intel.sh
-#interval = 20
-
-[module/info-hackspeed]
-type = custom/script
-exec = /usr/share/polybar/scripts/info-hackspeed.sh
-tail = true
 
 [module/updates-arch-combined]
 type = custom/script
-exec = /usr/share/polybar/scripts/updates-pacman-aurhelper.sh
+exec = ~/.config/polybar/scripts/updates-pacman-aurhelper.sh
 interval = 600
 
 [module/timer]
 type = custom/script
 exec = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh tail 'TIMER' 5
 tail = true
-click-left = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh new 25 'Pomo session' 'notify-send "Session finished"' ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
+click-left = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh new 25 'Pomo session' 'notify-send "Session finished"; canberra-gtk-play -i complete' ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
 click-middle = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh cancel ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
-click-right = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh new 5 'Pomo break' 'notify-send "Break finished"' ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
-scroll-up = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh increase 60 || ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh new 1 'TIMER:' 'notify-send -u critical "Timer expired."' ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
+click-right = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh new 5 'Pomo break' 'notify-send "Break finished"; canberra-gtk-play -i complete' ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
+scroll-up = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh increase 60 || ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh new 1 'TIMER:' 'notify-send -u critical "Timer expired."; canberra-gtk-play -i complete' ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
 scroll-down = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh increase -60 ; ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh update %pid%
 
 [module/taskwarrior]
 type = custom/script
-interval = 10
+interval = 5
 exec = ~/.config/polybar/scripts/taskwarrior.sh
 tail = true
 format = <label>
-format-foreground = #fff
-format-background = #000
 label-padding = 1
 label= "%output%"
 click-right = kill -USR2 %pid%
 click-left = kill -USR1 %pid%
 
-;[module/gmail]
-;type = custom/script
-;exec = ~/.config/polybar/gmail/launch.py
-;tail = true
-;click-left = xdg-open https://mail.google.com
+[module/system-nvidia-smi]
+type = custom/script
+exec = ~/.config/polybar/scripts/system-nvidia-smi/system-nvidia-smi.sh
+interval = 2
 
 [settings]
 screenchange-reload = true

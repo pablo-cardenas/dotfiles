@@ -4,3 +4,9 @@
 [alias]
 	lod = log --oneline --decorate
 	unstage = reset HEAD --
+
+[diff]
+	tool = vimdiff
+
+[merge]
+	tool = vimdiff

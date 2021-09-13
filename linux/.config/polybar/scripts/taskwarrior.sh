@@ -1,5 +1,5 @@
-active_id=$(task +ACTIVE rc.verbose: limit:1 id | cut -d ' ' -f1)
-next_id=$(task next rc.verbose: limit:1 id | cut -d ' ' -f1)
+active_id=$(task +ACTIVE rc.verbose: limit:1 id | cut -d ' ' -f2)
+next_id=$(task next rc.verbose: limit:1 id | cut -d ' ' -f2)
 
 if [ -z $active_id ]
 then
