@@ -1,0 +1,25 @@
+# IMAP
+set imap_user = pablocb2303@gmail.com
+set imap_pass = "`pass show google/pablocb2303@gmail.com | head -n 1`"
+
+set folder = imaps://pablocb2303@gmail.com@imap.gmail.com/
+set spoolfile = +INBOX
+unset record
+set trash = "+[Gmail]/Corbeille"
+set postponed = "+[Gmail]/Brouillons"
+
+
+# SMPT
+set smtp_url = smtps://pablocb2303@gmail.com@smtp.gmail.com
+set smtp_pass = "`pass show google/pablocb2303@gmail.com | head -n 1`"
+
+set from = pablocb2303@gmail.com
+set realname = "Pablo Cárdenas"
+set hostname = gmail.com
+
+set ssl_force_tls = yes
+unset ssl_starttls
+
+
+# Hook
+account-hook $folder "set imap_user=pablocb2303@gmail.com imap_pass='`pass show google/pablocb2303@gmail.com | head -n 1`'"

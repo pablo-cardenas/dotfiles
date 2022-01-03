@@ -1,0 +1,25 @@
+# IMAP
+set imap_user = pcardenasb@uni.edu.pe
+set imap_pass = "`pass show google/pcardenasb@uni.edu.pe`"
+
+set folder = imaps://pcardenasb@uni.edu.pe@imap.gmail.com/
+set spoolfile = +INBOX
+unset record
+set trash = +[Gmail]/Trash
+set postponed = +[Gmail]/Drafts
+
+
+# SMPT
+set smtp_url = smtps://pcardenasb@uni.edu.pe@smtp.gmail.com
+set smtp_pass = "`pass show google/pcardenasb@uni.edu.pe`"
+
+set from = pcardenasb@uni.edu.pe
+set realname = "Pablo Cárdenas"
+set hostname = uni.edu.pe
+
+set ssl_force_tls = yes
+unset ssl_starttls
+
+
+# Hook
+account-hook $folder "set imap_user=pcardenasb@uni.edu.pe imap_pass='`pass show google/pcardenasb@uni.edu.pe`'"
