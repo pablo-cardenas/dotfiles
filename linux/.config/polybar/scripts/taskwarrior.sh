@@ -3,7 +3,7 @@ next_id=$(task next rc.verbose: limit:1 id | cut -d ' ' -f2)
 
 if [ -z $active_id ]
 then
-	echo NEXT $(task _get ${next_id}.description)
+	echo  NEXT $(task _get ${next_id}.description)
 else
-	echo ACTIVE $(task _get ${active_id}.description)
+	echo  ACTIVE $(task _get ${active_id}.description)
 fi

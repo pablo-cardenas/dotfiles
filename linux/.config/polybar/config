@@ -58,7 +58,7 @@ scroll-down = i3wm-wsprev
 inherit = bar/base
 padding-left = 0
 modules-left = i3 xwindow
-modules-right = timer taskwarrior updates-arch-combined xkeyboard backlight volume date
+modules-right = rss timer taskwarrior updates-arch-combined xkeyboard backlight volume date
 
 [bar/bottom]
 inherit = bar/base
@@ -311,7 +311,7 @@ scroll-down = ~/.config/polybar/scripts/polybar-timer/polybar-timer.sh increase 
 
 [module/taskwarrior]
 type = custom/script
-interval = 5
+interval = 10
 exec = ~/.config/polybar/scripts/taskwarrior.sh
 tail = true
 format = <label>
@@ -323,7 +323,12 @@ click-left = kill -USR1 %pid%
 [module/system-nvidia-smi]
 type = custom/script
 exec = ~/.config/polybar/scripts/system-nvidia-smi.sh
-interval = 2
+interval = 3
+
+[module/rss]
+type = custom/script
+exec = ~/.config/polybar/scripts/newsboat.sh
+interval = 15
 
 [settings]
 screenchange-reload = true
