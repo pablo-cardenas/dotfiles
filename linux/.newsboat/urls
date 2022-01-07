@@ -6,6 +6,9 @@ https://nitter.net/docker/rss software "~Twitter @docker"
 https://nitter.net/postgresql/rss software "~Twitter @postgresql"
 https://nitter.net/moodle/rss software "~Twitter @moodle"
 https://github.com/moodle/moodle/releases.atom software "~Github moodle"
+https://github.com/bgregos/foreground/releases.atom software "~Github foreground"
+https://taskwarrior.org/feed.rss software
+https://nitter.net/taskwarrior/rss software "~Twitter @taskwarrior"
 
 
 # Python
