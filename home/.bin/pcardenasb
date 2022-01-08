@@ -1,0 +1,22 @@
+tmux new-session -s pcardenasb -c ~/Development/pcardenasb -n main -d
+
+tmux split-window -h -t pcardenasb -c ~/Development/pcardenasb
+tmux split-window -h -t pcardenasb -c ~/Development/pcardenasb
+tmux select-layout -t pcardenasb main-vertical
+
+tmux send-keys -t pcardenasb:0.0 'vim -S ~/.vim/session/pcardenasb.vim' C-m
+
+tmux send-keys -t pcardenasb:0.1 'source venv/bin/activate' C-m
+tmux send-keys -t pcardenasb:0.1 'export FLASK_ENV=development' C-m
+tmux send-keys -t pcardenasb:0.1 'export FLASK_APP=pcardenasb' C-m
+tmux send-keys -t pcardenasb:0.1 'sleep 2s && firefox-developer-edition 127.0.0.1:5000 &' C-m
+tmux send-keys -t pcardenasb:0.1 'flask run --host 0.0.0.0' C-m
+
+tmux send-keys -t pcardenasb:0.2 'source venv/bin/activate' C-m
+tmux send-keys -t pcardenasb:0.2 'export FLASK_APP=pcardenasb' C-m
+tmux send-keys -t pcardenasb:0.2 'flask webpack run watch &' C-m
+tmux send-keys -t pcardenasb:0.2 'find src/pcardenasb/webpack | entr -c flask webpack create' C-m
+
+tmux select-pane -t pcardenasb:0.0
+
+tmux attach -t pcardenasb
