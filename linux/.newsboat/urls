@@ -80,6 +80,8 @@ https://archlinux.org/feeds/packages/removed/x86_64/community/ archlinux
 # Training
 https://github.com/OpenTracksApp/OpenTracks/releases.atom training "~Github OpenTracks"
 https://github.com/jonasoreland/runnerup/releases.atom training "~Github runnerup"
+https://nitter.net/peruswimmers/rss software "~Twitter @peruswimmers"
+https://nitter.net/running4peru/rss software "~Twitter @running4peru"
 
 
 # News
