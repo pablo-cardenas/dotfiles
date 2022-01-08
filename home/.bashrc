@@ -38,7 +38,7 @@ LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 PYTHONSTARTUP=${HOME}/.pythonrc.py
 
 
-source /usr/share/git/completion/git-prompt.sh
+[ -f /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
 #export GIT_PS1_SHOWCOLORHINTS=1
 #export GIT_PS1_SHOWDIRTYSTATE=1
 PS1='[\u@\h \W]$(__git_ps1) \$ '
