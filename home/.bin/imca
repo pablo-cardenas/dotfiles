@@ -18,6 +18,9 @@ tmux send-keys -t imca:0.2 'export FLASK_APP=flask_imca' C-m
 tmux send-keys -t imca:0.2 'flask webpack run watch &' C-m
 tmux send-keys -t imca:0.2 'find src/flask_imca/webpack | entr -c flask webpack create' C-m
 
-tmux select-pane -t imca:0.0
+tmux new-window -c ~/Development/flask_imca
+tmux send-keys -t imca:1.0 'source venv/bin/activate' C-m
 
+tmux select-window -t imca:0
+tmux select-pane -t imca:0.0
 tmux attach -t imca
