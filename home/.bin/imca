@@ -15,8 +15,11 @@ tmux send-keys -t imca:0.1 'flask run --host 0.0.0.0' C-m
 
 tmux send-keys -t imca:0.2 'source venv/bin/activate' C-m
 tmux send-keys -t imca:0.2 'export FLASK_APP=flask_imca' C-m
+tmux send-keys -t imca:0.2 'flask webpack clean' C-m
+tmux send-keys -t imca:0.2 'flask webpack create' C-m
+tmux send-keys -t imca:0.2 'flask webpack install' C-m
 tmux send-keys -t imca:0.2 'flask webpack run watch &' C-m
-tmux send-keys -t imca:0.2 'find src/flask_imca/webpack | entr -c flask webpack create' C-m
+tmux send-keys -t imca:0.2 'find src/flask_imca/webpack | entr -s "rm -rf src/instance/assets/src/* && flask webpack create"' C-m
 
 tmux new-window -c ~/Development/flask_imca
 tmux send-keys -t imca:1.0 'source venv/bin/activate' C-m
