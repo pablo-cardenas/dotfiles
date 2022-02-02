@@ -10,7 +10,8 @@ tmux send-keys -t imca:0.0 'vim -S ~/.vim/session/imca.vim' C-m
 tmux send-keys -t imca:0.1 'source venv/bin/activate' C-m
 tmux send-keys -t imca:0.1 'export FLASK_ENV=development' C-m
 tmux send-keys -t imca:0.1 'export FLASK_APP=flask_imca' C-m
-tmux send-keys -t imca:0.1 'sleep 2s && firefox-developer-edition 127.0.0.1:5000 &' C-m
+command -v firefox-developer-edition >/dev/null 2>&1 && tmux send-keys -t imca:0.1 'sleep 3s && firefox-developer-edition 127.0.0.1:5000 &' C-m ||
+command -v firefox >/dev/null 2>&1 && tmux send-keys -t imca:0.1 'sleep 3s && firefox 127.0.0.1:5000 &' C-m
 tmux send-keys -t imca:0.1 'flask run --host 0.0.0.0' C-m
 
 tmux send-keys -t imca:0.2 'source venv/bin/activate' C-m
