@@ -24,6 +24,8 @@ tmux send-keys -t imca:0.2 'find src/flask_imca/webpack | entr -s "rm -rf src/in
 
 tmux new-window -c ~/Development/flask_imca
 tmux send-keys -t imca:1.0 'source venv/bin/activate' C-m
+tmux send-keys -t imca:0.1 'export FLASK_ENV=development' C-m
+tmux send-keys -t imca:0.1 'export FLASK_APP=flask_imca' C-m
 
 tmux select-window -t imca:0
 tmux select-pane -t imca:0.0
