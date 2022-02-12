@@ -22,4 +22,7 @@ hooks.location=~/.config/task/hooks/
 color=on
 
 include ~/.config/task/taskserver/taskrc
-context.imca=project:flask_imca
+context.imca.read=project:flask_imca or +imca or project:dotfiles or project:vimrc
+context.imca.write=+imca
+context.desktop.read=project:pcardenasb or project:flask_imca or +desktop or project:dotfiles or project:vimrc
+context.desktop.write=+desktop
