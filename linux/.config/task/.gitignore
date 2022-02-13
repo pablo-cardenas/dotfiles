@@ -1,1 +1,5 @@
 taskserver/
+backlog.data
+completed.data
+pending.data
+undo.data
