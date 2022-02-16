@@ -5,7 +5,7 @@ targets = my_gitlab
 taskrc = ~/.config/task/taskrc
 inline_links = False
 annotation_links = True
-annotation_comments = True
+annotation_comments = False
 legacy_matching = False
 log.level = DEBUG
 
