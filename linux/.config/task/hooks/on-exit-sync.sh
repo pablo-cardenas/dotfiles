@@ -6,7 +6,7 @@ do
   n=$(($n + 1))
 done
 
-if (($n > 0)); then
+if [ $n -gt 0 ]; then
     echo "on-exit: Counted $n added/modified tasks."
     task sync
 fi
