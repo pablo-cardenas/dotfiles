@@ -26,12 +26,13 @@ redshift &
 xset -b &
 xset s 600 60
 xss-lock -- i3lock -n -i /usr/share/backgrounds/archlinux/geolanes.png &
+setxkbmap -layout us -variant altgr_intl
 
+xrandr --output VGA1 --auto
+xrandr --output HDMI-0 --auto --right-of VGA1
+xrandr --setmonitor SECONDARY "1280/364x720/208+0+0" VGA1
+xrandr --setmonitor PRIMARY "1920/520x1080/290+1440+0" HDMI-0
 
-xrandr \
-    --output VGA1 --auto \
-    --output HDMI-0 --auto \
-    --right-of VGA1
 command -v picom >/dev/null 2>&1 && picom --experimental-backends -b
 command -v feh >/dev/null 2>&1 && feh --bg-scale /usr/share/backgrounds/archlinux/reflected.jpg
 
