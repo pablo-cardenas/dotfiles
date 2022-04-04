@@ -209,6 +209,7 @@ bindsym $mod+minus scratchpad show
 
 
 # i3-gaps
-gaps vertical 0
+gaps vertical 8
 gaps horizontal 8
 gaps inner 8
+gaps top -2
