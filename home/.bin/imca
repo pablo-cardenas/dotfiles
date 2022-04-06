@@ -1,3 +1,18 @@
+#!/bin/bash
+[ -d ~/Development/flask_imca/.git ] || git clone git@gitlab.com:pablo-cardenas/flask_imca.git ~/Development/flask_imca
+cd ~/Development/flask_imca
+
+[ -f src/flask_imca/webpack/src/img/IMCA.woff ] || fontforge -c 'open("src/flask_imca/webpack/src/img/IMCA.sfd").generate("src/flask_imca/webpack/src/img/IMCA.woff")'
+[ -f src/flask_imca/webpack/src/img/imca-1.jpg ] || scp pcardenasb.com:/srv/http/flask_imca/venv/lib/python3.10/site-packages/flask_imca/webpack/src/img/imca-1.jpg src/flask_imca/webpack/src/img/
+
+if [ ! -d venv ]; then
+	virtualenv venv
+	source venv/bin/activate
+	pip install pynvim mypy flake8 python-language-server[yapf] yapf
+	pip install -e ~/Development/flask_imca
+	deactivate
+fi
+
 if ! tmux has-session -t imca; then
 	tmux new-session -s imca -c ~/Development/flask_imca -n main -d
 
