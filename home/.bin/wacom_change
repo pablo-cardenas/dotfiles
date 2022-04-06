@@ -1,0 +1,4 @@
+xsetwacom set "Wacom Intuos Pro M Pen stylus" MapToOutput next
+xsetwacom set "Wacom Intuos Pro M Pen eraser" MapToOutput next
+xsetwacom set "Wacom Intuos Pro M Pad pad" MapToOutput next
+xsetwacom set "Wacom Intuos Pro M Finger touch" MapToOutput next
