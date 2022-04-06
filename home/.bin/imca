@@ -5,11 +5,18 @@ cd ~/Development/flask_imca
 [ -f src/flask_imca/webpack/src/img/IMCA.woff ] || fontforge -c 'open("src/flask_imca/webpack/src/img/IMCA.sfd").generate("src/flask_imca/webpack/src/img/IMCA.woff")'
 [ -f src/flask_imca/webpack/src/img/imca-1.jpg ] || scp pcardenasb.com:/srv/http/flask_imca/venv/lib/python3.10/site-packages/flask_imca/webpack/src/img/imca-1.jpg src/flask_imca/webpack/src/img/
 
+mkdir -p src/instance
+[ -f src/instance/config.py ] || scp pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/config.py src/instance/
+[ -d src/instance/media ] || scp -r pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/media src/instance/
+
 if [ ! -d venv ]; then
 	virtualenv venv
 	source venv/bin/activate
 	pip install pynvim mypy flake8 python-language-server[yapf] yapf
+	pip install pytest
+	pip install mysqlclient
 	pip install -e ~/Development/flask_imca
+	pybabel compile -d src/flask_imca/translations
 	deactivate
 fi
 
