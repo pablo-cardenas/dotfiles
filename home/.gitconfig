@@ -5,5 +5,8 @@
 [diff]
 	tool = vimdiff
 
+[diff "gpg"]
+	textconv = gpg --quiet --decrypt
+
 [merge]
 	tool = vimdiff

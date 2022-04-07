@@ -4,10 +4,11 @@ set imap_user = "pablo.cardenas@imca.edu.pe"
 set folder = "imaps://${imap_user}@imap.gmail.com/"
 set trash = "+[Gmail]/Papelera"
 set postponed = "+[Gmail]/Borradores"
+mailboxes -label ${imap_user}-INBOX +INBOX
 
 
 # SMPT
-set hostname = imca.edu.pe
+set hostname = "imca.edu.pe"
 
 
-source "~/.mutt/conf.d/google.muttrc"
+source "~/.mutt/conf.d/google.rc"

@@ -1,3 +1,9 @@
-#text/html; elinks -dump -dump-color-mode 1; copiousoutput;
+text/html; qutebrowser %s --target private-window &> /dev/null; needsterminal; nametemplate=%s.html; test=test -n "$DISPLAY";
 text/html; elinks %s; nametemplate=%s.html;
-#text/html; qutebrowser %s; needsterminal; nametemplate=%s.html;
+text/html; elinks -dump -dump-color-mode 1; copiousoutput;
+
+#text/html; elinks -dump -dump-charset %{charset} -default-mime-type text/html %s; needsterminal; copiousoutput;
+application/*; zathura %s &> /dev/null; needsterminal; nametemplate=%s.pdf; test=test -n "$DISPLAY";
+image/*; xdg-open %s &> /dev/null; test=test -n "$DISPLAY";
+
+application/pdf; pdftotext %s -; copiousoutput;

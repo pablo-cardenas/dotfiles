@@ -1,6 +1,6 @@
 # IMAP
 set imap_authenticators = "oauthbearer:xoauth2"
-set imap_oauth_refresh_command = "~/.mutt/mutt_oauth2.py tokens/${imap_user}.gpg"
+set imap_oauth_refresh_command = "~/.mutt/mutt_oauth2.py ~/.mutt/tokens/${imap_user}.gpg"
 
 set folder = "imaps://${imap_user}@imap.gmail.com/"
 set spoolfile = +INBOX
@@ -13,10 +13,3 @@ set smtp_authenticators = ${imap_authenticators}
 set smtp_oauth_refresh_command = ${imap_oauth_refresh_command}
 
 set from = ${imap_user}
-
-set ssl_force_tls = yes
-unset ssl_starttls
-
-
-# Hook
-account-hook $folder "set imap_user='${imap_user}' imap_oauth_refresh_command='${imap_oauth_refresh_command}'"

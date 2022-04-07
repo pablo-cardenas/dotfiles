@@ -1,7 +1,8 @@
 set header_cache = "~/.cache/mutt/"
 set message_cachedir = "~/.cache/mutt/"
 
-set imap_check_subscribed
+unset folder
+unset spoolfile
 set imap_keepalive = 300
 unset imap_passive
 set mail_check = 60
@@ -10,32 +11,21 @@ set mbox_type = Maildir
 set signature = ~/.mutt/signature.txt
 set send_charset="utf-8"
 
+set realname = "Pablo Cárdenas"
 set use_from = yes
-set ssl_force_tls = yes
+#set ssl_force_tls = yes
 
 set mailcap_path = ~/.mutt/mailcap
-auto_view text/html
-alternative_order text/plain text/html
-macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > ~/.cache/mutt/mail.html<enter><shell-escape>$BROWSER ~/.cache/mutt/mail.html<enter>"
 
-
-#source "~/.mutt/sample.muttrc-sidebar"
 source "~/.mutt/gpg.rc"
 
+source "~/.mutt/sidebar.rc"
+set sidebar_visible = yes
 
-source "~/.mutt/accounts/pcardenasb@uni.edu.pe"
-folder-hook $folder 'source ~/.mutt/accounts/pcardenasb@uni.edu.pe'
-
-source "~/.mutt/accounts/pcardenasb@uni.pe"
-folder-hook $folder 'source ~/.mutt/accounts/pcardenasb@uni.pe'
-
-source "~/.mutt/accounts/pablo.cardenas@imca.edu.pe"
-folder-hook $folder 'source ~/.mutt/accounts/pablo.cardenas@imca.edu.pe'
-
-source "~/.mutt/accounts/pablocb2303@gmail.com"
-folder-hook $folder 'source ~/.mutt/accounts/pablocb2303@gmail.com'
-
-#source "~/.mutt/outlook.muttrc"
-#folder-hook $folder 'source ~/.mutt/outlook.muttrc'
-
-macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt/accounts/'
+macro index,pager <f2> '<enter-command>source ~/.mutt/accounts/.rc^B^B^B'
+macro index,pager <f3> "\
+<enter-command>source ~/.mutt/accounts/pablocb2303@gmail.com.rc<enter>\
+<enter-command>source ~/.mutt/accounts/pablo.cardenas@imca.edu.pe.rc<enter>\
+<enter-command>source ~/.mutt/accounts/pcardenasb@uni.edu.pe.rc<enter>\
+<enter-command>source ~/.mutt/accounts/pcardenasb@uni.pe.rc<enter>\
+"
