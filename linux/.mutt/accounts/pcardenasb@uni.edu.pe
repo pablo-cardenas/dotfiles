@@ -1,0 +1,13 @@
+# IMAP
+set imap_user = "pcardenasb@uni.edu.pe"
+
+set folder = "imaps://${imap_user}@imap.gmail.com/"
+set trash = "+[Gmail]/Trash"
+set postponed = "+[Gmail]/Drafts"
+
+
+# SMPT
+set hostname = "uni.edu.pe"
+
+
+source "~/.mutt/conf.d/google.muttrc"

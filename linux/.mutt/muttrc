@@ -23,23 +23,19 @@ macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > ~/.cache/mutt/mail.html<
 source "~/.mutt/gpg.rc"
 
 
-source "~/.mutt/uni_teacher.muttrc"
-folder-hook $folder 'source ~/.mutt/uni_teacher.muttrc'
+source "~/.mutt/accounts/pcardenasb@uni.edu.pe"
+folder-hook $folder 'source ~/.mutt/accounts/pcardenasb@uni.edu.pe'
 
-source "~/.mutt/uni_student.muttrc"
-folder-hook $folder 'source ~/.mutt/uni_student.muttrc'
+source "~/.mutt/accounts/pcardenasb@uni.pe"
+folder-hook $folder 'source ~/.mutt/accounts/pcardenasb@uni.pe'
 
-source "~/.mutt/imca.muttrc"
-folder-hook $folder 'source ~/.mutt/imca.muttrc'
+source "~/.mutt/accounts/pablo.cardenas@imca.edu.pe"
+folder-hook $folder 'source ~/.mutt/accounts/pablo.cardenas@imca.edu.pe'
 
-source "~/.mutt/gmail.muttrc"
-folder-hook $folder 'source ~/.mutt/gmail.muttrc'
+source "~/.mutt/accounts/pablocb2303@gmail.com"
+folder-hook $folder 'source ~/.mutt/accounts/pablocb2303@gmail.com'
 
 #source "~/.mutt/outlook.muttrc"
 #folder-hook $folder 'source ~/.mutt/outlook.muttrc'
 
-macro index,pager <f4> '<sync-mailbox><enter-command>source ~/.mutt/outlook.muttrc<enter><change-folder>!<enter>'
-macro index,pager <f5> '<sync-mailbox><enter-command>source ~/.mutt/gmail.muttrc<enter><change-folder>!<enter>'
-macro index,pager <f6> '<sync-mailbox><enter-command>source ~/.mutt/uni_student.muttrc<enter><change-folder>!<enter>'
-macro index,pager <f7> '<sync-mailbox><enter-command>source ~/.mutt/uni_teacher.muttrc<enter><change-folder>!<enter>'
-macro index,pager <f8> '<sync-mailbox><enter-command>source ~/.mutt/imca.muttrc<enter><change-folder>!<enter>'
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt/accounts/'
