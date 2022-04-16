@@ -22,6 +22,8 @@ source "~/.mutt/gpg.rc"
 source "~/.mutt/sidebar.rc"
 set sidebar_visible = yes
 
+set query_command = "khard email --parsable %s"
+
 macro index,pager <f2> '<enter-command>source ~/.mutt/accounts/.rc^B^B^B'
 macro index,pager <f3> "\
 <enter-command>source ~/.mutt/accounts/pablocb2303@gmail.com.rc<enter>\

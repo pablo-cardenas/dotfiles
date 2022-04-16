@@ -12,10 +12,13 @@ mkdir -p src/instance
 if [ ! -d venv ]; then
 	virtualenv venv
 	source venv/bin/activate
-	pip install pynvim mypy flake8 python-language-server[yapf] yapf
+	pip install flake8 yapf tox
 	pip install pytest
+	pip install mypy types-Markdown types-python-slugify sqlalchemy[mypy]
+	pip install pre-commit
 	pip install mysqlclient
 	pip install -e ~/Development/flask_imca
+
 	pybabel compile -d src/flask_imca/translations
 	deactivate
 fi
