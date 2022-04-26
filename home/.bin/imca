@@ -1,33 +1,47 @@
 #!/bin/bash
-[ -d ~/Development/flask_imca/.git ] || git clone git@gitlab.com:pablo-cardenas/flask_imca.git ~/Development/flask_imca
-cd ~/Development/flask_imca
 
-[ -f src/flask_imca/webpack/src/img/IMCA.woff ] || fontforge -c 'open("src/flask_imca/webpack/src/img/IMCA.sfd").generate("src/flask_imca/webpack/src/img/IMCA.woff")'
-[ -f src/flask_imca/webpack/src/img/imca-1.jpg ] || scp pcardenasb.com:/srv/http/flask_imca/venv/lib/python3.10/site-packages/flask_imca/webpack/src/img/imca-1.jpg src/flask_imca/webpack/src/img/
+mkdir -p ~/Development/imca
+cd ~/Development/imca
 
-mkdir -p src/instance
-[ -f src/instance/config.py ] || scp pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/config.py src/instance/
-[ -d src/instance/media ] || scp -r pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/media src/instance/
+# Clone repositories
+[ -d flask_imca ] || git clone git@gitlab.com:pablo-cardenas/flask_imca.git flask_imca
+[ -d webpack-imca ] || git clone git@gitlab.com:pablo-cardenas/webpack-imca.git webpack-imca
 
-if [ ! -d venv ]; then
-	virtualenv venv
-	source venv/bin/activate
-	pip install flake8 yapf tox
+pushd flask_imca; pre-commit install; popd
+pushd webpack-imca; pre-commit install; popd
+
+# pre-build webpack-imca
+if [ ! -d webpack-imca/node_modules ]; then
+	pushd webpack-imca
+	npm install
+	popd
+fi
+[ -f webpack-imca/src/img/IMCA.woff ] || fontforge -c 'open("webpack-imca/src/img/IMCA.sfd").generate("webpack-imca/src/img/IMCA.woff")'
+
+# pre-build flask_imca
+mkdir -p flask_imca/src/instance
+[ -f flask_imca/src/instance/config.py ] || scp pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/config.py flask_imca/src/instance/
+[ -d flask_imca/src/instance/media ] || scp -r pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/media flask_imca/src/instance/
+
+if [ ! -d flask_imca/venv ]; then
+	virtualenv flask_imca/venv
+	source flask_imca/venv/bin/activate
+	pip install flake8 black tox
 	pip install pytest
 	pip install mypy types-Markdown types-python-slugify sqlalchemy[mypy]
 	pip install pre-commit
 	pip install mysqlclient
-	pip install -e ~/Development/flask_imca
+	pip install -e ./flask_imca
 
-	pybabel compile -d src/flask_imca/translations
+	pybabel compile -d flask_imca/src/flask_imca/translations
 	deactivate
 fi
 
 if ! tmux has-session -t imca; then
-	tmux new-session -s imca -c ~/Development/flask_imca -n main -d
+	tmux new-session -s imca -n main -d
 
-	tmux split-window -h -t imca -c ~/Development/flask_imca
-	tmux split-window -h -t imca -c ~/Development/flask_imca
+	tmux split-window -h -t imca -c flask_imca
+	tmux split-window -h -t imca -c webpack-imca
 	tmux select-layout -t imca main-vertical
 
 	tmux send-keys -t imca:0.0 'source venv/bin/activate' C-m
@@ -36,24 +50,18 @@ if ! tmux has-session -t imca; then
 	tmux send-keys -t imca:0.1 'source venv/bin/activate' C-m
 	tmux send-keys -t imca:0.1 'export FLASK_ENV=development' C-m
 	tmux send-keys -t imca:0.1 'export FLASK_APP=flask_imca' C-m
-	command -v firefox-developer-edition >/dev/null 2>&1 && tmux send-keys -t imca:0.1 'sleep 6s && firefox-developer-edition 127.0.0.1:5000 &' C-m ||
+	command -v firefox-developer-edition >/dev/null 2>&1 && tmux send-keys -t imca:0.1 'sleep 6s && firefox-developer-edition 127.0.0.1:5000 &' C-m
 	command -v firefox >/dev/null 2>&1 && tmux send-keys -t imca:0.1 'sleep 6s && firefox 127.0.0.1:5000 &' C-m
 	tmux send-keys -t imca:0.1 'flask run --host 0.0.0.0' C-m
 
-	tmux send-keys -t imca:0.2 'source venv/bin/activate' C-m
-	tmux send-keys -t imca:0.2 'export FLASK_APP=flask_imca' C-m
-	tmux send-keys -t imca:0.2 'flask webpack clean' C-m
-	tmux send-keys -t imca:0.2 'flask webpack create' C-m
-	tmux send-keys -t imca:0.2 'flask webpack install' C-m
-	tmux send-keys -t imca:0.2 'flask webpack run watch &' C-m
-	tmux send-keys -t imca:0.2 'find src/flask_imca/webpack | entr -s "rm -rf src/instance/assets/src/* && flask webpack create"' C-m
+	tmux send-keys -t imca:0.2 'npm run watch' C-m
 
-	tmux new-window -c ~/Development/flask_imca -n venv
+	tmux new-window -c flask_imca -n venv
 	tmux send-keys -t imca:1.0 'source venv/bin/activate' C-m
 	tmux send-keys -t imca:1.0 'export FLASK_ENV=development' C-m
 	tmux send-keys -t imca:1.0 'export FLASK_APP=flask_imca' C-m
 
-	tmux new-window -c ~/Development/flask_imca/src/instance -n instance
+	tmux new-window -c flask_imca/src/instance -n instance
 
 	tmux select-window -t imca:0
 	tmux select-pane -t imca:0.0
