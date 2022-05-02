@@ -1,0 +1,36 @@
+set header_cache = "~/.cache/mutt/"
+set message_cachedir = "~/.cache/mutt/"
+
+unset folder
+unset spoolfile
+set imap_keepalive = 300
+unset imap_passive
+set mail_check = 60
+set mbox_type = Maildir
+
+set signature = ~/.config/mutt/signature.txt
+set send_charset="utf-8"
+
+set realname = "Pablo Cárdenas"
+set use_from = yes
+#set ssl_force_tls = yes
+
+set mailcap_path = ~/.config/mutt/mailcap
+
+source "~/.config/mutt/gpg.rc"
+
+source "~/.config/mutt/sidebar.rc"
+set sidebar_visible = yes
+
+set query_command = "khard email --parsable %s"
+
+set send_multipart_alternative
+set send_multipart_alternative_filter = ~/.config/mutt/markdown2html
+
+macro index,pager <f2> '<enter-command>source ~/.config/mutt/accounts/.rc^B^B^B'
+macro index,pager <f3> "\
+<enter-command>source ~/.config/mutt/accounts/pablocb2303@gmail.com.rc<enter>\
+<enter-command>source ~/.config/mutt/accounts/pablo.cardenas@imca.edu.pe.rc<enter>\
+<enter-command>source ~/.config/mutt/accounts/pcardenasb@uni.edu.pe.rc<enter>\
+<enter-command>source ~/.config/mutt/accounts/pcardenasb@uni.pe.rc<enter>\
+"

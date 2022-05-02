@@ -11,4 +11,4 @@ mailboxes -label ${imap_user}-INBOX +INBOX
 set hostname = "uni.pe"
 
 
-source "~/.mutt/conf.d/google.rc"
+source "~/.config/mutt/conf.d/google.rc"

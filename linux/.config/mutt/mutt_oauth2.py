@@ -47,7 +47,7 @@ import subprocess
 ENCRYPTION_PIPE = ['gpg', '--encrypt', '--recipient', '99E05F373B9E3FCB78CA93EEAB3EA9F44C8DD92B']
 DECRYPTION_PIPE = ['gpg', '--decrypt']
 
-google_client = json.load(open(Path.home() / '.mutt/clients/google.json'))
+google_client = json.load(open(Path.home() / '.config/mutt/clients/google.json'))
 
 registrations = {
     'google': {

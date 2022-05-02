@@ -1,6 +1,6 @@
 # IMAP
 set imap_authenticators = "oauthbearer:xoauth2"
-set imap_oauth_refresh_command = "~/.mutt/mutt_oauth2.py ~/.mutt/tokens/${imap_user}.gpg"
+set imap_oauth_refresh_command = "~/.config/mutt/mutt_oauth2.py ~/.config/mutt/tokens/${imap_user}.gpg"
 
 set folder = "imaps://${imap_user}@imap.gmail.com/"
 set spoolfile = +INBOX
