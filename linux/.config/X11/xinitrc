@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # merge in defaults and keymaps
-userresources=$HOME/.Xresources
+userresources=$XDG_CONFIG_HOME/X11/Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/Xresources
 sysmodmap=/etc/X11/xinit/Xmodmap
@@ -25,8 +25,8 @@ dunst &
 redshift &
 xset -b &
 xset s 600 60
-xss-lock -- i3lock -n -i /usr/share/backgrounds/archlinux/geolanes.png &
-setxkbmap -layout us -variant altgr_intl
+xss-lock -- i3lock -n &
+setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 
 xrandr --output VGA1 --auto
 xrandr --output HDMI-0 --auto --right-of VGA1
@@ -36,6 +36,7 @@ xrandr --setmonitor PRIMARY "1920/520x1080/290+1440+0" HDMI-0
 command -v picom >/dev/null 2>&1 && picom --experimental-backends -b
 command -v feh >/dev/null 2>&1 && feh --bg-scale /usr/share/backgrounds/archlinux/reflected.jpg
 
+echo holaaa
 
 session=${1:-i3}
 case $session in

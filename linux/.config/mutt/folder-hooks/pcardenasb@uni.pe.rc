@@ -1,0 +1,12 @@
+# IMAP
+set spoolfile = "+Inbox"
+set trash = "+[Gmail]/Trash"
+set postponed = "+[Gmail]/Drafts"
+unset record
+
+# SMPT
+set from = "pcardenasb@uni.pe"
+set hostname = "uni.pe"
+set smtp_url = "smtps://${from}@smtp.gmail.com"
+set smtp_authenticators = "oauthbearer:xoauth2"
+set smtp_oauth_refresh_command = "~/.config/mutt/mutt_oauth2.py ~/.config/mutt/tokens/${from}.gpg"

@@ -17,14 +17,10 @@ fi
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
-source ~/.bash/aliases.bash
 
-for f in ~/.bash/local.d/*.bash; do
-    if [ -x $f ]; then source $f; fi
-done
 
 # Para clases
-#export PS1='\[\033[01;31m\]\W $\[\033[00m\] '
+#PS1='\[\033[01;31m\]\W $\[\033[00m\] '
 
 LESS=-R
 LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
@@ -35,10 +31,19 @@ LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-PYTHONSTARTUP=${HOME}/.pythonrc.py
+mkdir -p "$XDG_STATE_HOME"/bash
+HISTFILE="$XDG_STATE_HOME"/bash/history
 
+source $XDG_CONFIG_HOME/shell/aliases.bash
 
 [ -f /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
 #export GIT_PS1_SHOWCOLORHINTS=1
 #export GIT_PS1_SHOWDIRTYSTATE=1
 PS1='[\u@\h \W] $(__git_ps1) \$ '
+
+echo '$HOME' `ls $HOME -A | wc -l`
+ls $HOME
+echo
+echo '$XDG_CONFIG_HOME' `ls $XDG_CONFIG_HOME -A | wc -l`
+ls $XDG_CONFIG_HOME
+echo

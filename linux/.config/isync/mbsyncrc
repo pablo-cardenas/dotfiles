@@ -1,0 +1,114 @@
+#########################
+# pablocb2303@gmail.com #
+#########################
+
+IMAPAccount pablocb2303@gmail.com
+Host imap.gmail.com
+User pablocb2303@gmail.com
+AuthMechs XOAUTH2
+PassCmd "$XDG_CONFIG_HOME/mutt/mutt_oauth2.py $XDG_CONFIG_HOME/mutt/tokens/pablocb2303@gmail.com.gpg"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore pablocb2303@gmail.com-remote
+Account pablocb2303@gmail.com
+
+MaildirStore pablocb2303@gmail.com-local
+SubFolders Verbatim
+Path ~/.local/share/mail/pablocb2303@gmail.com/
+Inbox ~/.local/share/mail/pablocb2303@gmail.com/Inbox
+
+Channel pablocb2303@gmail.com
+Far :pablocb2303@gmail.com-remote:
+Near :pablocb2303@gmail.com-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *
+
+
+#####################
+# pcardenasb@uni.pe #
+#####################
+
+IMAPAccount pcardenasb@uni.pe
+Host imap.gmail.com
+User pcardenasb@uni.pe
+AuthMechs XOAUTH2
+PassCmd "$XDG_CONFIG_HOME/mutt/mutt_oauth2.py $XDG_CONFIG_HOME/mutt/tokens/pcardenasb@uni.pe.gpg"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore pcardenasb@uni.pe-remote
+Account pcardenasb@uni.pe
+
+MaildirStore pcardenasb@uni.pe-local
+SubFolders Verbatim
+Path ~/.local/share/mail/pcardenasb@uni.pe/
+Inbox ~/.local/share/mail/pcardenasb@uni.pe/Inbox
+
+Channel pcardenasb@uni.pe
+Far :pcardenasb@uni.pe-remote:
+Near :pcardenasb@uni.pe-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *
+
+
+#########################
+# pcardenasb@uni.edu.pe #
+#########################
+
+IMAPAccount pcardenasb@uni.edu.pe
+Host imap.gmail.com
+User pcardenasb@uni.edu.pe
+AuthMechs XOAUTH2
+PassCmd "$XDG_CONFIG_HOME/mutt/mutt_oauth2.py $XDG_CONFIG_HOME/mutt/tokens/pcardenasb@uni.edu.pe.gpg"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore pcardenasb@uni.edu.pe-remote
+Account pcardenasb@uni.edu.pe
+
+MaildirStore pcardenasb@uni.edu.pe-local
+SubFolders Verbatim
+Path ~/.local/share/mail/pcardenasb@uni.edu.pe/
+Inbox ~/.local/share/mail/pcardenasb@uni.edu.pe/Inbox
+
+Channel pcardenasb@uni.edu.pe
+Far :pcardenasb@uni.edu.pe-remote:
+Near :pcardenasb@uni.edu.pe-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *
+
+
+##############################
+# pablo.cardenas@imca.edu.pe #
+##############################
+
+IMAPAccount pablo.cardenas@imca.edu.pe
+Host imap.gmail.com
+User pablo.cardenas@imca.edu.pe
+AuthMechs XOAUTH2
+PassCmd "$XDG_CONFIG_HOME/mutt/mutt_oauth2.py $XDG_CONFIG_HOME/mutt/tokens/pablo.cardenas@imca.edu.pe.gpg"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore pablo.cardenas@imca.edu.pe-remote
+Account pablo.cardenas@imca.edu.pe
+
+MaildirStore pablo.cardenas@imca.edu.pe-local
+SubFolders Verbatim
+Path ~/.local/share/mail/pablo.cardenas@imca.edu.pe/
+Inbox ~/.local/share/mail/pablo.cardenas@imca.edu.pe/Inbox
+
+Channel pablo.cardenas@imca.edu.pe
+Far :pablo.cardenas@imca.edu.pe-remote:
+Near :pablo.cardenas@imca.edu.pe-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *

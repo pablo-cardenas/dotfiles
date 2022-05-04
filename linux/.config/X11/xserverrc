@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/bin/X -nolisten tcp "$@" -keeptty > ~/.Xorg.log 2>&1 

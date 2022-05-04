@@ -1,12 +1,8 @@
 set header_cache = "~/.cache/mutt/"
 set message_cachedir = "~/.cache/mutt/"
 
-unset folder
+set folder = "~/.local/share/mail"
 unset spoolfile
-set imap_keepalive = 300
-unset imap_passive
-set mail_check = 60
-set mbox_type = Maildir
 
 set signature = ~/.config/mutt/signature.txt
 set send_charset="utf-8"
@@ -27,10 +23,7 @@ set query_command = "khard email --parsable %s"
 set send_multipart_alternative
 set send_multipart_alternative_filter = ~/.config/mutt/markdown2html
 
-macro index,pager <f2> '<enter-command>source ~/.config/mutt/accounts/.rc^B^B^B'
-macro index,pager <f3> "\
-<enter-command>source ~/.config/mutt/accounts/pablocb2303@gmail.com.rc<enter>\
-<enter-command>source ~/.config/mutt/accounts/pablo.cardenas@imca.edu.pe.rc<enter>\
-<enter-command>source ~/.config/mutt/accounts/pcardenasb@uni.edu.pe.rc<enter>\
-<enter-command>source ~/.config/mutt/accounts/pcardenasb@uni.pe.rc<enter>\
-"
+folder-hook .*pablocb2303@gmail.com/ 'source ~/.config/mutt/folder-hooks/pablocb2303@gmail.com.rc'
+folder-hook .*pcardenasb@uni.pe/ 'source ~/.config/mutt/folder-hooks/pcardenasb@uni.pe.rc'
+folder-hook .*pcardenasb@uni.edu.pe/ 'source ~/.config/mutt/folder-hooks/pcardenasb@uni.edu.pe.rc'
+folder-hook .*pablo.cardenas@imca.edu.pe/ 'source ~/.config/mutt/folder-hooks/pablo.cardenas@imca.edu.pe.rc'

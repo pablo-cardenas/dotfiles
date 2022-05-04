@@ -43,3 +43,7 @@ indent_size = 2
 [*.{json,yml,yaml,toml}]
 indent_style = space
 indent_size = 2
+
+[*.mail]
+trim_trailing_whitespace = false
+
