@@ -1,11 +1,14 @@
+set my_account = "pablo.cardenas@imca.edu.pe"
+
 # IMAP
-set spoolfile = +INBOX
+set folder = "~/.local/share/mail/${my_account}"
+set spoolfile = "+Inbox"
 set trash = "+[Gmail]/Papelera"
 set postponed = "+[Gmail]/Borradores"
 unset record
 
 # SMPT
-set from = "pablo.cardenas@imca.edu.pe"
+set from = $my_account
 set hostname = "imca.edu.pe"
 set smtp_url = "smtps://${from}@smtp.gmail.com"
 set smtp_authenticators = "oauthbearer:xoauth2"

@@ -1,11 +1,14 @@
+set my_account = "pablocb2303@gmail.com"
+
 # IMAP
-set spoolfile = +INBOX
+set folder = "~/.local/share/mail/${my_account}"
+set spoolfile = "+Inbox"
 set trash = "+[Gmail]/Corbeille"
 set postponed = "+[Gmail]/Brouillons"
 unset record
 
 # SMPT
-set from = "pablocb2303@gmail.com"
+set from = $my_account
 set hostname = "gmail.com"
 set smtp_url = "smtps://${from}@smtp.gmail.com"
 set smtp_authenticators = "oauthbearer:xoauth2"
