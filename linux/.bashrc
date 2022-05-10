@@ -6,7 +6,7 @@ shopt -s checkwinsize histappend histreedit
 HISTCONTROL=ignoreboth
 HISTSIZE=100000
 HISTFILESIZE=200000
-HISTTIMEFORMAT="%d/%m/%y %T "
+HISTTIMEFORMAT="%D %T "
 
 # Bash completions
 if ! shopt -oq posix; then
@@ -29,7 +29,9 @@ LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 mkdir -p "$XDG_STATE_HOME"/bash
 HISTFILE="$XDG_STATE_HOME"/bash/history
 
-source $XDG_CONFIG_HOME/shell/aliases.bash
+source $XDG_CONFIG_HOME/shell/aliases.sh
+
+GPG_TTY=$(tty)
 
 [ -f /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
 #export GIT_PS1_SHOWCOLORHINTS=1
