@@ -185,7 +185,6 @@ for_window [class="zoom" instance="zoom" title="Participants*"] floating enable
 for_window [class="zoom" instance="zoom" title="Participants*"] move position center
 for_window [class="zoom" instance="zoom" title="Settings"] floating enable
 for_window [class="zoom" instance="zoom" title="Settings"] move position center
-for_window [class="URxvt" instance="urxvt"] client.focused $white $bg0 $bg1 $green $bg1
 
 
 # 4.19. Automatically putting workspaces on specific screens
