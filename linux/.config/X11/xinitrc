@@ -18,25 +18,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
   unset f
 fi
 
-xset r rate 600 15
-[[ -d /usr/share/fonts/terminus ]] && xset +fp /usr/share/fonts/terminus
-udiskie &
+xset r rate 1000 5
+xset -b
+xset s 600 60
 dunst &
 redshift &
-xset -b &
-xset s 600 60
 xss-lock -- i3lock -n &
 setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 
-xrandr --output VGA1 --auto
-xrandr --output HDMI-0 --auto --right-of VGA1
-xrandr --setmonitor SECONDARY "1280/364x720/208+0+0" VGA1
-xrandr --setmonitor PRIMARY "1920/520x1080/290+1440+0" HDMI-0
-
-command -v picom >/dev/null 2>&1 && picom --experimental-backends -b
-command -v feh >/dev/null 2>&1 && feh --bg-scale /usr/share/backgrounds/archlinux/reflected.jpg
-
-echo holaaa
+command -v picom >/dev/null 2>&1 && picom --experimental-backends --daemon
 
 session=${1:-i3}
 case $session in
