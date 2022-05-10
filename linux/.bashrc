@@ -17,11 +17,6 @@ fi
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
-
-
-# Para clases
-#PS1='\[\033[01;31m\]\W $\[\033[00m\] '
-
 LESS=-R
 LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
 LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
@@ -40,6 +35,24 @@ source $XDG_CONFIG_HOME/shell/aliases.bash
 #export GIT_PS1_SHOWCOLORHINTS=1
 #export GIT_PS1_SHOWDIRTYSTATE=1
 PS1='[\u@\h \W] $(__git_ps1) \$ '
+
+countdown() {
+    start="$(( $(date '+%s') + $1))"
+    while [ $start -ge $(date +%s) ]; do
+        time="$(( $start - $(date +%s) ))"
+        printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+        sleep 0.1
+    done
+}
+
+stopwatch() {
+    start=$(date +%s)
+    while true; do
+        time="$(( $(date +%s) - $start))"
+        printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+        sleep 0.1
+    done
+}
 
 echo '$HOME' `ls $HOME -A | wc -l`
 ls $HOME
