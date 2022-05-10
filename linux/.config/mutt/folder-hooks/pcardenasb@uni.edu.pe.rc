@@ -13,3 +13,5 @@ set hostname = "uni.edu.pe"
 set smtp_url = "smtps://${from}@smtp.gmail.com"
 set smtp_authenticators = "oauthbearer:xoauth2"
 set smtp_oauth_refresh_command = "~/.config/mutt/mutt_oauth2.py ~/.config/mutt/tokens/${from}.gpg"
+
+macro index G "!mbsync -c /home/pablo/.config/isync/mbsyncrc pcardenasb@uni.edu.pe^M" "Update pcardenasb@uni.edu.pe through mbsync"
