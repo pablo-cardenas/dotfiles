@@ -9,7 +9,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 # Add local bin directories to PATH.
-[ -d $HOME/.bin ] && PATH="$PATH:$HOME/.bin"
 [ -d $HOME/.local/bin ] && PATH="$PATH:$HOME/.local/bin"
 [ -d $XDG_DATA_HOME/npm/bin ] && PATH="$PATH:$XDG_DATA_HOME/npm/bin/"
 
