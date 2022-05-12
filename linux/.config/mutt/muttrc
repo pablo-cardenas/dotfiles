@@ -11,11 +11,10 @@ source "~/.config/mutt/gpg.rc"
 
 set query_command = "khard email --parsable %s"
 
-mailboxes \
-	"=pablocb2303@gmail.com/Inbox" \
-	"=pcardenasb@uni.pe/Inbox" \
-	"=pcardenasb@uni.edu.pe/Inbox" \
-	"=pablo.cardenas@imca.edu.pe/Inbox"
+mailboxes -label "pablocb2303@gmail.com" "=pablocb2303@gmail.com/Inbox"
+mailboxes -label "pcardenasb@uni.pe" "=pcardenasb@uni.pe/Inbox"
+mailboxes -label "pcardenasb@uni.edu.pe" "=pcardenasb@uni.edu.pe/Inbox"
+mailboxes -label "pablo.cardenas@imca.edu.pe" "=pablo.cardenas@imca.edu.pe/Inbox"
 
 folder-hook .*pablocb2303@gmail.com/ 'source ~/.config/mutt/folder-hooks/pablocb2303@gmail.com.rc'
 folder-hook .*pcardenasb@uni.pe/ 'source ~/.config/mutt/folder-hooks/pcardenasb@uni.pe.rc'
