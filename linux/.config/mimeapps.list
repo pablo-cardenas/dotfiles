@@ -1,14 +1,12 @@
 [Default Applications]
 application/pdf=org.pwmt.zathura.desktop
 application/postscript=org.pwmt.zathura.desktop
-application/vnd.rar=xarchiver.desktop
 application/x-directory=ranger.desktop
 application/x-hdf=vitables.desktop
 application/x-sqlite3=sqlitebrowser.desktop
 application/x-xdg-protocol-tg=telegramdesktop.desktop
 application/x-xpinstall=org.qutebrowser.qutebrowser.desktop
 application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
-application/zip=xarchiver.desktop
 image/jpeg=sxiv.desktop
 image/png=sxiv.desktop
 image/vnd.djvu=org.pwmt.zathura.desktop
