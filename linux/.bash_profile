@@ -11,6 +11,8 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # Add local bin directories to PATH.
 [ -d $HOME/.local/bin ] && PATH="$PATH:$HOME/.local/bin"
 [ -d $XDG_DATA_HOME/npm/bin ] && PATH="$PATH:$XDG_DATA_HOME/npm/bin/"
+[ -d /usr/local/texlive/2022/bin/x86_64-linux ] && PATH="$PATH:/usr/local/texlive/2022/bin/x86_64-linux"
+
 
 #export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
