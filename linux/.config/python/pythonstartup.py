@@ -7,6 +7,8 @@ history = os.path.join(
     "python",
     "python_history",
 )
+os.makedirs(os.path.dirname(history), exist_ok=True)
+
 try:
     readline.read_history_file(history)
 except OSError:
