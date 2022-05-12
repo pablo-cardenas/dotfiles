@@ -1,4 +1,4 @@
-xset r rate 1000 5
+xset r rate 1000 2
 xset -b
 xset s 600 60
 dunst &
