@@ -1,10 +1,8 @@
 #!/bin/sh
 
 # merge in defaults and keymaps
-userresources=$XDG_CONFIG_HOME/X11/Xresources
-usermodmap=$XDG_CONFIG_HOME/X11/Xmodmap
-[[ -f $userresources ]] && xrdb -merge "$userresources"
-[[ -f $usermodmap ]] && xmodmap "$usermodmap"
+[[ -f $XDG_CONFIG_HOME/X11/Xresources ]] && xrdb -merge "$XDG_CONFIG_HOME/X11/Xresources"
+[[ -f $XDG_OONFIG_HOME/X11/Xmodmap ]] && xmodmap "$XDG_CONFIG_HOME/X11/Xmodmap"
 
 # start some nice programs
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
@@ -15,10 +13,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # Source xprofile
-if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/X11/xprofile" ]; then
-	source "${XDG_CONFIG_HOME:-$HOME/.config}/X11/xprofile"
-else
-	source "$HOME/.xprofile"
-fi
+source "$XDG_CONFIG_HOME/X11/xprofile"
 
 exec i3
