@@ -1,5 +1,6 @@
 set folder = "~/.local/share/mail"
 unset spoolfile
+set mbox_type = Maildir
 
 set signature = ~/.config/mutt/signature.txt
 
