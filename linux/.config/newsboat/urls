@@ -22,6 +22,7 @@ http://feeds.feedburner.com/PythonInsider python
 https://pypi.org/rss/project/Authlib/releases.xml python "~PyPI Authlib"
 https://pypi.org/rss/project/Pillow/releases.xml python "~PyPI Pillow"
 https://pypi.org/rss/project/black/releases.xml python "~PyPI black"
+https://pypi.org/rss/project/bugwarrior/releases.xml python "~PyPI bugwarrior"
 https://pypi.org/rss/project/click/releases.xml python "~PyPI Click"
 https://pypi.org/rss/project/fiona/releases.xml python "~PyPI Fiona"
 https://pypi.org/rss/project/flake8/releases.xml python "~PyPI flake8"
