@@ -1,0 +1,1 @@
+ ~/.local/bin/bib/main.pl | dmenu -i -l 20 | cut -d" " -f1 | xargs -r -I {} zathura $HOME/Documents/references/{}.pdf
