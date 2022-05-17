@@ -12,7 +12,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 [ -d $HOME/.local/bin ] && PATH="$PATH:$HOME/.local/bin"
 [ -d $XDG_DATA_HOME/npm/bin ] && PATH="$PATH:$XDG_DATA_HOME/npm/bin/"
 [ -d /usr/local/texlive/2022/bin/x86_64-linux ] && PATH="$PATH:/usr/local/texlive/2022/bin/x86_64-linux"
-[ -d $XDG_DATA_HOME/share/gem/ruby/3.0.0/bin/ ] && PATH="$PATH:$XDG_DATA_HOME/gem/ruby/3.0.0/bin/"
+[ -d $XDG_DATA_HOME/gem/ruby/3.0.0/bin/ ] && PATH="$PATH:$XDG_DATA_HOME/gem/ruby/3.0.0/bin/"
 
 #export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
