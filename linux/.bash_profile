@@ -25,6 +25,9 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 
+export BIB="$XDG_CONFIG_HOME/bib/references.bib"
+export BIB_DATA="$XDG_DATA_HOME/bib"
+
 source ~/.bashrc
 
 export PATH

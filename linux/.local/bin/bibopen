@@ -1,1 +1,11 @@
- ~/.local/bin/bib/main.pl | dmenu -i -l 20 | cut -d" " -f1 | xargs -r -I {} zathura $HOME/Documents/references/{}.pdf
+#!/bin/sh
+
+key=$($HOME/.local/bin/bib/bibopen.pl $BIB| dmenu -i -l 20 | cut -d" " -f1)
+
+[ -n $key ] || exit
+
+extensions="pdf djvu"
+for ext in $extensions; do
+	file=$BIB_DATA/$key.$ext
+	[ -f $file ] && xdg-open $file && break
+done

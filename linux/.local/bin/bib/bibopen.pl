@@ -6,7 +6,8 @@ use diagnostics;
 
 use Text::BibTeX;
 
-my $bibfile = Text::BibTeX::File->new('/home/pablo/Documents/references/references.bib');
+my $bibpath = $ARGV[0];
+my $bibfile = Text::BibTeX::File->new($bibpath);
 my $entry;
 
 while ($entry = Text::BibTeX::Entry->new($bibfile)) {

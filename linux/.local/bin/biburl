@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$HOME/.local/bin/bib/biburl.pl $BIB | dmenu -i -l 20 | cut -d" " -f1 | xclip -selection clipboard
