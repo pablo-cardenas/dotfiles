@@ -26,7 +26,7 @@ set $mod Mod4
 font pango:Fira Mono 8
 
 # Start polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
