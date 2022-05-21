@@ -38,6 +38,8 @@ GPG_TTY=$(tty)
 #export GIT_PS1_SHOWDIRTYSTATE=1
 PS1='[\u@\h \W] $(__git_ps1) \$ '
 
+cd () { echo "Use pushd!"; }
+
 countdown() {
     start="$(( $(date '+%s') + $1))"
     while [ $start -ge $(date +%s) ]; do
