@@ -7,5 +7,5 @@ key=$($HOME/.local/bin/bib/bibopen.pl $BIB| dmenu -i -l 20 | cut -d" " -f1)
 extensions="pdf djvu"
 for ext in $extensions; do
 	file=$BIB_DATA/$key.$ext
-	[ -f $file ] && xdg-open $file && break
+	[ -f $file ] && { xdg-open $file & disown; } && break
 done
