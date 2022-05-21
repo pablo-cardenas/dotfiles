@@ -1,11 +1,3 @@
 #!/bin/sh
 
-key=$($HOME/.local/bin/bib/bibopen.pl $BIB| dmenu -i -l 20 | cut -d" " -f1)
-
-[ -n $key ] || exit
-
-extensions="pdf djvu"
-for ext in $extensions; do
-	file=$BIB_DATA/$key.$ext
-	[ -f $file ] && { xdg-open $file & disown; } && break
-done
+~/.local/bin/bib/bibopen.pl $BIB | dmenu -i -l 20 -i | cut -d" " -f1 | xargs -I{} find $BIB_DATA -name '{}.*' | xargs -r -n 1 -P 3 xdg-open
