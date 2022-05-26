@@ -1,0 +1,53 @@
+base
+intel-ucode
+linux
+linux-firmware
+man-db
+man-pages
+perl-text-bibtex
+pipewire-pulse
+
+# CLI
+bash-completion
+ctags
+elinks 
+gvim
+lynx 
+mpv
+pass-otp
+ranger
+rsync
+scrot
+stow
+tmux
+
+# GUI
+dmenu
+dunst
+i3-gaps
+picom
+qutebrowser
+redshift
+screenkey
+sxiv
+urxvt-resize-font-git
+xclip
+xorg-server
+xorg-xinit
+xorg-xrandr
+zathura-djvu
+zathura-pdf-mupdf
+
+# Time management
+task
+timew
+
+# Mail and Feeds
+cyrus-sasl-xoauth2-git
+goimapnotify
+isync
+khard
+mutt
+newsboat
+urlview-xdg-git
+vdirsyncer
