@@ -2,8 +2,12 @@ xset r rate 1000 2
 xset -b
 xset s 600 60
 dunst &
-redshift &
 xss-lock -- i3lock -n &
 setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 
 command -v picom >/dev/null 2>&1 && picom --experimental-backends --daemon
+hsetroot -solid "#FFFFFF"
+
+# redshift &
+xcalib -o 0 /usr/share/xcalib/gamma_2_2_lowContrast.icc
+xcalib -o 1 /usr/share/xcalib/gamma_2_2_lowContrast.icc
