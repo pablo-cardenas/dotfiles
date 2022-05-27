@@ -2,3 +2,5 @@ urls-source "miniflux"
 miniflux-url "http://miniflux.pcardenasb.com"
 miniflux-login "pablo"
 miniflux-passwordeval "pass miniflux/pablo"
+
+macro v set browser "setsid -f mpv </dev/null >/dev/null 2>&1" ; open-in-browser ; set browser
