@@ -1,0 +1,4 @@
+urls-source "miniflux"
+miniflux-url "http://miniflux.pcardenasb.com"
+miniflux-login "pablo"
+miniflux-passwordeval "pass miniflux/pablo"
