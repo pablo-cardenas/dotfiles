@@ -1,34 +1,49 @@
 base
+easy-rsa
+expac
+grub
 intel-ucode
 linux
 linux-firmware
 man-db
 man-pages
-perl-text-bibtex
-pipewire-pulse
+openvpn
+yay-bin
+
+# Server
+taskd
+uwsgi-plugin-python
+mariadb
+postgresql
+php-fpm
+nginx
 
 # CLI
 bash-completion
 ctags
 elinks 
-gvim
+fzf
 lynx 
 mpv
+openssh
 pass-otp
-ranger
 rsync
-scrot
 stow
 tmux
+vim
 
 # GUI
+perl-text-bibtex
 dmenu
 dunst
+gvim
 i3-gaps
 picom
+pipewire-pulse
 qutebrowser
 redshift
 screenkey
+scrot
 sxiv
 urxvt-resize-font-git
 xclip
@@ -51,3 +66,4 @@ mutt
 newsboat
 urlview-xdg-git
 vdirsyncer
+miniflux
