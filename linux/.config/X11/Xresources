@@ -1,2 +1,38 @@
-#include "Xresources.d/colors"
-#include "Xresources.d/rxvt-unicode"
+URxvt*geometry: 80x25
+URxvt.font:     xft:monospace:size=10,\
+                xft:Symbola
+
+URxvt.boldFont: xft:monospace:size=10,\
+                xft:Symbola
+
+		!URxvt.intensityStyles: false
+URxvt.scrollBar: false
+URxvt.internalBorder: 10
+URxvt.letterSpace: -2
+
+URxvt.cursorBlink: true
+URxvt.perl-ext-common:  resize-font
+
+*.alpha: 0.1
+URxvt.depth: 32
+URxvt.background: rgba:FFFF/FFFF/FFFF/AAAA
+*.foreground: #222
+
+
+! Light
+*.color0: #222
+*.color1: #f66
+*.color2: #2f2
+*.color3: #aa0
+*.color4: #44f
+*.color5: #f8f
+*.color6: #0cc
+*.color7: #ccc
+*.color8: #999
+*.color9: #f88
+*.color10: #8f8
+*.color11: #ff8
+*.color12: #99f
+*.color13: #f8f
+*.color14: #0dd
+*.color15: #fff
