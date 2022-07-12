@@ -1,7 +1,7 @@
 #!/bin/bash -v
 
-mkdir -p $HOME/Documents/IMCA/graduate_thesis/tex
-cd $HOME/Documents/IMCA/graduate_thesis/tex
+mkdir -p $HOME/Documents/dev/thesis
+cd $HOME/Documents/dev/thesis
 
 if ! tmux has-session -t thesis; then
 	tmux new-session -s thesis -n main -d
@@ -10,11 +10,11 @@ if ! tmux has-session -t thesis; then
 	tmux select-layout -t thesis main-horizontal
 
 	tmux send-keys -t thesis:0.0 'vim -S ~/.vim/session/thesis.vim' C-m
-	tmux send-keys -t thesis:0.1 'find | entr pdftex document.tex' C-m
-	setsid zathura document.pdf >/dev/null 2>&1 &
+	tmux send-keys -t thesis:0.1 'clear; find | entr -c pdftex -output-directory=/tmp -interaction=nonstopmode document.tex' C-m
+	setsid zathura /tmp/document.pdf >/dev/null 2>&1 &
 
-	tmux select-window -t imca:0
-	tmux select-pane -t imca:0.0
+	tmux select-window -t thesis:0
+	tmux select-pane -t thesis:0.0
 fi
 
 tmux attach -t thesis
