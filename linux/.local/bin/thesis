@@ -1,20 +1,20 @@
-#!/bin/bash -v
+#!/bin/bash
 
 mkdir -p $HOME/Documents/dev/thesis
 cd $HOME/Documents/dev/thesis
 
-if ! tmux has-session -t thesis; then
+if ! tmux has-session -t thesis 2>/dev/null; then
 	tmux new-session -s thesis -n main -d
 
 	tmux split-window -h -t thesis
 	tmux select-layout -t thesis main-horizontal
 
-	tmux send-keys -t thesis:0.0 'vim -S ~/.vim/session/thesis.vim' C-m
-	tmux send-keys -t thesis:0.1 'clear; find | entr -c pdftex -output-directory=/tmp -interaction=nonstopmode document.tex' C-m
-	setsid zathura /tmp/document.pdf >/dev/null 2>&1 &
+	tmux send-keys -t thesis:0.0 'sleep 0.5s; vim --servername thesis -S ~/.vim/session/thesis.vim' C-m
+	tmux send-keys -t thesis:0.1 'while sleep 0.5s; do find | entr -ccds "pdftex -output-directory=/tmp -synctex=1 -interaction=nonstopmode -halt-on-error document.tex | head -n -2" ; done' C-m
 
 	tmux select-window -t thesis:0
 	tmux select-pane -t thesis:0.0
 fi
 
 tmux attach -t thesis
+git status
