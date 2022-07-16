@@ -15,4 +15,4 @@ fi
 # Source xprofile
 source "$XDG_CONFIG_HOME/X11/xprofile"
 
-exec i3
+exec bspwm
