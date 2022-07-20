@@ -2,10 +2,7 @@ URxvt*geometry: 80x25
 URxvt.font:     xft:monospace:size=10,\
                 xft:Symbola
 
-URxvt.boldFont: xft:monospace:size=10,\
-                xft:Symbola
-
-		!URxvt.intensityStyles: false
+!URxvt.intensityStyles: false
 URxvt.scrollBar: false
 URxvt.internalBorder: 10
 URxvt.letterSpace: -2
