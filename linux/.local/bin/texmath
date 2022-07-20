@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my @l = split /\$/, join( " ", <STDIN> );
+my $i = 0;
+foreach (@l) {
+    next            if $_ eq '';
+    print $_ . "\n" if $i % 2;
+    ++$i;
+}
