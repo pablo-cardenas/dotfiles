@@ -4,8 +4,8 @@ URxvt.font:     xft:monospace:size=10,\
 
 !URxvt.intensityStyles: false
 URxvt.scrollBar: false
-URxvt.internalBorder: 10
-URxvt.letterSpace: -2
+URxvt.internalBorder: 8
+URxvt.letterSpace: -1
 
 URxvt.cursorBlink: true
 URxvt.perl-ext-common:  resize-font
