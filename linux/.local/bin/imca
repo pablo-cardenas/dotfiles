@@ -24,7 +24,7 @@ mkdir -p flask_imca/src/instance
 [ -d flask_imca/src/instance/media ] || scp -r pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/media flask_imca/src/instance/
 
 if [ ! -d flask_imca/venv ]; then
-	virtualenv flask_imca/venv
+	python -m venv flask_imca/venv
 	source flask_imca/venv/bin/activate
 	pip install flake8 black tox
 	pip install pytest
