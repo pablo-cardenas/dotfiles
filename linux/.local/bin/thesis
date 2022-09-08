@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mkdir -p $HOME/Documents/dev/thesis
-cd $HOME/Documents/dev/thesis
+mkdir -p $HOME/dox/dev/thesis
+cd $HOME/dox/dev/thesis
 
 if ! tmux has-session -t thesis 2>/dev/null; then
 	tmux new-session -s thesis -n editor -d

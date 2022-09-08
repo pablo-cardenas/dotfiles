@@ -1,7 +1,7 @@
 #!/bin/bash -v
 
-mkdir -p ~/Documents/Development/imca
-cd ~/Documents/Development/imca
+mkdir -p ~/dox/dev/imca
+cd ~/dox/dev/imca
 
 # Clone repositories
 [ -d flask_imca ] || git clone git@gitlab.com:pablo-cardenas/flask_imca.git flask_imca
@@ -41,8 +41,8 @@ echo $PWD
 if ! tmux has-session -t imca; then
 	tmux new-session -s imca -n main -d
 
-	tmux split-window -h -t imca -c ~/Documents/Development/imca/flask_imca
-	tmux split-window -h -t imca -c ~/Documents/Development/imca/webpack-imca
+	tmux split-window -h -t imca -c flask_imca
+	tmux split-window -h -t imca -c webpack-imca
 	tmux select-layout -t imca main-vertical
 
 	tmux send-keys -t imca:0.0 'source venv/bin/activate' C-m
