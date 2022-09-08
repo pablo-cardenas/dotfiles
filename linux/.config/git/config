@@ -2,6 +2,9 @@
 	name  = Pablo Cárdenas
 	email = pablo.cardenas@imca.edu.pe
 
+[advice]
+	statusHints = false
+
 [diff]
 	tool = vimdiff
 
@@ -10,6 +13,7 @@
 
 [merge]
 	tool = vimdiff
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
