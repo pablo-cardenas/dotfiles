@@ -1,6 +1,7 @@
 /.cache/
 /.dotfiles/
 /.gnupg/
+/.local/share/
 /.local/state/
 /.ssh/
 /.vim/
