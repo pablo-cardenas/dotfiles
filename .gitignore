@@ -1,0 +1,10 @@
+/.cache/
+/.dotfiles/
+/.gnupg/
+/.local/state/
+/.ssh/
+/.vim/
+/.viminfo
+/dl/
+/dox/
+/pix/
