@@ -12,6 +12,8 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc rule -a Matplotlib state=floating
+bspc rule -a matplotlib state=floating
+bspc rule -a R_x11 state=floating
 bspc rule -a Screenkey manage=off
 bspc rule -a URxvt state=pseudo_tiled
 bspc rule -a Zathura state=tiled
