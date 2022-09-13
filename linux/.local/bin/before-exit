@@ -3,9 +3,9 @@
 # Check git repositories
 git -C ~/.dotfiles status -s
 git -C ~/.vim status -s
-git -C ~/dox/dev/imca/flask_imca/ status -s
-git -C ~/dox/dev/imca/webpack-imca/ status -s
-git -C ~/dox/dev/thesis status -s
+[ -d ~/dox/dev/imca/flask_imca ] && git -C ~/dox/dev/imca/flask_imca/ status -s
+[ -d ~/dox/dev/imca/webpack_imca ] && git -C ~/dox/dev/imca/webpack-imca/ status -s
+[ -d ~/dox/dev/thesis ] && git -C ~/dox/dev/thesis status -s
 
 # Check bib
 rsync -rcnv --delete $XDG_DATA_HOME/bib/ pcardenasb.com:$XDG_DATA_HOME/bib/
