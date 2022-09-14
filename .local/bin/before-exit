@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 # Check git repositories
-config status -s
+git --git-dir=$HOME/.dotfiles --work-tree=$HOME  status -s
 git -C ~/.vim status -s
 [ -d ~/dox/dev/imca/flask_imca ] && git -C ~/dox/dev/imca/flask_imca/ status -s
 [ -d ~/dox/dev/imca/webpack_imca ] && git -C ~/dox/dev/imca/webpack-imca/ status -s
