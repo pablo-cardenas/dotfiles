@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /usr/bin/X -nolisten tcp "$@" -keeptty >$XDG_RUNTIME_DIR/.X.out.log 2>$XDG_RUTIME_DIR/.X.err.log
+exec /usr/bin/X -nolisten tcp "$@" -keeptty >$XDG_RUNTIME_DIR/X.out.log 2>$XDG_RUNTIME_DIR/X.err.log
