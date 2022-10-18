@@ -1,2 +1,0 @@
-map <C-i> toggle_index
-map [index] <C-i> toggle_index
