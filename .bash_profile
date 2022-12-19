@@ -18,6 +18,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 #export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
 export MAXIMA_USERDIR="$XDG_CONFIG_HOME"/maxima
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonstartup.py
