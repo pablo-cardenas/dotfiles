@@ -10,8 +10,8 @@ if ! shopt -oq posix; then
 fi
 
 shopt -s histappend histreedit
-mkdir -p "$XDG_STATE_HOME"/bash
-HISTFILE="$XDG_STATE_HOME"/bash/history
+mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}"/bash
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/bash/history
 HISTCONTROL=ignoreboth
 HISTSIZE=100000
 HISTFILESIZE=200000
@@ -29,7 +29,7 @@ LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-source $XDG_CONFIG_HOME/shell/aliases.sh
+source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh
 
 GPG_TTY=$(tty)
 
