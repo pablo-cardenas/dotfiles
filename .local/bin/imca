@@ -20,8 +20,8 @@ fi
 
 # pre-build flask_imca
 mkdir -p flask_imca/src/instance
-[ -f flask_imca/src/instance/config.py ] || scp pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/config.py flask_imca/src/instance/
-[ -d flask_imca/src/instance/media ] || scp -r pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/media flask_imca/src/instance/
+[ -f flask_imca/src/instance/config.py ] || scp pablo@pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/config.py flask_imca/src/instance/
+[ -d flask_imca/src/instance/media ] || scp -r pablo@pcardenasb.com:/srv/http/flask_imca/venv/var/flask_imca-instance/media flask_imca/src/instance/
 
 if [ ! -d flask_imca/venv ]; then
 	python -m venv flask_imca/venv

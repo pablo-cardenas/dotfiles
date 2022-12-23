@@ -8,4 +8,4 @@ git -C ~/.vim status -s
 [ -d ~/dox/dev/thesis ] && git -C ~/dox/dev/thesis status -s
 
 # Check bib
-rsync -rcnv --delete $XDG_DATA_HOME/bib/ pcardenasb.com:$XDG_DATA_HOME/bib/
+rsync -rcnv --delete $XDG_DATA_HOME/bib/ pablo@pcardenasb.com:.local/share/bib/
