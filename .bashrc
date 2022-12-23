@@ -40,6 +40,11 @@ PS1='[\u@\h \W] $(__git_ps1) \$ '
 
 cd() { echo "Use pushd!"; }
 
+
+[ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
+[ -f /data/data/com.termux/files/usr/share/bash-completion/completions/git ] && source /dataa/data/com.termux/files/usr/share/bash-completion/completions/git
+__git_complete config __git_main
+
 countdown() {
 	start="$(($(date '+%s') + $1))"
 	while [ $start -ge $(date +%s) ]; do
