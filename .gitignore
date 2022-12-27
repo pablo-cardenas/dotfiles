@@ -2,6 +2,7 @@
 /.audacity-data/
 /.cabal/
 /.cache/
+/.cpan/
 /.dotfiles/
 /.ghc/
 /.gnupg/
@@ -25,5 +26,6 @@
 /R/
 /dl/
 /dox/
+/perl5/
 /pix/
 /vids/
