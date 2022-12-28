@@ -1,3 +1,0 @@
-#!/bin/sh
-
-~/.local/bin/bib/bibopen.pl "$BIB" | dmenu -i -l 20 -i | cut -d" " -f1 | xargs -I{} find "$BIB_DATA" -name '{}.*' | xargs -r -n 1 -P 3 xdg-open
