@@ -1,8 +1,9 @@
-config.load_autoconfig(True)
 c.tabs.last_close = 'close'
+c.tabs.tree_tabs = True
 c.url.default_page = 'about:blank'
 c.url.start_pages = ['about:blank']
 c.zoom.default = '90%'
+config.load_autoconfig()
 
 config.bind(',lp', 'spawn --userscript qute-pass -p')
 config.bind(',lo', 'spawn --userscript qute-pass -o')
