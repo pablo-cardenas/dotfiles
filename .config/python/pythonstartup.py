@@ -21,3 +21,7 @@ def write_history():
         pass
 
 atexit.register(write_history)
+
+del os
+del atexit
+del readline
