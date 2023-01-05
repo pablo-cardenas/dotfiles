@@ -62,10 +62,3 @@ stopwatch() {
 		sleep 0.1
 	done
 }
-
-echo '$HOME' $(ls $HOME -A | wc -l)
-ls $HOME
-echo
-echo '$XDG_CONFIG_HOME' $(ls $XDG_CONFIG_HOME -A | wc -l)
-ls $XDG_CONFIG_HOME
-echo
