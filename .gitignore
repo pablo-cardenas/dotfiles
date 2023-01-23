@@ -9,6 +9,7 @@
 /.googleearth/
 /.ipython/
 /.jupyter/
+/.keras/
 /.local/share/*
 !/.local/share/applications
 !/.local/share/qutebrowser
