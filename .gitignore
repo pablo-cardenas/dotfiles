@@ -16,6 +16,10 @@
 /.local/share/qutebrowser/*
 !/.local/share/qutebrowser/userscripts
 /.local/state/
+/.aws/
+/.cargo/
+/.cr3/
+/.mongodb/
 /.mozilla/
 /.nv/
 /.pki/
@@ -23,6 +27,7 @@
 /.texlive2022/
 /.vim/
 /.viminfo
+/.xdvirc
 /.zoom/
 /R/
 /dl/
