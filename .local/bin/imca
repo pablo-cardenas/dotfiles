@@ -1,14 +1,14 @@
 #!/bin/bash -v
 
 mkdir -p ~/dox/dev/imca
-cd ~/dox/dev/imca
+cd ~/dox/dev/imca || exit
 
 # Clone repositories
 [ -d flask_imca ] || git clone git@gitlab.com:pablo-cardenas/flask_imca.git flask_imca
 [ -d webpack-imca ] || git clone git@gitlab.com:pablo-cardenas/webpack-imca.git webpack-imca
 
-pushd flask_imca; pre-commit install; popd
-pushd webpack-imca; pre-commit install; popd
+pushd flask_imca || exit; pre-commit install; pop || exit
+pushd webpack-imca || exit; pre-commit install; popd || exit
 
 # pre-build webpack-imca
 if [ ! -d webpack-imca/node_modules ]; then
