@@ -29,7 +29,7 @@ LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh
+source "${XDG_CONFIG_HOME:-$HOME/.config}"/shell/aliases.sh
 
 GPG_TTY=$(tty)
 
