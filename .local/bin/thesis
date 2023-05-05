@@ -9,7 +9,8 @@ if ! tmux has-session -t thesis 2>/dev/null; then
 	tmux send-keys -t thesis:0.0 'sleep 0.5s; vim --servername thesis -S ~/.vim/session/thesis.vim' C-m
 
 	tmux new-window -t thesis -n pdftex
-	tmux send-keys -t thesis:1.0 'while sleep 0.5s; do git ls-files --cached --other --exclude-standard | entr -ccds "pdftex -output-directory=/tmp -synctex=1 -interaction=nonstopmode -halt-on-error document.tex" ; done' C-m
+	mkdir -p output
+	tmux send-keys -t thesis:1.0 'while sleep 0.5s; do git ls-files --cached --other --exclude-standard | entr -ccds "pdftex -output-directory=output -synctex=1 -interaction=nonstopmode -halt-on-error document.tex" ; done' C-m
 
 	tmux new-window -t thesis -c /usr/local/texlive/2022/ -n texlive
 
