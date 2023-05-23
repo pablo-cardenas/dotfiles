@@ -1,4 +1,4 @@
 #!/bin/sh -x
 
-mkdir -p $XDG_DATA_HOME/bib/
-rsync -Pavz pablo@pcardenasb.com:.local/share/bib/ $XDG_DATA_HOME/bib/
+mkdir -p "$XDG_DATA_HOME"/bib/
+rsync -Pavz pablo@pcardenasb.com:.local/share/bib/ "$XDG_DATA_HOME"/bib/
