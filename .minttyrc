@@ -1,2 +1,8 @@
 ThemeFile=kohlrausch
 CursorType=block
+Columns=80
+Rows=25
+Scrollbar=none
+Font=Consolas
+BoldAsFont=yes
+BoldAsColour=yes
