@@ -1,4 +1,4 @@
-URxvt*geometry: 80x25
+URxvt.geometry: 80x25
 URxvt.font:     xft:monospace:size=10,\
                 xft:Symbola
 
@@ -10,9 +10,9 @@ URxvt.letterSpace: -1
 URxvt.cursorBlink: true
 URxvt.perl-ext-common:  resize-font
 
-*.alpha: 0.1
-URxvt.depth: 32
-URxvt.background: rgba:FFFF/FFFF/FFFF/AAAA
+!*.alpha: 0.1
+! URxvt.depth: 32
+! URxvt.background: [75]#ffffff
 *.background: #fff
 *.foreground: #222
 
