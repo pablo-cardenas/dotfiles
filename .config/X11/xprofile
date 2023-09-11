@@ -1,11 +1,7 @@
 xset r rate 1000 2
-xset -b
-xset s 600 60
-setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
+setxkbmap us -variant altgr-intl
 
-command -v dunst >/dev/null 2>&1 && dunst &
-command -v picom >/dev/null 2>&1 && picom --daemon
-
-# redshift &
-xcalib -o 0 /usr/share/xcalib/gamma_2_2_lowContrast.icc
-xcalib -o 1 /usr/share/xcalib/gamma_2_2_lowContrast.icc
+# NVIDIA Optimus (https://wiki.archlinux.org/title/NVIDIA_Optimus)
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+xrandr --dpi 90
