@@ -1,5 +1,5 @@
 [Desktop Entry]
 Name=Open folder using urxvt
 Type=Application
-Exec= urxvt -cd %f
+Exec=sh -c 'urxvt `[ -n "%f" ] && echo -cd %f`'
 MimeType=inode/directory
