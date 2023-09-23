@@ -26,6 +26,7 @@
 /.ssh/
 /.texlive2023/
 /.vim/
+/.vimgolf/
 /.viminfo
 /.xdvirc
 /.zoom/
