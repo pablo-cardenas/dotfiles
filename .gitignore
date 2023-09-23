@@ -1,8 +1,11 @@
 /.Xauthority
 /.audacity-data/
+/.aws/
 /.cabal/
 /.cache/
+/.cargo/
 /.cpan/
+/.cr3/
 /.dotfiles/
 /.ghc/
 /.gnupg/
@@ -16,9 +19,6 @@
 /.local/share/qutebrowser/*
 !/.local/share/qutebrowser/userscripts
 /.local/state/
-/.aws/
-/.cargo/
-/.cr3/
 /.mongodb/
 /.mozilla/
 /.nv/
