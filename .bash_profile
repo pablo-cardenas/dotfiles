@@ -1,4 +1,5 @@
-export EDITOR=vim
+export VISUAL="emacs -nw"
+export EDITOR="ed"
 export PAGER=less
 export LANG=en_US.UTF-8
 export BROWSER=elinks
@@ -18,6 +19,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 #export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
+export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export MAXIMA_USERDIR="$XDG_CONFIG_HOME"/maxima
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
@@ -38,6 +40,10 @@ export PERL5LIB="$HOME/perl5/lib/perl5"
 export PERL_LOCAL_LIB_ROOT="$HOME/perl5"
 export PERL_MB_OPT="--install_base \"$HOME/perl5\""
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
+
+export TEXEDIT="${VISUAL:-$EDITOR} +%d %s"
+export MFEDIT="${VISUAL:-$EDITOR} +%d %s"
+export MPEDIT="${VISUAL:-$EDITOR} +%d %s"
 
 source "$HOME"/.bashrc
 
