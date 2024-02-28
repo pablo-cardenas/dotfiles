@@ -14,7 +14,9 @@ https://github.com/moodle/moodle/releases.atom software "~Github moodle"
 https://github.com/bgregos/foreground/releases.atom software "~Github foreground"
 https://taskwarrior.org/feed.rss software
 https://nitter.net/taskwarrior/rss software "~Twitter @taskwarrior"
-
+https://github.com/qutebrowser/qutebrowser/commits/tree-tabs-integration.atom "~Github qutebrowser treetabs"
+https://github.com/SPRFMO/jjmr/commits/main.atom "~Github jjmr"
+http://feeds.vimgolf.com/latest-challenges "~VimGolf"
 
 # Python
 http://feeds.feedburner.com/PythonInsider python
@@ -27,7 +29,6 @@ https://pypi.org/rss/project/bugwarrior/releases.xml python "~PyPI bugwarrior"
 https://pypi.org/rss/project/click/releases.xml python "~PyPI Click"
 https://pypi.org/rss/project/fiona/releases.xml python "~PyPI Fiona"
 https://pypi.org/rss/project/flake8/releases.xml python "~PyPI flake8"
-https://pypi.org/rss/project/flask-webpackext/releases.xml python "~PyPI flask-webpackext"
 https://pypi.org/rss/project/flask/releases.xml python "~PyPI Flask"
 https://pypi.org/rss/project/flit/releases.xml python "~PyPI flit"
 https://pypi.org/rss/project/geopandas/releases.xml python "~PyPI geopandas"
@@ -73,7 +74,7 @@ https://nitter.net/Rbloggers/rss R "~Twitter @Rbloggers"
 https://feeds.feedburner.com/RBloggers R
 https://journal.r-project.org/rss.atom R
 https://developer.r-project.org/blosxom.cgi/R-devel/NEWS/index.rss R
-https://developer.r-project.org/Blog/public/index.xml R
+nhttps://blog.r-project.org/index.xml R
 https://blog.rstudio.com/index.xml R
 
 https://nitter.net/fishnets88/rss R python "~Twitter @fishnets88"
@@ -86,15 +87,12 @@ https://archlinux.org/feeds/news/ archlinux
 
 https://archlinux.org/feeds/packages/x86_64/core/ archlinux
 https://archlinux.org/feeds/packages/x86_64/extra/ archlinux
-https://archlinux.org/feeds/packages/x86_64/community/ archlinux
 
 https://archlinux.org/feeds/packages/added/x86_64/core/ archlinux
 https://archlinux.org/feeds/packages/added/x86_64/extra/ archlinux
-https://archlinux.org/feeds/packages/added/x86_64/community/ archlinux
 
 https://archlinux.org/feeds/packages/removed/x86_64/core/ archlinux
 https://archlinux.org/feeds/packages/removed/x86_64/extra/ archlinux
-https://archlinux.org/feeds/packages/removed/x86_64/community/ archlinux
 
 
 # Training
@@ -105,6 +103,7 @@ https://nitter.net/running4peru/rss software "~Twitter @running4peru"
 
 
 # Youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqyrm14zcbZw6pdQeHXPF8w youtube "~Youtube Dtoptions"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg youtube "~Youtube Distrotube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCld68syR8Wi-GY_n4CaoJGA youtube "~Youtube Brodie Robertson"
 https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA youtube "~Youtube Luke Smith"
@@ -114,8 +113,9 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC6biysICWOJ-C3P4Tyeggzg you
 https://www.youtube.com/feeds/videos.xml?channel_id=UCaiL2GDNpLYH6Wokkk1VNcg youtube "~Youtube mCoding"
 https://www.youtube.com/feeds/videos.xml?channel_id=UC46xhU1EH7aywEgvA9syS3w youtube "~Youtube AnthonyWritesCode"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCngn7SVujlvskHRvRKc1cTw youtube "~Youtube BugsWriter"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCOmCxjmeQrkB5GmCEssbvxg youtube "~Youtube RobertElderSoftware"
 
 # News
-#http://rss.cnn.com/rss/cnn_topstories.rss !news news
+http://rss.cnn.com/rss/cnn_topstories.rss !news news
 
 "query:Unread News:unread=\"yes\" and tags#\"news\""
