@@ -1,0 +1,36 @@
+URxvt.geometry: 83x25
+URxvt.font:     xft:monospace:size=10,\
+                xft:Symbola
+
+!URxvt.intensityStyles: false
+URxvt.scrollBar: false
+URxvt.internalBorder: 8
+URxvt.letterSpace: -1
+
+URxvt.cursorBlink: true
+!URxvt.perl-ext-common:  resize-font
+
+!*.alpha: 0.1
+! URxvt.depth: 32
+! URxvt.background: [75]#ffffff
+*.background: #ffffff
+*.foreground: #222
+
+
+! Light
+*.color0: #444
+*.color1: #f66
+*.color2: #0e0
+*.color3: #aa0
+*.color4: #44f
+*.color5: #f6f
+*.color6: #0cc
+*.color7: #ccc
+*.color8: #999
+*.color9: #f88
+*.color10: #8f8
+*.color11: #ff8
+*.color12: #99f
+*.color13: #f8f
+*.color14: #0ee
+*.color15: #fff

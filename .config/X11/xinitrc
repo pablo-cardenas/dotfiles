@@ -1,8 +1,11 @@
 #!/bin/sh
 
-# merge in defaults and keymaps
-[[ -f $XDG_CONFIG_HOME/X11/Xresources ]] && xrdb -merge "$XDG_CONFIG_HOME/X11/Xresources"
-[[ -f $XDG_OONFIG_HOME/X11/Xmodmap ]] && xmodmap "$XDG_CONFIG_HOME/X11/Xmodmap"
+# Merge defaults
+[[ -f "$XDG_CONFIG_HOME/X11/Xresources" ]] && xrdb -merge "$XDG_CONFIG_HOME/X11/Xresources"
+
+# Set keymaps
+setxkbmap us -variant altgr-intl
+[[ -f "$XDG_CONFIG_HOME/X11/Xmodmap" ]] && xmodmap "$XDG_CONFIG_HOME/X11/Xmodmap"
 
 
 # start some nice programs
@@ -24,6 +27,9 @@ session=${1:-bspwm}
 case $session in
 bspwm)
 	exec bspwm
+	;;
+i3)
+	exec i3
 	;;
 kde)
 	export DESKTOP_SESSION=plasma

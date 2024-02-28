@@ -1,5 +1,4 @@
 xset r rate 1000 2
-setxkbmap us -variant altgr-intl
 
 # NVIDIA Optimus (https://wiki.archlinux.org/title/NVIDIA_Optimus)
 xrandr --setprovideroutputsource modesetting NVIDIA-0
