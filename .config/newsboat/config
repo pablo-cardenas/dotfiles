@@ -1,6 +1,1 @@
-urls-source "miniflux"
-miniflux-url "http://miniflux.pcardenasb.com"
-miniflux-login "pablo"
-miniflux-passwordeval "pass miniflux/pablo"
-
 macro v set browser "setsid -f mpv --audio-device=alsa/pulse --ytdl-raw-options=sub-langs=\"[en.*,es.*,fr.*,pt.*]\",write-sub=,write-auto-sub= </dev/null >/dev/null 2>&1" ; open-in-browser ; set browser "$BROWSER"
