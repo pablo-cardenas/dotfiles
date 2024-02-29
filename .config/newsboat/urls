@@ -7,13 +7,9 @@ https://images.math.cnrs.fr/spip.php?page=backend&lang=fr
 https://changelog.qgis.org/en/qgis/atom/latest-version/ GIS software
 https://inkscape.org/news/feed/ design software "~Inkscape"
 https://www.docker.com/blog/feed/ software
-https://nitter.net/docker/rss software "~Twitter @docker"
-https://nitter.net/postgresql/rss software "~Twitter @postgresql"
-https://nitter.net/moodle/rss software "~Twitter @moodle"
 https://github.com/moodle/moodle/releases.atom software "~Github moodle"
 https://github.com/bgregos/foreground/releases.atom software "~Github foreground"
 https://taskwarrior.org/feed.rss software
-https://nitter.net/taskwarrior/rss software "~Twitter @taskwarrior"
 https://github.com/qutebrowser/qutebrowser/commits/tree-tabs-integration.atom "~Github qutebrowser treetabs"
 https://github.com/SPRFMO/jjmr/commits/main.atom "~Github jjmr"
 http://feeds.vimgolf.com/latest-challenges "~VimGolf"
@@ -55,11 +51,6 @@ https://pypi.org/rss/project/statsmodels/releases.xml python "~PyPI statsmodels"
 https://pypi.org/rss/project/sympy/releases.xml python "~PyPI sympy"
 https://pypi.org/rss/project/tox/releases.xml python "~PyPI tox"
 
-https://nitter.net/numpy_team/rss python "~Twitter @numpy_team"
-https://nitter.net/matplotlib/rss python "~Twitter @matplotlib"
-https://nitter.net/scikit_learn/rss python "~Twitter @scikit_learn"
-https://nitter.net/PlanetSymPy/rss python "~Twitter PlanetSymPy"
-https://nitter.net/SymPy/rss python "~Twitter SymPy"
 https://matplotlib.org/matplotblog/index.xml python
 https://planet.sympy.org/rss10.xml python
 
@@ -68,18 +59,13 @@ https://github.com/r-lib/styler/releases.atom R "~Github styler"
 https://github.com/jimhester/lintr/releases.atom R "~Github lintr"
 https://github.com/rstudio/bookdown/releases.atom R "~Github bookdown"
 
-https://nitter.net/_R_Foundation/rss R "~Twitter @_R_Foundation"
-https://nitter.net/RLangTip/rss R "~Twitter @RLangTip"
-https://nitter.net/Rbloggers/rss R "~Twitter @Rbloggers"
 https://feeds.feedburner.com/RBloggers R
 https://journal.r-project.org/rss.atom R
 https://developer.r-project.org/blosxom.cgi/R-devel/NEWS/index.rss R
 nhttps://blog.r-project.org/index.xml R
 https://blog.rstudio.com/index.xml R
 
-https://nitter.net/fishnets88/rss R python "~Twitter @fishnets88"
 https://koaning.io/index.xml R python
-https://nitter.net/betterdscience/rss R python "~Twitter @betterdscience"
 
 
 # Archlinux
@@ -98,8 +84,6 @@ https://archlinux.org/feeds/packages/removed/x86_64/extra/ archlinux
 # Training
 https://github.com/OpenTracksApp/OpenTracks/releases.atom training "~Github OpenTracks"
 https://github.com/jonasoreland/runnerup/releases.atom training "~Github runnerup"
-https://nitter.net/peruswimmers/rss software "~Twitter @peruswimmers"
-https://nitter.net/running4peru/rss software "~Twitter @running4peru"
 
 
 # Youtube
