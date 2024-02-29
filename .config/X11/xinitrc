@@ -31,9 +31,8 @@ bspwm)
 i3)
 	exec i3
 	;;
-kde)
-	export DESKTOP_SESSION=plasma
-	exec startplasma-x11
+emacs)
+	exec emacs
 	;;
 *)
 	exec $1
