@@ -36,7 +36,7 @@ GPG_TTY=$(tty)
 [ -f /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
 #export GIT_PS1_SHOWCOLORHINTS=1
 #export GIT_PS1_SHOWDIRTYSTATE=1
-PS1='[\u@\h \W] $(__git_ps1) \$ '
+PS1='\$$(__git_ps1) '
 
 cd() { echo "Use pushd!"; }
 
