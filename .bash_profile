@@ -3,6 +3,7 @@ export EDITOR="ed"
 export PAGER=less
 export LANG=en_US.UTF-8
 export BROWSER=elinks
+export TERMINAL=st
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
