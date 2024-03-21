@@ -13,6 +13,7 @@ https://taskwarrior.org/feed.rss software
 https://github.com/qutebrowser/qutebrowser/commits/tree-tabs-integration.atom "~Github qutebrowser treetabs"
 https://github.com/SPRFMO/jjmr/commits/main.atom "~Github jjmr"
 http://feeds.vimgolf.com/latest-challenges "~VimGolf"
+https://www.gimp.org/feeds/atom.xml
 
 # Python
 http://feeds.feedburner.com/PythonInsider python
