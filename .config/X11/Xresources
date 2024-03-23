@@ -1,4 +1,4 @@
-URxvt.geometry: 80x25
+URxvt.geometry: 80x24
 URxvt.font:     xft:monospace:size=10,\
                 xft:Symbola
 
