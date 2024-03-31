@@ -40,6 +40,14 @@ PS1='\$$(__git_ps1) '
 
 cd() { echo "Use pushd!"; }
 
+man() {
+	if [[ $# == 1 && $1 != -* ]] ; then
+		echo "Specify section"
+		return 1
+	fi
+	command man $@
+}
+
 
 [ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
 [ -f /data/data/com.termux/files/usr/share/bash-completion/completions/git ] && source /dataa/data/com.termux/files/usr/share/bash-completion/completions/git
