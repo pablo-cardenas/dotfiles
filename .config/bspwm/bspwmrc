@@ -20,3 +20,5 @@ bspc rule -a st-256color state=pseudo_tiled
 bspc rule -a URxvt state=pseudo_tiled
 bspc rule -a Zathura state=tiled
 bspc rule -a qutebrowser locked=on
+
+bspc rule -a Emacs state=floating sticky=on
