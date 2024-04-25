@@ -1,5 +1,4 @@
 base
-easy-rsa
 expac
 grub
 intel-ucode
@@ -7,63 +6,82 @@ linux
 linux-firmware
 man-db
 man-pages
-openvpn
-yay-bin
+
+#openvpn
+#easy-rsa
 
 # Server
-taskd
-uwsgi-plugin-python
-mariadb
-postgresql
-php-fpm
-nginx
+#taskd
+#uwsgi-plugin-python
+#mariadb
+#postgresql
+#php-fpm
+#nginx
 
 # CLI
 bash-completion
 ctags
-elinks 
+#elinks 
 fzf
-lynx 
+#lynx 
 mpv
 openssh
 pass-otp
 rsync
-stow
 tmux
-vim
+ed
+
+#vim
+#emacs-nox
 
 # GUI
-perl-text-bibtex
+#perl-text-bibtex
 dmenu
 dunst
 gvim
-i3-gaps
-picom
-pipewire-pulse
-qutebrowser
-redshift
-screenkey
+emacs
+i3-wm
+bspwm
+sxhkd
+pulseaudio-bluetooth
+#screenkey
 scrot
 sxiv
 urxvt-resize-font-git
 xclip
 xorg-server
 xorg-xinit
-xorg-xrandr
 zathura-djvu
-zathura-pdf-mupdf
+zathura-pdf-poppler
 
-# Time management
-task
-timew
+# Utils
+yay
+iwd
+newsboat
+firefox
+zathura-ps
+xf86-video-intel
+acpi
+feh
+base-devel
+bluez-utils
+bibclean
+ledger
+entr
+terminus-font
+noto-fonts-cjk
+dhcpcd
+ruby-vimgolf
+libreoffice-still
+pulseaudio-alsa
 
 # Mail and Feeds
-cyrus-sasl-xoauth2-git
-goimapnotify
-isync
-khard
-mutt
-newsboat
-urlview-xdg-git
-vdirsyncer
-miniflux
+#cyrus-sasl-xoauth2-git
+#goimapnotify
+#isync
+#khard
+#mutt
+#newsboat
+#urlview-xdg-git
+#vdirsyncer
+#miniflux
