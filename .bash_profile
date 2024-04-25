@@ -13,7 +13,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # Add local bin directories to PATH.
 [ -d "$HOME"/.local/bin ] && PATH="$PATH:$HOME/.local/bin"
 [ -d "$XDG_DATA_HOME"/npm/bin ] && PATH="$PATH:$XDG_DATA_HOME/npm/bin/"
-[ -d /usr/local/texlive/2023/bin/x86_64-linux ] && PATH="$PATH:/usr/local/texlive/2023/bin/x86_64-linux"
+[ -d /usr/local/texlive/2024/bin/x86_64-linux ] && PATH="$PATH:/usr/local/texlive/2024/bin/x86_64-linux"
 [ -d "$XDG_DATA_HOME"/gem/ruby/3.0.0/bin/ ] && PATH="$PATH:$XDG_DATA_HOME/gem/ruby/3.0.0/bin/"
 [ -d "$HOME"/perl5/bin ] && PATH="$PATH:$HOME/perl5/bin"
 [ -d "$HOME"/perl5/lib ] && LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$HOME/perl5/lib"
