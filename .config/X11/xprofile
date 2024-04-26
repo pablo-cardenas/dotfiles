@@ -1,1 +1,8 @@
+# Merge defaults
+[[ -f "$XDG_CONFIG_HOME/X11/Xresources" ]] && xrdb -merge "$XDG_CONFIG_HOME/X11/Xresources"
+
+# Set keymaps
+setxkbmap us -variant altgr-intl
+[[ -f "$XDG_CONFIG_HOME/X11/Xmodmap" ]] && xmodmap "$XDG_CONFIG_HOME/X11/Xmodmap"
+
 xset r rate 1000 2
