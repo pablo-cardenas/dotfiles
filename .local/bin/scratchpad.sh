@@ -1,6 +1,6 @@
 #!/bin/bash
 
-winid=$(xdotool search --class Emacs | head -n 1)
+winid=$(xdotool search --class Emacs)
 visible_winid=$(xdotool search --onlyvisible --class Emacs)
 
 echo $winid
@@ -9,8 +9,8 @@ if [ -z "$winid" ]; then
 	nohup emacs >/dev/null 2>/dev/null </dev/null &
 else
 	if [ -z "$visible_winid" ]; then
-		xdo show "$winid"
+		echo "$winid" | xargs -I{} xdo show {}
 	else
-		xdo hide "$visible_winid"
+		echo "$winid" | xargs -I{} xdo hide {}
 	fi
 fi
