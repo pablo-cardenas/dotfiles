@@ -41,11 +41,12 @@ PS1='\$$(__git_ps1) '
 cd() { echo "Use pushd!"; }
 
 man() {
-	if ! [[ $1 == -* || $1 == [1-9]* ]] ; then
+	if [[ $1 == -* || $1 == [1-9]* || $1 == n ]] ; then
+		command man $@
+	else
 		echo "Specify section"
 		return 1
 	fi
-	command man $@
 }
 
 
