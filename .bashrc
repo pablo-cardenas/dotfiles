@@ -35,8 +35,14 @@ GPG_TTY=$(tty)
 
 [ -f /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
 #export GIT_PS1_SHOWCOLORHINTS=1
-#export GIT_PS1_SHOWDIRTYSTATE=1
-PS1='\$$(__git_ps1) '
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM="auto"
+export GIT_PS1_COMPRESSSPARSESTATE=1
+export GIT_PS1_SHOWCONFLICTSTATE=1
+export GIT_PS1_HIDE_IF_PWD_IGNORED=1
+PS1='\$$(GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME __git_ps1)$(__git_ps1) '
 
 cd() { echo "Use pushd!"; }
 
