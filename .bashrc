@@ -20,15 +20,6 @@ HISTTIMEFORMAT="%D %T "
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
-LESS=-R
-LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
-LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
-LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
-LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-LESS_TERMCAP_ue=$'\E[0m'        # reset underline
-
 source "${XDG_CONFIG_HOME:-$HOME/.config}"/shell/aliases.sh
 
 GPG_TTY=$(tty)
