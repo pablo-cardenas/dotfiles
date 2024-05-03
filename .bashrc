@@ -33,7 +33,7 @@ export GIT_PS1_SHOWUPSTREAM="auto"
 export GIT_PS1_COMPRESSSPARSESTATE=1
 export GIT_PS1_SHOWCONFLICTSTATE=1
 export GIT_PS1_HIDE_IF_PWD_IGNORED=1
-PS1='\$$(GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME __git_ps1)$(__git_ps1) '
+PS1='\$$([[ $PWD/ = $HOME/* ]] && GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME __git_ps1)$(__git_ps1) '
 
 cd() { echo "Use pushd!"; }
 
