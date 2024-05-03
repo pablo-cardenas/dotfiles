@@ -70,6 +70,5 @@ stopwatch() {
 }
 
 PROMPT_COMMAND+=(
-	'FIRST_COMMAND=$((FIRST_COMMAND+1))'
-	'[ -n "$DISPLAY" -a -z "$TMUX" -a "$FIRST_COMMAND" -gt 1 ] && exit'
+	'[ -z "$TMUX" -a -n "$DISPLAY" ] && { [ -z "$FIRST_COMMAND" ] && export FIRST_COMMAND=1 || exit; }'
 )
