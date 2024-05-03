@@ -1,5 +1,6 @@
 export VISUAL="emacs -nw"
 export EDITOR="ed"
+export FCEDIT="$VISUAL"
 export PAGER=less
 export LANG=en_US.UTF-8
 export BROWSER=elinks
