@@ -47,7 +47,7 @@ export TEXEDIT="${VISUAL:-$EDITOR} +%d %s"
 export MFEDIT="${VISUAL:-$EDITOR} +%d %s"
 export MPEDIT="${VISUAL:-$EDITOR} +%d %s"
 
-source "$HOME"/.bashrc
+[ -z $TERMUX_VERSION ] && source "$HOME"/.bashrc
 
 export PATH
 export LD_LIBRARY_PATH
