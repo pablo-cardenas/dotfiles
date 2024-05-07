@@ -46,6 +46,20 @@ man() {
 	fi
 }
 
+git() {
+	if [ $1 = "checkout" ]; then
+		echo "Use"
+		echo " - git checkout-index -fu"
+		echo " - git read-tree --cached -u"
+	elif [ $1 = "reset" ]; then
+		echo "Use"
+		echo " - git read-tree -mu"
+		echo " - git read-tree -m"
+		echo " - git update-index --add --remove --cacheinfo 100644 sha1 filename"
+	else
+		command git $@
+	fi
+}
 
 [ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
 [ -f /data/data/com.termux/files/usr/share/bash-completion/completions/git ] && source /dataa/data/com.termux/files/usr/share/bash-completion/completions/git
