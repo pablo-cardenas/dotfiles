@@ -25,7 +25,6 @@
 /.pki/
 /.ssh/
 /.texlive2024/
-/.vim/
 /.vimgolf/
 /.viminfo
 /.xdvirc
