@@ -39,7 +39,7 @@ cd() { echo "Use pushd!"; }
 
 man() {
 	if [[ $1 == -* || $1 == [1-9]* || $1 == n ]] ; then
-		command man $@
+		command man "$@"
 	else
 		echo "Specify section"
 		return 1
@@ -57,7 +57,7 @@ git() {
 		echo " - git read-tree -m"
 		echo " - git update-index --add --remove --cacheinfo 100644 sha1 filename"
 	else
-		command git $@
+		command git "$@"
 	fi
 }
 
