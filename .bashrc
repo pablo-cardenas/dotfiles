@@ -47,6 +47,15 @@ man() {
 }
 
 git() {
+	if [ $1 = "--git-dir" ]; then
+		local git_args="$git_args $1 $2"
+		shift 2
+	fi
+	if [ $1 = "--work-tree" ]; then
+		local git_args="$git_args $1 $2"
+		shift 2
+	fi
+
 	if [ $1 = "checkout" ]; then
 		echo "Use"
 		echo " - git checkout-index -fu"
@@ -56,8 +65,14 @@ git() {
 		echo " - git read-tree -mu"
 		echo " - git read-tree -m"
 		echo " - git update-index --add --remove --cacheinfo 100644 sha1 filename"
+	elif [ $1 = "status" -a $# = 1 ]; then
+		echo "Use"
+		echo " - git diff-files --name-only"
+		echo " - git diff-index --name-only HEAD"
+		echo " - git ls-files -mot"
+		echo " - git status -bs"
 	else
-		command git "$@"
+		command git $git_args "$@"
 	fi
 }
 
