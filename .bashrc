@@ -67,9 +67,9 @@ git() {
 		echo " - git update-index --add --remove --cacheinfo 100644 sha1 filename"
 	elif [ $1 = "status" -a $# = 1 ]; then
 		echo "Use"
-		echo " - git diff-files --name-only"
-		echo " - git diff-index --name-only HEAD"
-		echo " - git ls-files -mot"
+		echo " - git diff-index --cached HEAD"
+		echo " - git diff-files"
+		echo " - git ls-files --exclude-standard -o"
 		echo " - git status -bs"
 	else
 		command git $git_args "$@"
