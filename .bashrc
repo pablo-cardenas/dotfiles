@@ -71,6 +71,9 @@ git() {
 		echo " - git diff-files"
 		echo " - git ls-files --exclude-standard -o"
 		echo " - git status -bs"
+	elif [ $1 = "log" ]; then
+		echo "Use"
+		echo " - git rev-list HEAD"
 	else
 		command git $git_args "$@"
 	fi
