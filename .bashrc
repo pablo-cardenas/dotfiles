@@ -99,5 +99,5 @@ stopwatch() {
 }
 
 PROMPT_COMMAND+=(
-	'{ [ -z "$TMUX" ] && [[ $TERM != tmux-* ]] && [ -n "$DISPLAY" -o -n "$TERMUX_VERSION" ]; } && { [ -z "$FIRST_COMMAND" ] && FIRST_COMMAND=1 || exit; }'
+	'{ [ -z "$TMUX" ] && [[ $TERM != tmux-* ]] && [ "$ASCIINEMA_REC" != 1 ] && [ -n "$DISPLAY" -o -n "$TERMUX_VERSION" ]; } && { [ -z "$FIRST_COMMAND" ] && FIRST_COMMAND=1 || exit; }'
 )
