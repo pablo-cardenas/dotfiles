@@ -47,31 +47,31 @@ man() {
 }
 
 git() {
-	if [ $1 = "--git-dir" ]; then
+	if [ "$1" = "--git-dir" ]; then
 		local git_args="$git_args $1 $2"
 		shift 2
 	fi
-	if [ $1 = "--work-tree" ]; then
+	if [ "$1" = "--work-tree" ]; then
 		local git_args="$git_args $1 $2"
 		shift 2
 	fi
 
-	if [ $1 = "checkout" ]; then
+	if [ "$1" = "checkout" ]; then
 		echo "Use"
 		echo " - git checkout-index -fu"
 		echo " - git read-tree --cached -u"
-	elif [ $1 = "reset" ]; then
+	elif [ "$1" = "reset" ]; then
 		echo "Use"
 		echo " - git read-tree -mu"
 		echo " - git read-tree -m"
 		echo " - git update-index --add --remove --cacheinfo 100644 sha1 filename"
-	elif [ $1 = "status" -a $# = 1 ]; then
+	elif [ "$1" = "status" -a $# = 1 ]; then
 		echo "Use"
 		echo " - git diff-index --cached HEAD"
 		echo " - git diff-files"
 		echo " - git ls-files --exclude-standard -o"
 		echo " - git status -bs"
-	elif [ $1 = "log" ]; then
+	elif [ "$1" = "log" ]; then
 		echo "Use"
 		echo " - git rev-list HEAD"
 	else
