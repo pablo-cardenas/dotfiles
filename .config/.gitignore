@@ -9,11 +9,13 @@
 /QtProject.conf
 /RStudio/desktop.ini
 /Unknown Organization/
+/asciinema/
 /blender/
 /calibre/
 /chromium/
 /dconf/user
 /discord/
+/fontforge/
 /google-chrome/
 /gtk-2.0/
 /gtkrc
@@ -28,6 +30,7 @@
 /pympress
 /sqlitebrowser/
 /transmission/
+/transmission-daemon/
 /vdirsyncer/
 /vimgolf/
 /xournalpp/

@@ -1,3 +1,4 @@
+/.android
 /.Xauthority
 /.audacity-data/
 /.aws/
@@ -19,8 +20,10 @@
 /.local/share/qutebrowser/*
 !/.local/share/qutebrowser/userscripts
 /.local/state/
+/.mariadb_history
 /.mongodb/
 /.mozilla/
+/.npm/
 /.nv/
 /.pki/
 /.ssh/
