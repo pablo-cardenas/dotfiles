@@ -18,6 +18,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 [ -d "$XDG_DATA_HOME"/gem/ruby/3.0.0/bin/ ] && PATH="$PATH:$XDG_DATA_HOME/gem/ruby/3.0.0/bin/"
 [ -d "$HOME"/perl5/bin ] && PATH="$PATH:$HOME/perl5/bin"
 [ -d "$HOME"/perl5/lib ] && LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$HOME/perl5/lib"
+[ -d "$HOME"/go/bin ] && PATH="$PATH:$HOME/go/bin"
 
 #export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
