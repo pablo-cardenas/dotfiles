@@ -1,5 +1,5 @@
 URxvt.geometry: 80x24
-URxvt.font:     xft:monospace:size=10,\
+URxvt.font:     xft:monospace:size=12,\
                 xft:Symbola
 
 !URxvt.intensityStyles: false
