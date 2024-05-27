@@ -6,6 +6,7 @@ URxvt.font:     xft:monospace:size=12,\
 URxvt.scrollBar: false
 URxvt.internalBorder: 8
 URxvt.letterSpace: -1
+!URxvt.VT100.allowColorOps: false
 
 URxvt.cursorBlink: true
 URxvt.perl-ext-common:  resize-font
