@@ -1,14 +1,11 @@
 #!/bin/bash -v
 
 mkdir -p ~/dox/dev/imca
-cd ~/dox/dev/imca || exit
+cd ~/dox/dev/imca
 
 # Clone repositories
-[ -d flask_imca ] || git clone git@gitlab.com:pablo-cardenas/flask_imca.git flask_imca
-[ -d webpack-imca ] || git clone git@gitlab.com:pablo-cardenas/webpack-imca.git webpack-imca
-
-pushd flask_imca || exit; pre-commit install; pop || exit
-pushd webpack-imca || exit; pre-commit install; popd || exit
+[ -d flask_imca/.git ] || git clone git@gitlab.com:pablo-cardenas/flask_imca.git flask_imca
+[ -d webpack-imca/.git ] || git clone git@gitlab.com:pablo-cardenas/webpack-imca.git webpack-imca
 
 # pre-build webpack-imca
 if [ ! -d webpack-imca/node_modules ]; then
@@ -37,35 +34,36 @@ if [ ! -d flask_imca/venv ]; then
 	deactivate
 fi
 
+# pre-commit
+[ -f flask_imca/.git/hooks/pre-commit ] || { pushd flask_imca; ../flask_imca/venv/bin/pre-commit install; popd; }
+[ -f webpack-imca/.git/hooks/pre-commit ] || { pushd webpack-imca; ../flask_imca/venv/bin/pre-commit install; popd; }
+
 echo $PWD
 if ! tmux has-session -t imca; then
 	tmux new-session -s imca -n main -d
 
-	tmux split-window -h -t imca -c flask_imca
-	tmux split-window -h -t imca -c webpack-imca
-	tmux select-layout -t imca main-vertical
+	tmux split-window -d -h -t imca:0.0 -c flask_imca
+	tmux split-window -d -v -t imca:0.1 -c webpack-imca
 
 	tmux send-keys -t imca:0.0 'source venv/bin/activate' C-m
 	tmux send-keys -t imca:0.0 'vim -S ~/.vim/session/imca.vim' C-m
 
 	tmux send-keys -t imca:0.1 'source venv/bin/activate' C-m
-	tmux send-keys -t imca:0.1 'export FLASK_ENV=development' C-m
-	tmux send-keys -t imca:0.1 'export FLASK_APP=flask_imca' C-m
-	command -v firefox-developer-edition >/dev/null 2>&1 && tmux send-keys -t imca:0.1 'sleep 6s && firefox-developer-edition 127.0.0.1:5000 &' C-m
 	command -v firefox >/dev/null 2>&1 && tmux send-keys -t imca:0.1 'sleep 6s && firefox 127.0.0.1:5000 &' C-m
-	tmux send-keys -t imca:0.1 'flask run --host 0.0.0.0' C-m
+	tmux send-keys -t imca:0.1 'flask --app flask_imca run --debug --host 0.0.0.0' C-m
 
 	tmux send-keys -t imca:0.2 'npm run watch' C-m
 
-	tmux new-window -c flask_imca -n venv
+	tmux new-window -d -c flask_imca -n venv -t imca:1
 	tmux send-keys -t imca:1.0 'source venv/bin/activate' C-m
-	tmux send-keys -t imca:1.0 'export FLASK_ENV=development' C-m
-	tmux send-keys -t imca:1.0 'export FLASK_APP=flask_imca' C-m
 
-	tmux new-window -c flask_imca/src/instance -n instance
+	tmux new-window -d -c flask_imca/src/instance -n instance -t imca:2
 
-	tmux select-window -t imca:0
-	tmux select-pane -t imca:0.0
+	tmux new-window -d -c ~ -n ssh -t imca:3
+	tmux send-keys -t imca:3.0 'TERM=xterm-256color ssh imca.edu.pe'
+
+	tmux new-window -d -c ~/.local/bin -n '~/.local/bin' -t imca:4
+	tmux send-keys -t imca:4.0 'vim imca' C-m
 fi
 
 tmux attach -t imca
