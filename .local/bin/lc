@@ -1,0 +1,12 @@
+cd ~/dox/dev/leetcode
+if ! tmux has-session -t lc 2>/dev/null; then
+	tmux new-session -s lc -n main -d 'bash --rcfile <(cat ~/.bashrc activate)'
+
+	tmux new-window -t lc:1 -n activate -d
+	tmux send-keys -t lc:1.0 'vim activate' C-m
+
+	tmux new-window -t lc:2 -n bin/lc -d
+	tmux send-keys -t lc:2.0 'vim ~/.local/bin/lc' C-m
+fi
+
+tmux attach -t lc
