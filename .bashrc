@@ -95,3 +95,12 @@ stopwatch() {
 PROMPT_COMMAND+=(
 	'{ [ -z "$TMUX" ] && [[ $TERM != tmux-* ]] && [ "$ASCIINEMA_REC" != 1 ] && [ -n "$DISPLAY" -o -n "$TERMUX_VERSION" -o -n "$MSYSTEM" ]; } && { [ -z "$FIRST_COMMAND" ] && FIRST_COMMAND=1 || exit; }'
 )
+
+print_goodbye() {
+	if [ -z "$TMUX" ] && { [ ! -z "$(dotfiles ls-files --others --exclude-standard --directory --no-empty-directory )" ] || ! dotfiles submodule foreach '[ -z "$(git ls-files --others --exclude-standard --directory --no-empty-directory)" ]'; }; then
+		dotfiles status -s
+		dotfiles submodule foreach 'git status -s'
+		read -n 1
+	fi
+}
+trap print_goodbye EXIT
