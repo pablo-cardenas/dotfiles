@@ -24,17 +24,7 @@ source "${XDG_CONFIG_HOME:-$HOME/.config}"/shell/aliases.sh
 
 GPG_TTY=$(tty)
 
-[ -f /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
-GIT_PS1_SHOWCOLORHINTS=
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWUPSTREAM="auto"
-GIT_PS1_COMPRESSSPARSESTATE=1
-GIT_PS1_SHOWCONFLICTSTATE=1
-GIT_PS1_HIDE_IF_PWD_IGNORED=1
-GIT_PS1_DESCRIBE_STYLE=1
-PS1='\$$([[ $PWD/ = $HOME/* ]] && GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME __git_ps1)$(__git_ps1) '
+PS1='\$ '
 
 cd() { echo "Use pushd!"; }
 
