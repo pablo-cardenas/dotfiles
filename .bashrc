@@ -1,17 +1,13 @@
+# shellcheck shell=bash
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ $DISPLAY ]] && shopt -s checkwinsize
-
-# Bash completions
-if ! shopt -oq posix; then
-	[ -f /etc/bash_completion ] && source /etc/bash_completion
-	[ -f /usr/local/etc/bash_completion ] && source /usr/local/etc/bash_completion
-fi
+[[ -n "${DISPLAY}" ]] && shopt -s checkwinsize
 
 shopt -s histappend histreedit
-mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}"/bash
-HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/bash/history
+mkdir -p "${XDG_STATE_HOME:-${HOME}/.local/state}"/bash
+HISTFILE="${XDG_STATE_HOME:-${HOME}/.local/state}"/bash/history
 HISTCONTROL=ignoreboth
 HISTSIZE=100000
 HISTFILESIZE=200000
@@ -20,11 +16,14 @@ HISTTIMEFORMAT="%D %T "
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
-source "${XDG_CONFIG_HOME:-$HOME/.config}"/shell/aliases.sh
-
+# shellcheck disable=SC2034
 GPG_TTY=$(tty)
 
 PS1='\$ '
+
+alias ls='ls -AF'
+alias vim='vim -u ~/.vim/vimrc'
+alias dotfiles='git --git-dir "$HOME"/.dotfiles --work-tree "$HOME"'
 
 cd() { echo "Use pushd!"; }
 
@@ -39,11 +38,11 @@ man() {
 
 git() {
 	if [ "$1" = "--git-dir" ]; then
-		local git_args="$git_args $1 $2"
+		local git_args+=("$1" "$2")
 		shift 2
 	fi
 	if [ "$1" = "--work-tree" ]; then
-		local git_args="$git_args $1 $2"
+		local git_args+=("$1" "$2")
 		shift 2
 	fi
 
@@ -56,7 +55,7 @@ git() {
 		echo " - git read-tree -mu"
 		echo " - git read-tree -m"
 		echo " - git update-index --add --remove --cacheinfo 100644 sha1 filename"
-	elif [ "$1" = "status" -a $# = 1 ]; then
+	elif [ "$1" = "status" ] && [ $# = 1 ]; then
 		echo "Use"
 		echo " - git diff-index --cached HEAD"
 		echo " - git diff-files"
@@ -66,15 +65,15 @@ git() {
 		echo "Use"
 		echo " - git rev-list HEAD"
 	else
-		command git $git_args "$@"
+		command git "${git_args[@]}" "$@"
 	fi
 }
 
 countdown() {
 	start="$(($(date '+%s') + $1))"
-	while [ $start -ge $(date +%s) ]; do
-		time="$(($start - $(date +%s)))"
-		printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+	while [ "${start}" -ge "$(date +%s || true)" ]; do
+		time="$((start - $(date +%s)))"
+		printf '%s\r' "$(date -u -d "@${time}" +%H:%M:%S || true)"
 		sleep 0.1
 	done
 }
@@ -82,21 +81,24 @@ countdown() {
 stopwatch() {
 	start=$(date +%s)
 	while true; do
-		time="$(($(date +%s) - $start))"
-		printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+		time="$(($(date +%s) - start))"
+		printf '%s\r' "$(date -u -d "@${time}" +%H:%M:%S || true)"
 		sleep 0.1
 	done
 }
 
+# shellcheck disable=SC2016
 PROMPT_COMMAND+=(
 	'{ [ -z "$TMUX" ] && [[ $TERM != tmux-* ]] && [ "$ASCIINEMA_REC" != 1 ] && [ -n "$DISPLAY" -o -n "$TERMUX_VERSION" -o -n "$MSYSTEM" ]; } && { [ -z "$FIRST_COMMAND" ] && FIRST_COMMAND=1 || exit; }'
 )
 
 print_goodbye() {
-	if [ -z "$TMUX" ] && { [ ! -z "$(dotfiles ls-files --others --exclude-standard --directory --no-empty-directory )" ] || ! dotfiles submodule foreach '[ -z "$(git ls-files --others --exclude-standard --directory --no-empty-directory)" ]'; }; then
+	# shellcheck disable=SC2016
+	if [ -z "${TMUX}" ] && { [ -n "$(dotfiles ls-files --others --exclude-standard --directory --no-empty-directory || true)" ] || ! dotfiles submodule foreach '[ -z "$(git ls-files --modified --others --exclude-standard --directory --no-empty-directory)" ]'>/dev/null 2>/dev/null; }; then
+		echo "In dotfiles:"
 		dotfiles status -s
 		dotfiles submodule foreach 'git status -s'
-		read -n 1
+		read -rn 1
 	fi
 }
 trap print_goodbye EXIT
