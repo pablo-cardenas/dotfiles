@@ -70,10 +70,6 @@ git() {
 	fi
 }
 
-[ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
-[ -f /data/data/com.termux/files/usr/share/bash-completion/completions/git ] && source /dataa/data/com.termux/files/usr/share/bash-completion/completions/git
-__git_complete dotfiles __git_main
-
 countdown() {
 	start="$(($(date '+%s') + $1))"
 	while [ $start -ge $(date +%s) ]; do
