@@ -69,24 +69,6 @@ git() {
 	fi
 }
 
-countdown() {
-	start="$(($(date '+%s') + $1))"
-	while [ "${start}" -ge "$(date +%s || true)" ]; do
-		time="$((start - $(date +%s)))"
-		printf '%s\r' "$(date -u -d "@${time}" +%H:%M:%S || true)"
-		sleep 0.1
-	done
-}
-
-stopwatch() {
-	start=$(date +%s)
-	while true; do
-		time="$(($(date +%s) - start))"
-		printf '%s\r' "$(date -u -d "@${time}" +%H:%M:%S || true)"
-		sleep 0.1
-	done
-}
-
 # shellcheck disable=SC2016
 PROMPT_COMMAND+=(
 	'{ [ -z "$TMUX" ] && [[ $TERM != tmux-* ]] && [ "$ASCIINEMA_REC" != 1 ] && [ -n "$DISPLAY" -o -n "$TERMUX_VERSION" -o -n "$MSYSTEM" ]; } && { [ -z "$FIRST_COMMAND" ] && FIRST_COMMAND=1 || exit; }'
