@@ -49,9 +49,11 @@ git() {
 		if [ -n "${_work_tree}" ]; then
 			set -- --work-tree "${_work_tree}" "$@"
 		fi
-		command git "$@"
 		unset _git_dir _work_tree
+		command git "$@"
+		return $?
 	fi
+	return 1
 }
 
 print_goodbye() {
@@ -64,7 +66,7 @@ print_goodbye() {
 	# shellcheck disable=SC2016
 	if [ -z "${TMUX}" ] && {
 		[ -n "$(dotfiles ls-files  "$@" || true)" ] ||
-		! dotfiles submodule foreach '[ -z "$(git ls-files "$@")" ]' \
+		! dotfiles submodule foreach '[ -z "$(git ls-files '"$*"')" ]' \
 		>/dev/null 2>/dev/null;
 	}; then
 		echo "In dotfiles:"
