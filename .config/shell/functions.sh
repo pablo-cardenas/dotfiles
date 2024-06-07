@@ -2,6 +2,8 @@
 
 cd() { echo "Use pushd!"; }
 
+pwd() { echo "Use dirs [-v]"; }
+
 man() {
 	case $1 in 
 		-* | [1-9]* | n)
