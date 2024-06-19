@@ -6,7 +6,7 @@ pwd() { echo "Use dirs [-v]"; }
 
 man() {
 	case $1 in 
-		-* | [1-9]* | n)
+		-* | [0-9]* | n)
 			command man "$@"
 			;;
 		*)
@@ -22,6 +22,10 @@ git() {
 	fi
 	if [ "$1" = "--work-tree" ]; then
 		_work_tree="$2"
+		shift 2
+	fi
+	if [ "$1" = "-C" ]; then
+		_c="$2"
 		shift 2
 	fi
 
@@ -51,31 +55,36 @@ git() {
 		if [ -n "${_work_tree}" ]; then
 			set -- --work-tree "${_work_tree}" "$@"
 		fi
-		unset _git_dir _work_tree
+		if [ -n "${_c}" ]; then
+			set -- -C "${_c}" "$@"
+		fi
+		unset _git_dir _work_tree _c
 		command git "$@"
 		return $?
 	fi
 	return 1
 }
 
-print_goodbye() {
+status() {
 	set -- \
 		--modified \
 		--others \
 		--exclude-standard \
 		--directory \
 		--no-empty-directory
-	# shellcheck disable=SC2016
-	if [ -z "${TMUX}" ] && {
-		[ -n "$(dotfiles ls-files  "$@" || true)" ] ||
-		! dotfiles submodule foreach '[ -z "$(git ls-files '"$*"')" ]' \
-		>/dev/null 2>/dev/null;
-	}; then
+	if [ -n "$(dotfiles ls-files "$@" || true)" ] ||
+		! dotfiles submodule foreach \
+			"[ -z \"\$(git ls-files ""$*"")\" ]" \
+			>/dev/null 2>/dev/null; then
 		echo "In dotfiles:"
 		dotfiles status -s
 		dotfiles submodule foreach 'git status -s'
-		read -r var
-		echo "${var}"
-		unset var
+		return 1
+	fi
+}
+
+print_goodbye() {
+	if [ -z "${TMUX}" ]; then
+		status || read -r _
 	fi
 }
