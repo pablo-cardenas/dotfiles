@@ -3,11 +3,12 @@ cd ~/dox/dev/leticia
 [ -d leticia/.git ] || git clone git@github.com:pablo-cardenas/leticia.git
 [ -d libleticia/.git ] || git clone git@github.com:pablo-cardenas/libleticia.git
 
-if ! tmux has-session -t leticia; then
+if ! tmux has-session -t leticia 2>/dev/null; then
     tmux new-session -s leticia -n main -d
     tmux send-keys -t leticia:0.0 'vim -S ~/.vim/session/leticia.vim' C-m
 
     tmux new-window -d -n 'python-leticia' -t leticia:1 -c leticia
+    tmux send-keys -t leticia:1.0 '. venv/bin/activate; clear' C-m
     tmux new-window -d -n 'libleticia' -t leticia:2 -c libleticia
 fi
 
