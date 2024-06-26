@@ -32,7 +32,7 @@ git() {
 	if [ "$1" = "checkout" ]; then
 		echo "Use"
 		echo " - git checkout-index -fu"
-		echo " - git read-tree --cached -u"
+		echo " - git read-tree --reset -u"
 	elif [ "$1" = "reset" ]; then
 		echo "Use"
 		echo " - git read-tree -mu"
