@@ -1,4 +1,6 @@
 "\C-I": nop
+"\eb": nop
+"\ef": nop
 "\e[A": "\C-a\C-kCSI A"
 "\e[B": "\C-a\C-kCSI B"
 "\e[C": "\C-a\C-kCSI C"
