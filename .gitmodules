@@ -1,5 +1,5 @@
 [submodule ".vim"]
-	path = .vim
+	path = .config/vim
 	url = ../vimrc.git
 [submodule "org"]
 	path = org
