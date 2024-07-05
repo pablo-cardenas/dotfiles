@@ -46,7 +46,7 @@ if ! tmux has-session -t imca; then
 	tmux split-window -d -v -t imca:0.1 -c webpack-imca
 
 	tmux send-keys -t imca:0.0 'source venv/bin/activate' C-m
-	tmux send-keys -t imca:0.0 'vim -S ~/.vim/session/imca.vim' C-m
+	tmux send-keys -t imca:0.0 'vim -S ${XDG_CONFIG_HOME}/vim/session/imca.vim' C-m
 
 	tmux send-keys -t imca:0.1 'source venv/bin/activate' C-m
 	command -v firefox >/dev/null 2>&1 && tmux send-keys -t imca:0.1 'sleep 6s && firefox 127.0.0.1:5000 &' C-m

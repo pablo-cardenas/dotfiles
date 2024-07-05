@@ -6,7 +6,7 @@ cd $HOME/dox/dev/thesis
 if ! tmux has-session -t thesis 2>/dev/null; then
 	tmux new-session -s thesis -n editor -d
 
-	tmux send-keys -t thesis:0.0 'sleep 0.5s; vim --servername thesis -S ~/.vim/session/thesis.vim' C-m
+	tmux send-keys -t thesis:0.0 'sleep 0.5s; vim --servername thesis -S ${XDG_CONFIG_HOME}/vim/session/thesis.vim' C-m
 
 	tmux new-window -t thesis -n pdftex
 	mkdir -p output

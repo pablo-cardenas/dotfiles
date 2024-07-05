@@ -5,7 +5,7 @@ cd ~/dox/dev/leticia
 
 if ! tmux has-session -t leticia 2>/dev/null; then
     tmux new-session -s leticia -n main -d
-    tmux send-keys -t leticia:0.0 'vim -S ~/.vim/session/leticia.vim' C-m
+    tmux send-keys -t leticia:0.0 'vim -S ${XDG_CONFIG_HOME}/vim/session/leticia.vim' C-m
 
     tmux new-window -d -n 'python-leticia' -t leticia:1 -c leticia
     tmux send-keys -t leticia:1.0 '. venv/bin/activate; clear' C-m
