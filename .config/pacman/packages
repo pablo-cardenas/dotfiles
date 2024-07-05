@@ -21,45 +21,22 @@ man-pages
 # CLI
 bash-completion
 ctags
-#elinks 
+ed
 fzf
-#lynx 
-mpv
+lynx
 openssh
 pass-otp
 rsync
 tmux
-ed
+tmux-bash-completion-git
 
 #vim
 #emacs-nox
 
-# GUI
-#perl-text-bibtex
-dmenu
-dunst
-gvim
-emacs
-i3-wm
-bspwm
-sxhkd
-pulseaudio-bluetooth
-#screenkey
-scrot
-sxiv
-urxvt-resize-font-git
-xclip
-xorg-server
-xorg-xinit
-zathura-djvu
-zathura-pdf-poppler
-
-# Utils
+## Utils
 yay
 iwd
 newsboat
-firefox
-zathura-ps
 xf86-video-intel
 acpi
 feh
@@ -68,12 +45,47 @@ bluez-utils
 bibclean
 ledger
 entr
+ruby-vimgolf
+pulseaudio-alsa
+
+# GUI
+
+## WM
+bspwm
+dmenu
+dunst
+emacs
+gvim
+i3-wm
+libnotify
+mpv
+pulseaudio-bluetooth
+scrot
+sxhkd
+sxiv
+urxvt-resize-font-git
+xclip
+xdo
+xdotool
+xorg-server
+xorg-xinit
+xorg-xsetroot
+zathura-djvu
+zathura-pdf-poppler
+
+## Fonts
+ttf-comic-mono-git
+ttf-joypixels
+ttf-opendyslexic
 terminus-font
 noto-fonts-cjk
-dhcpcd
-ruby-vimgolf
-libreoffice-still
-pulseaudio-alsa
+
+## Utils
+firefox
+firefox-extension-passff
+zathura-ps
+#libreoffice-still
+#screenkey
 
 # Mail and Feeds
 #cyrus-sasl-xoauth2-git
@@ -85,3 +97,11 @@ pulseaudio-alsa
 #urlview-xdg-git
 #vdirsyncer
 #miniflux
+
+# Development
+clang
+nasm
+gdb
+shfmt
+shellcheck
+openbsd-netcat
