@@ -41,6 +41,4 @@ source "${XDG_CONFIG_HOME:-${HOME}/.config}"/shell/functions.sh
 
 trap print_goodbye EXIT
 
-if [[ -z "${TMUX}" ]]; then
-	tmux list-sessions 2>/dev/null
-fi
+print_hello
