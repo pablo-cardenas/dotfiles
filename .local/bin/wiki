@@ -1,0 +1,5 @@
+#!/bin/sh
+#https://es.wikipedia.org/w/rest.php/v1/search/page?q=etnocacerismo&limit=1
+
+word=$(echo "$@" | sed 's/ /+/g')
+curl -L "https://es.wikipedia.org/w/rest.php/v1/page/${word}" | jq -r .source
