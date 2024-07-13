@@ -104,6 +104,6 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCOmCxjmeQrkB5GmCEssbvxg you
 # News
 https://elcomercio.pe/arc/outboundfeeds/rss/category/politica/?outputType=xml news "~El Comercio - politica"
 https://elcomercio.pe/arc/outboundfeeds/rss/category/mundo/?outputType=xml news "~El Comercio - mundo"
-https://elcomercio.pe/arc/outboundfeeds/rss/category/bbc-news-mundo/?outputType=xml news "~El Comercio - BBC"
+https://elcomercio.pe/arc/outboundfeeds/rss/category/economia/?outputType=xml news "~El Comercio economía"
 
 #"query:Unread news:unread=\"yes\" and tags#\"news\""
