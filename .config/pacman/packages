@@ -36,7 +36,6 @@ tmux-bash-completion-git
 ## Utils
 yay
 iwd
-newsboat
 xf86-video-intel
 acpi
 feh
@@ -88,13 +87,13 @@ zathura-ps
 #screenkey
 
 # Mail and Feeds
-#cyrus-sasl-xoauth2-git
+cyrus-sasl-xoauth2-git
 #goimapnotify
-#isync
+isync
 #khard
-#mutt
-#newsboat
-#urlview-xdg-git
+mutt
+newsboat
+urlview-xdg-git
 #vdirsyncer
 #miniflux
 
