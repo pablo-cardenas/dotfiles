@@ -1,19 +1,20 @@
-# Mathematics
-https://images.math.cnrs.fr/spip.php?page=backend&lang=es
-https://images.math.cnrs.fr/spip.php?page=backend&lang=fr
-
-
 # Software
 https://changelog.qgis.org/en/qgis/atom/latest-version/ GIS software
 https://inkscape.org/news/feed/ design software "~Inkscape"
 https://www.docker.com/blog/feed/ software
 https://github.com/moodle/moodle/releases.atom software "~Github moodle"
 https://github.com/bgregos/foreground/releases.atom software "~Github foreground"
-https://taskwarrior.org/feed.rss software
 https://github.com/qutebrowser/qutebrowser/commits/tree-tabs-integration.atom "~Github qutebrowser treetabs"
-https://github.com/SPRFMO/jjmr/commits/main.atom "~Github jjmr"
-http://feeds.vimgolf.com/latest-challenges "~VimGolf"
-https://www.gimp.org/feeds/atom.xml
+https://github.com/SPRFMO/jjmr/commits/main.atom software "~Github jjmr"
+http://feeds.vimgolf.com/latest-challenges software "~VimGolf"
+https://www.gimp.org/feeds/atom.xml software "~GIMP"
+
+# Vim
+https://github.com/SirVer/ultisnips/commits/master.atom vim "~Github SirVer/ultisnips"
+https://github.com/mattn/emmet-vim/commits/master.atom vim "~Github mattn/emmet-vim"
+https://github.com/tpope/vim-surround/commits/master.atom vim "~Github tpope/vim-surround"
+https://github.com/michaeljsmith/vim-indent-object/commits/master.atom vim "~Github michaeljsmith/vim-indent-object"
+https://github.com/ledger/vim-ledger/commits/master.atom vim "~Github ledger/vim-ledger"
 
 # Python
 http://feeds.feedburner.com/PythonInsider python
@@ -73,13 +74,13 @@ https://koaning.io/index.xml R python
 https://archlinux.org/feeds/news/ archlinux
 
 https://archlinux.org/feeds/packages/x86_64/core/ archlinux
-https://archlinux.org/feeds/packages/x86_64/extra/ archlinux
+#https://archlinux.org/feeds/packages/x86_64/extra/ archlinux
 
 https://archlinux.org/feeds/packages/added/x86_64/core/ archlinux
-https://archlinux.org/feeds/packages/added/x86_64/extra/ archlinux
+#https://archlinux.org/feeds/packages/added/x86_64/extra/ archlinux
 
 https://archlinux.org/feeds/packages/removed/x86_64/core/ archlinux
-https://archlinux.org/feeds/packages/removed/x86_64/extra/ archlinux
+#https://archlinux.org/feeds/packages/removed/x86_64/extra/ archlinux
 
 
 # Training
@@ -101,6 +102,8 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCngn7SVujlvskHRvRKc1cTw you
 https://www.youtube.com/feeds/videos.xml?channel_id=UCOmCxjmeQrkB5GmCEssbvxg youtube "~Youtube RobertElderSoftware"
 
 # News
-http://rss.cnn.com/rss/cnn_topstories.rss !news news
+https://elcomercio.pe/arc/outboundfeeds/rss/category/politica/?outputType=xml news "~El Comercio - politica"
+https://elcomercio.pe/arc/outboundfeeds/rss/category/mundo/?outputType=xml news "~El Comercio - mundo"
+https://elcomercio.pe/arc/outboundfeeds/rss/category/bbc-news-mundo/?outputType=xml news "~El Comercio - BBC"
 
-"query:Unread News:unread=\"yes\" and tags#\"news\""
+#"query:Unread news:unread=\"yes\" and tags#\"news\""

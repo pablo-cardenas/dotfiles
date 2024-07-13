@@ -1,1 +1,11 @@
+reload-time 15
+# suppress-first-reload yes
+auto-reload yes
+
+reload-threads 100
+prepopulate-query-feeds yes
+
 macro v set browser "setsid -f mpv --audio-device=alsa/pulse --ytdl-raw-options=sub-langs=\"[en.*,es.*,fr.*,pt.*]\",write-sub=,write-auto-sub= </dev/null >/dev/null 2>&1" ; open-in-browser ; set browser "$BROWSER"
+html-renderer "sed 's/&lt;/</g;s/&gt;/>/g;s/&amp;/\\&/g' | perl -pe 's:<q>.*?(MIRA|LEE TAMBI).*?</q>::g' | perl -pe 's|(<img.*?alt=\")(.*?)(\".*?/>)|<p>\\1 [IMG] \\2\\3</p>|g' | lynx -image_links -stdin --assume_charset=utf-8 --display-charset=utf-8 -dump -width=1024"
+
+external-url-viewer "urlview"
