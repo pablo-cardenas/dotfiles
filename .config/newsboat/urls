@@ -64,11 +64,7 @@ https://github.com/rstudio/bookdown/releases.atom R "~Github bookdown"
 https://feeds.feedburner.com/RBloggers R
 https://journal.r-project.org/rss.atom R
 https://developer.r-project.org/blosxom.cgi/R-devel/NEWS/index.rss R
-nhttps://blog.r-project.org/index.xml R
-https://blog.rstudio.com/index.xml R
-
-https://koaning.io/index.xml R python
-
+https://blog.r-project.org/index.xml R
 
 # Archlinux
 https://archlinux.org/feeds/news/ archlinux
@@ -104,6 +100,6 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCOmCxjmeQrkB5GmCEssbvxg you
 # News
 https://elcomercio.pe/arc/outboundfeeds/rss/category/politica/?outputType=xml news "~El Comercio - politica"
 https://elcomercio.pe/arc/outboundfeeds/rss/category/mundo/?outputType=xml news "~El Comercio - mundo"
-https://elcomercio.pe/arc/outboundfeeds/rss/category/economia/?outputType=xml news "~El Comercio economía"
+https://elcomercio.pe/arc/outboundfeeds/rss/category/economia/?outputType=xml news "~El Comercio - economía"
 
 #"query:Unread news:unread=\"yes\" and tags#\"news\""
