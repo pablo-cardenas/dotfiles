@@ -1,4 +1,5 @@
-text/html; qutebrowser %s --target private-window &> /dev/null; needsterminal; nametemplate=%s.html; test=test -n "$DISPLAY";
+#text/html; qutebrowser %s --target private-window &> /dev/null; needsterminal; nametemplate=%s.html; test=test -n "$DISPLAY";
+text/html; firefox --private-window %s &> /dev/null; needsterminal; nametemplate=%s.html; test=test -n "$DISPLAY";
 text/html; elinks %s; nametemplate=%s.html;
 text/html; elinks -dump -dump-color-mode 1; copiousoutput;
 
