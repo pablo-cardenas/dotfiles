@@ -94,13 +94,19 @@ status_news() {
 	output_email="$(
 		for path in "${XDG_DATA_HOME}/mail/"*; do
 			mailbox=$(basename "${path}")
+
+			count_spam_new=$(find "${path}/[Gmail]/Spam/new" -type f | wc -l)
+			count_spam_cur=$(find "${path}/[Gmail]/Spam/cur" -type f | wc -l)
+			count_spam="$((count_spam_new + count_spam_cur))"
+
 			count_new=$(find "${path}/Inbox/new" -type f | wc -l)
 			count_cur=$(find "${path}/Inbox/cur" -type f | wc -l)
-			count_cur_unseen=$(find "${path}/Inbox/cur" -type f  | grep -v "S[^,]*$"| wc -l)
+			count_cur_unseen=$(find "${path}/Inbox/cur" -type f  | grep -cv "S[^,]*$")
 			count_unseen="$((count_new + count_cur_unseen))"
 			count="$((count_new + count_cur))"
-			if [ "${count}" -gt 0 ]; then
-				echo "${count_new}/${count_unseen}/${count}" "${mailbox}"
+
+			if [ "$((count + count_spam))" -gt 0 ]; then
+				echo "${count_new}/${count_unseen}/${count}-${count_spam}" "${mailbox}"
 			fi
 		done
 	)"
@@ -133,27 +139,67 @@ status_news() {
 	fi
 	unset output_rss
 
-	output_tmux=$(tmux list-sessions 2>/dev/null)
-	if [ -n "${output_tmux}" ]; then
-		echo "# tmux sessions"
-		echo "${output_tmux}"
-		echo
-	fi
-	unset output_tmux
 }
 
-print_hello() {
-	if [ -z "${TMUX}" ]; then
+check_imca() {
+	current_date="$(date +%s)"
+
+	if [ -f /tmp/check_imca ]; then
+		if [ $(cat /tmp/check_imca) -ne 200 ]; then
+			next_check="$(($(stat -c %Y "/tmp/check_imca") + 1*60))"
+		else
+			next_check="$(($(stat -c %Y "/tmp/check_imca") + 15*60))"
+		fi
+	else
+		next_check="${current_date}"
+	fi
+
+	if [ "${current_date}" -ge "${next_check}" ]; then
+		curl -s -o /dev/null -w "%{http_code}" imca.edu.pe/es/ > /tmp/check_imca
+	fi
+
+	status_code="$(cat /tmp/check_imca)"
+	if [ "${status_code}" -ne 200 ]; then
+		echo "imca.edu.pe/es/ status code ${status_code}"
+	fi
+	unset status_code
+}
+
+wm_status() {
 		# Update RSS
 		current_date="$(date +%s)"
 
 		# shellcheck disable=SC2154
 		next_update="$(($(stat -c %Y "${XDG_DATA_HOME}/newsboat/cache.db") + 1*60*60))"
-		if [ "${current_date}" -gt "${next_update}" ]; then
+		if [ "${current_date}" -ge "${next_update}" ]; then
 			newsboat -x reload
 		fi
 		unset current_date next_update
 
+		if ! systemctl -q is-active cronie; then
+			echo "cronie unit is inactive"
+			echo
+		fi
+
+		if grep -q '\[s2idle\]' /sys/power/mem_sleep; then
+			cat /sys/power/mem_sleep
+			echo
+		fi
+}
+		check_imca
 		status_news
+
+
+print_hello() {
+	if [ -z "${TMUX}" ]; then
+		wm_status
+
+		output_tmux=$(tmux list-sessions 2>/dev/null)
+		if [ -n "${output_tmux}" ]; then
+			echo "# tmux sessions"
+			echo "${output_tmux}"
+			echo
+		fi
+		unset output_tmux
 	fi
 }
