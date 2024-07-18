@@ -98,8 +98,9 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCngn7SVujlvskHRvRKc1cTw you
 https://www.youtube.com/feeds/videos.xml?channel_id=UCOmCxjmeQrkB5GmCEssbvxg youtube "~Youtube RobertElderSoftware"
 
 # News
-https://elcomercio.pe/arc/outboundfeeds/rss/category/politica/?outputType=xml news "~El Comercio - politica"
 https://elcomercio.pe/arc/outboundfeeds/rss/category/mundo/?outputType=xml news "~El Comercio - mundo"
 https://elcomercio.pe/arc/outboundfeeds/rss/category/economia/?outputType=xml news "~El Comercio - economía"
+https://elcomercio.pe/arc/outboundfeeds/rss/category/politica/?outputType=xml news "~El Comercio - política"
+https://elcomercio.pe/arc/outboundfeeds/rss/category/lima/?outputType=xml news "~El Comercio - lima"
 
 #"query:Unread news:unread=\"yes\" and tags#\"news\""

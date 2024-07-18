@@ -1,11 +1,18 @@
 reload-time 15
-# suppress-first-reload yes
+suppress-first-reload yes
 auto-reload yes
 
 reload-threads 100
-prepopulate-query-feeds yes
 
-macro v set browser "setsid -f mpv --audio-device=alsa/pulse --ytdl-raw-options=sub-langs=\"[en.*,es.*,fr.*,pt.*]\",write-sub=,write-auto-sub= </dev/null >/dev/null 2>&1" ; open-in-browser ; set browser "$BROWSER"
-html-renderer "sed 's/&lt;/</g;s/&gt;/>/g;s/&amp;/\\&/g' | perl -pe 's:<q>.*?(MIRA|LEE TAMBI).*?</q>::g' | perl -pe 's|(<img.*?alt=\")(.*?)(\".*?/>)|<p>\\1 [IMG] \\2\\3</p>|g' | lynx -image_links -stdin --assume_charset=utf-8 --display-charset=utf-8 -dump -width=1024"
+macro v set browser "setsid -f mpv --audio-device=alsa/pulse --ytdl-raw-options=sub-langs=\"[en.*,es.*,fr.*,pt.*]\",write-sub=,write-auto-sub= </dev/null >/dev/null 2>&1"; open-in-browser; set browser "$BROWSER"
 
-external-url-viewer "urlview"
+#html-renderer "sed 's/&lt;/</g;s/&gt;/>/g;s/&amp;/\\&/g' | perl -pe 's:<q>.*?(MIRA|LEE TAMBI).*?</q>::g' | perl -pe 's|^<ul>.*?</ul>||' | perl -pe 's|(<img.*?alt=\")(.*?)(\".*?/>)|<p>\\1 [IMG] \\2\\3</p>|g' | lynx -nonumbers -hiddenlinks=ignore -nolist -image_links -stdin --assume_charset=utf-8 --display-charset=utf-8 -dump -width=1024"
+
+macro l set text-width 1024; set html-renderer "cat"; set pager "awk '/^Title:/ { print gensub(/^Title: (.*)$/, \"<h1>\\\\1</h1>\", \"g\", $0) } /^</ { print }' %f | perl -pe 's:<q>.*?(MIRA|LEE|MÁS).*?</q>::g' | perl -pe 's|^<ul>.*?</ul>||' | perl -pe 's|(<img.*?alt=\")(.*?)(\".*?/>)||g' | lynx -stdin -nolist -width=1024 --assume-charset=utf-8 --display-charset=utf-8"; open; set pager internal; set html-renderer internal; set text-width 0
+
+macro a set text-width 1024; set html-renderer "cat"; set pager "~/.config/newsboat/openai.sh"; open; set pager internal; set html-renderer internal; set text-width 0
+
+#pager "vim %f"
+#pager "lynx -force_html %f"
+
+#external-url-viewer "urlview"
