@@ -126,3 +126,9 @@ super + {Left,Down,Up,Right}
 
 super + minus
 	~/.local/bin/scratchpad.sh
+
+#
+# Status
+#
+super + equal
+	~/.local/bin/status.sh
