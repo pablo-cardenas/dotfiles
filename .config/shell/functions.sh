@@ -185,9 +185,10 @@ wm_status() {
 			cat /sys/power/mem_sleep
 			echo
 		fi
-}
+
 		check_imca
 		status_news
+}
 
 
 print_hello() {
