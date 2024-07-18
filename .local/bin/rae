@@ -3,12 +3,16 @@
 word=$(echo "$@" | sed 's/ /+/g')
 response="$(curl -SsL "https://dle.rae.es/${word}" -H 'User-Agent: xyz')"
 
-echo "${response}" | awk '
-	/<div id="resultados">Aviso:/ { print }
-	/^<article id="/ { flag = 1; next }
-	/^<\/article>/ { flag = 0 }
-	/Conjugar el verbo/ { next }
-	flag
-' | elinks -dump -dump-color-mode 1 -no-references
+echo "${response}" | 
+	awk '
+		/<div id="resultados">Aviso:/ { print }
+		/^<article id="/ { flag = 1; next }
+		/^<\/article>/ { flag = 0 }
+		/Conjugar el verbo/ { next }
+		flag
+	' |
+	elinks -dump -dump-color-mode 1 -no-references
+	# lynx -stdin -dump
+
 printf "\x1b[0m"
 #lynx -stdin -dump -color
