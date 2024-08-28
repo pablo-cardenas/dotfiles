@@ -19,7 +19,7 @@ bspc rule -a latexocr state=floating
 bspc rule -a R_x11 state=floating
 bspc rule -a Screenkey manage=off
 bspc rule -a st-256color state=pseudo_tiled
-bspc rule -a st-256color:*:watch state=floating
+bspc rule -a st-256color:*:watch state=floating sticky=on
 bspc rule -a URxvt state=pseudo_tiled
 bspc rule -a Zathura state=tiled
 bspc rule -a qutebrowser locked=on

@@ -145,7 +145,7 @@ check_imca() {
 	current_date="$(date +%s)"
 
 	if [ -f /tmp/check_imca ]; then
-		if [ $(cat /tmp/check_imca) -ne 200 ]; then
+		if [ "$(cat /tmp/check_imca || true)" -ne 200 ]; then
 			next_check="$(($(stat -c %Y "/tmp/check_imca") + 1*60))"
 		else
 			next_check="$(($(stat -c %Y "/tmp/check_imca") + 15*60))"
@@ -163,6 +163,48 @@ check_imca() {
 		echo "imca.edu.pe/es/ status code ${status_code}"
 	fi
 	unset status_code
+}
+
+check_exchange_rate() {
+	current_date="$(date +%s)"
+
+	if [ -f /tmp/check_exchange_rate ]; then
+		if [ -z "$(cat /tmp/check_exchange_rate || true)" ]; then
+			next_check="$(($(stat -c %Y "/tmp/check_exchange_rate") + 1*60))"
+		else
+			next_check="$(($(stat -c %Y "/tmp/check_exchange_rate") + 15*60))"
+		fi
+	else
+		next_check="${current_date}"
+	fi
+
+
+
+
+
+	if [ "${current_date}" -ge "${next_check}" ]; then
+		response=$(
+			curl -sS https://cuantoestaeldolar.pe/cambio-de-dolar-online |
+				sed "s/class>/>/g;s/class //g;s/defer //g;s/alt //g;s/defer>/>/g;s/data-n-p//g;s/data-n-g//g;s/data-n-css//g;s/nomodule //g" |
+				xpath -q -e "/html/body/div/main/div[3]/div/div[7]/div/div[1]" 2>/dev/null
+		)
+
+
+		buy=$(
+			for i in $(seq 26); do
+				exchange=$(echo "${response}" | xpath -q -e "/div/div[${i}]/div[1]/div[6]/div/div[1]/p" 2>/dev/null | sed 's/<[^>]*>//g')
+				[ "${exchange}" != "0.000" ] && [ -n "${exchange}" ] && echo "${exchange}"
+			done | sort | tail -n 1
+		)
+
+		sell=$(
+			for i in $(seq 26); do
+				exchange=$(echo "${response}" | xpath -q -e "/div/div[${i}]/div[1]/div[6]/div/div[2]/p" 2>/dev/null | sed 's/<[^>]*>//g')
+				[ "${exchange}" != "0.000" ] && [ -n "${exchange}" ] && echo "${exchange}"
+			done | sort | head -n 1
+		)
+		echo "${buy}" "${sell}"> /tmp/check_exchange_rate
+	fi
 }
 
 wm_status() {
@@ -187,14 +229,14 @@ wm_status() {
 		fi
 
 		check_imca
+		check_exchange_rate
 		status_news
+		exchange_rate
 }
 
 
 print_hello() {
 	if [ -z "${TMUX}" ]; then
-		wm_status
-
 		output_tmux=$(tmux list-sessions 2>/dev/null)
 		if [ -n "${output_tmux}" ]; then
 			echo "# tmux sessions"
@@ -203,4 +245,16 @@ print_hello() {
 		fi
 		unset output_tmux
 	fi
+}
+
+exchange_rate() {
+	read -r buy sell < /tmp/check_exchange_rate
+
+	echo "# cuantoestaeldolar.pe"
+	{
+		echo "buy: ${buy}"
+		echo "sell: ${sell}"
+	} | column
+
+	unset response exchange
 }
