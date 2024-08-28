@@ -1,0 +1,7 @@
+[Unit]
+Description=AutoSSH for VNC and SSH
+After=network.target
+
+[Service]
+Environment="AUTOSSH_GATETIME=0"
+ExecStart=/usr/bin/autossh -M 0 -NC -L 5900:localhost:5900 -L 2222:localhost:2222 pcardenasb.com
