@@ -55,3 +55,4 @@
     telega-cache-dir (expand-file-name "~/.cache/telega/cache")
     telega-temp-dir (expand-file-name "~/.cache/telega/temp")
 )
+(add-hook 'telega-load-hook 'telega-notifications-mode)
