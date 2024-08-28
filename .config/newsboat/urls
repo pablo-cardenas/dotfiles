@@ -1,5 +1,6 @@
 # Software
-https://changelog.qgis.org/en/qgis/atom/latest-version/ GIS software
+https://gitlab.com/enrique_idael/dots/commits/main?format=atom "~Dotfiles Enrique"
+https://changelog.qgis.org/en/qgis/atom/latest-version/ software
 https://inkscape.org/news/feed/ design software "~Inkscape"
 https://www.docker.com/blog/feed/ software
 https://github.com/moodle/moodle/releases.atom software "~Github moodle"
@@ -8,6 +9,9 @@ https://github.com/qutebrowser/qutebrowser/commits/tree-tabs-integration.atom "~
 https://github.com/SPRFMO/jjmr/commits/main.atom software "~Github jjmr"
 http://feeds.vimgolf.com/latest-challenges software "~VimGolf"
 https://www.gimp.org/feeds/atom.xml software "~GIMP"
+https://www.reddit.com/r/suckless/new.rss "~Reddit Suckless"
+https://www.reddit.com/r/suckless/comments/1ezsdbi/webdriver_for_surf/.rss "~Reddit Suckless post for webdriver"
+https://unix.stackexchange.com/feeds/question/782487 "~unix.stackexchange surf and webdriver"
 
 # Vim
 https://github.com/SirVer/ultisnips/commits/master.atom vim "~Github SirVer/ultisnips"
@@ -18,6 +22,9 @@ https://github.com/ledger/vim-ledger/commits/master.atom vim "~Github ledger/vim
 
 # Python
 http://feeds.feedburner.com/PythonInsider python
+
+https://matplotlib.org/matplotblog/index.xml python
+https://planet.sympy.org/rss10.xml python
 
 https://pypi.org/rss/project/Authlib/releases.xml python "~PyPI Authlib"
 https://pypi.org/rss/project/Pillow/releases.xml python "~PyPI Pillow"
@@ -52,9 +59,6 @@ https://pypi.org/rss/project/sqlalchemy/releases.xml python "~PyPI SqlAlchemy"
 https://pypi.org/rss/project/statsmodels/releases.xml python "~PyPI statsmodels"
 https://pypi.org/rss/project/sympy/releases.xml python "~PyPI sympy"
 https://pypi.org/rss/project/tox/releases.xml python "~PyPI tox"
-
-https://matplotlib.org/matplotblog/index.xml python
-https://planet.sympy.org/rss10.xml python
 
 # R
 https://github.com/r-lib/styler/releases.atom R "~Github styler"
