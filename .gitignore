@@ -8,6 +8,7 @@
 /.cpan/
 /.cr3/
 /.dotfiles/
+/.fltk/
 /.ghc/
 /.gnupg/
 /.googleearth/
@@ -36,6 +37,7 @@
 /dl/
 /dox/
 /go/
+/music/
 /perl5/
 /pix/
 /vids/
