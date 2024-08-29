@@ -1,9 +1,0 @@
-data.location=~/.config/task
-
-include ~/.config/task/taskserver/taskrc
-
-context.imca.read=project:flask_imca or +@imca or project:dotfiles or project:vimrc
-context.imca.write=+@imca
-context.desktop.read=project:pcardenasb or project:flask_imca or +@desktop or project:dotfiles or project:vimrc
-context.desktop.write=+@desktop
-news.version=2.6.0

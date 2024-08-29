@@ -1,9 +1,0 @@
-[Unit]
-Description=bugwarrior-pull
-
-[Service]
-ExecStart=/usr/bin/sh -c "task sync && /home/pablo/.local/bin/bugwarrior-pull && task sync"
-Type=oneshot
-
-[Install]
-WantedBy=default.target
