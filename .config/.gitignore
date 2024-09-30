@@ -87,3 +87,6 @@
 /cef_user_data/
 /discoverrc
 /libaccounts-glib/
+
+# Windows
+/scoop/

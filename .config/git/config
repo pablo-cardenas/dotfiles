@@ -4,6 +4,7 @@
 
 [advice]
 	statusHints = false
+	addIgnoredFile = false
 
 [diff]
 	tool = vimdiff

@@ -44,3 +44,34 @@
 /downloads/
 /scikit_learn_data/
 /storage/
+
+# Windows
+/Application Data
+/Cookies
+/Local Settings
+/My Documents
+/NetHood
+/PrintHood
+/Recent
+/SendTo
+/Start Menu
+/Templates
+/NTUSER.DAT
+/NTUSER.DAT{*
+/ntuser.dat.LOG*
+/ntuser.dat.LOG*
+/ntuser.ini
+/AppData/
+/Contacts/
+/Desktop/
+/Documents/
+/Favorites/
+/Links/
+/OneDrive/
+/Pictures/
+/Saved Games/
+/Searches/
+/Videos/
+/WPS Cloud Files/
+/_viminfo
+/scoop/
