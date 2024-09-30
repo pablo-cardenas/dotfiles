@@ -13,3 +13,5 @@ function vim {
 }
 
 function dotfiles { git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" $args }
+
+Set-PSReadLineOption -EditMode Emacs
