@@ -1,0 +1,16 @@
+#/bin/sh
+
+{
+	sleep 0.5
+	if ! tmux has-session -t pwm 2>/dev/null; then
+		tmux new-session -s pwm -c ~ -d
+		sleep 0.2
+		tmux send-keys -t pwm:0.0 "sudo make clean; make -C dox/dev/pwm; sudo make -C dox/dev/pwm install; DISPLAY=:0 TMUX= pwm"
+		tmux new-window -d -t pwm:1 -c ~/dox/dev/pwm -n pwm
+		tmux new-window -d -t pwm:2 -c ~/dox/dev/dwm-commented -n dwm-com
+		tmux new-window -d -t pwm:3 -c ~/dox/dev/dwm -n dwm
+	fi
+	DISPLAY=:0 st -e tmux a -t pwm
+}&
+
+X -nolisten tcp -keeptty :0 vt1 >$XDG_RUNTIME_DIR/X.out.log 2>$XDG_RUNTIME_DIR/X.err.log

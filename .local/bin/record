@@ -1,0 +1,70 @@
+#!/bin/sh
+
+# v4l2-ctl -c exposure_time_absolute=250
+
+case "$(printf "%s\n" change screenkey record stop camera last-video | dmenu)" in
+change)
+	set -- $(printf "%s\n" 1920x1080 1080x1920 720x1280 480x848 | dmenu | tr x ' ')
+	video_width=$1
+	video_height=$2
+	screen_width=$(echo "16 * ${video_height} / 9" | bc)
+	offset=$(echo "($(echo "scale=16; (${screen_width} - ${video_width}) / 2.0" | bc) + 0.5)/1" | bc)
+	dpi=$(echo "${video_height} / 8.88888888888889" | bc)
+
+	xrandr --delmonitor my-monitor-0
+	xrandr --output eDP-1 --scale-from "${screen_width}x${video_height}"
+	xrandr --setmonitor my-monitor-0 "${video_width}/${video_width}x${video_height}/${video_height}+${offset}+0" eDP-1
+	echo "Xft.dpi: ${dpi}" | xrdb -m
+	xrandr --dpi "${dpi}"
+	;;
+
+screenkey)
+	screenkey --mods-mode=emacs --font=monospace --font-size=small --mouse --opacity=0
+	;;
+
+record)
+	[ -f /tmp/recordingpid ] && exit
+	set -- $(xrandr --listactivemonitors | grep -oP '(?<=my-monitor-0 ).*(?= )' | sed 's/\([[:digit:]]\+\)\/[[:digit:]]\+x\([[:digit:]]\+\)\/[[:digit:]]\++\([[:digit:]]\+\)+0/\1 \2 \3/')
+	video_width=$1
+	video_height=$2
+	offset=$3
+	ffmpeg \
+		-f x11grab \
+	       	-s "${video_width}x${video_height}" \
+		-i "${DISPLAY}.0+${offset},0" \
+		-f pulse \
+		-i default \
+		-c:v libx264 \
+		-b:v 1000k \
+		-minrate:v 500k \
+		-maxrate:v 2500k \
+		-bufsize:v 5000k \
+		-pix_fmt yuv422p \
+		"${HOME}/vids/$(date +%Y-%m-%d_%H-%M-%S || true).mp4" &
+	echo $! > /tmp/recordingpid
+	;;
+stop)
+	[ ! -f /tmp/recordingpid ] && exit
+	recpid="$(cat /tmp/recordingpid)"
+	kill -15 "$recpid"
+	rm -f /tmp/recordingpid
+	;;
+
+camera)
+	set -- $(xrandr --listactivemonitors | grep -oP '(?<=my-monitor-0 ).*(?= )' | sed 's/\([[:digit:]]\+\)\/[[:digit:]]\+x\([[:digit:]]\+\)\/[[:digit:]]\++\([[:digit:]]\+\)+0/\1 \2 \3/')
+	video_width=$1
+	video_height=$2
+	camera_height=$(echo "9 * ${video_width} / 16" | bc)
+	v4l2-ctl -d /dev/video0 --try-fmt-video width="${video_width}",height="${camera_height}",pixelformat=MJPG
+	mpv --no-osc --profile=low-latency --untimed --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set="input_format=mjpeg" /dev/video0
+	;;
+
+last-video)
+	last_video="$(find ~/vids -printf "%T@\t%p\n" | sort -r | head -n 1 | awk '{ print $2 }' || true)"
+	printf '%s' "${last_video}" | xclip -sel clip
+	mpv "${last_video}"
+
+	;;
+*)
+	;;
+esac
