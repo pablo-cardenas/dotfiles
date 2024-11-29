@@ -66,6 +66,20 @@ git() {
 	return 1
 }
 
+tmux() {
+	if [ $# = 0 ]; then
+		echo "Don't use tmux without arguments"
+		return 1
+	fi
+
+	if [ "$1" = "new-session" ] || [ "$1" = "new" ] && [ "$2" != "-c" ]; then
+		echo "Specify the working directory."
+		return 1
+	fi
+
+	command tmux "$@"
+}
+
 status_dotfiles() {
 	set -- \
 		--modified \
