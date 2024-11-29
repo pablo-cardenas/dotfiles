@@ -19,6 +19,7 @@
 /discord/
 /fontforge/
 /gcloud/
+/github-copilot/
 /google-chrome/
 /gtk-2.0/
 /gtkrc
@@ -34,8 +35,9 @@
 /pulse/cookie
 /pympress
 /sqlitebrowser/
-/transmission/
+/tigervnc/default.tigervnc
 /transmission-daemon/
+/transmission/
 /vdirsyncer/
 /vimgolf/
 /xournalpp/
