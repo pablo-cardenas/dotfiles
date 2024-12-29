@@ -25,6 +25,7 @@
 /.mariadb_history
 /.mongodb/
 /.mozilla/
+/.maxima_history
 /.npm/
 /.nv/
 /.pki/
