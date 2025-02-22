@@ -9,8 +9,8 @@ shopt -s histappend histreedit
 mkdir -p "${XDG_STATE_HOME:-${HOME}/.local/state}"/bash
 HISTFILE="${XDG_STATE_HOME:-${HOME}/.local/state}"/bash/history
 HISTCONTROL=ignoreboth
-HISTSIZE=100000
-HISTFILESIZE=200000
+HISTSIZE=200000
+HISTFILESIZE=400000
 HISTTIMEFORMAT="%D %T "
 
 # shellcheck disable=SC2034
