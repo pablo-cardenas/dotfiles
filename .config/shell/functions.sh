@@ -1,85 +1,5 @@
 # shellcheck shell=sh
 
-cd() { echo "Use pushd!"; }
-
-pwd() { echo "Use dirs [-v]"; }
-
-man() {
-	case $1 in
-	-* | [0-9]* | n)
-		command man "$@"
-		;;
-	*)
-		echo "Specify section"
-		return 1
-		;;
-	esac
-}
-
-git() {
-	if [ "$1" = "--git-dir" ]; then
-		_git_dir="$2"
-		shift 2
-	fi
-	if [ "$1" = "--work-tree" ]; then
-		_work_tree="$2"
-		shift 2
-	fi
-	if [ "$1" = "-C" ]; then
-		_c="$2"
-		shift 2
-	fi
-
-	if [ "$1" = "checkout" ]; then
-		echo "Use"
-		echo " - git checkout-index -fu"
-		echo " - git read-tree --reset -u"
-	elif [ "$1" = "reset" ]; then
-		echo "Use"
-		echo " - git read-tree -mu"
-		echo " - git read-tree -m"
-		echo " - git update-index --add --remove \
---cacheinfo 100644 sha1 filename"
-	elif [ "$1" = "status" ] && [ $# = 1 ]; then
-		echo "Use"
-		echo " - git diff-index --cached HEAD"
-		echo " - git diff-files"
-		echo " - git ls-files --exclude-standard -o"
-		echo " - git status -bs"
-	elif [ "$1" = "log" ]; then
-		echo "Use"
-		echo " - git rev-list HEAD"
-	else
-		if [ -n "${_git_dir}" ]; then
-			set -- --git-dir "${_git_dir}" "$@"
-		fi
-		if [ -n "${_work_tree}" ]; then
-			set -- --work-tree "${_work_tree}" "$@"
-		fi
-		if [ -n "${_c}" ]; then
-			set -- -C "${_c}" "$@"
-		fi
-		unset _git_dir _work_tree _c
-		command git "$@"
-		return $?
-	fi
-	return 1
-}
-
-tmux() {
-	if [ $# = 0 ]; then
-		echo "Don't use tmux without arguments"
-		return 1
-	fi
-
-	if [ "$1" = "new-session" ] || [ "$1" = "new" ] && [ "$2" != "-c" ]; then
-		echo "Specify the working directory."
-		return 1
-	fi
-
-	command tmux "$@"
-}
-
 status_dotfiles() {
 	set -- \
 		--modified \
@@ -115,7 +35,7 @@ status_news() {
 
 			count_new=$(find "${path}/Inbox/new" -type f | wc -l)
 			count_cur=$(find "${path}/Inbox/cur" -type f | wc -l)
-			count_cur_unseen=$(find "${path}/Inbox/cur" -type f  | grep -cv "S[^,]*$")
+			count_cur_unseen=$(find "${path}/Inbox/cur" -type f | grep -cv "S[^,]*$")
 			count_unseen="$((count_new + count_cur_unseen))"
 			count="$((count_new + count_cur))"
 
@@ -160,16 +80,16 @@ check_imca() {
 
 	if [ -f /tmp/check_imca ]; then
 		if [ "$(cat /tmp/check_imca || true)" -ne 200 ]; then
-			next_check="$(($(stat -c %Y "/tmp/check_imca") + 1*60))"
+			next_check="$(($(stat -c %Y "/tmp/check_imca") + 1 * 60))"
 		else
-			next_check="$(($(stat -c %Y "/tmp/check_imca") + 15*60))"
+			next_check="$(($(stat -c %Y "/tmp/check_imca") + 15 * 60))"
 		fi
 	else
 		next_check="${current_date}"
 	fi
 
 	if [ "${current_date}" -ge "${next_check}" ]; then
-		curl -s -o /dev/null -w "%{http_code}" imca.edu.pe/es/ > /tmp/check_imca
+		curl -s -o /dev/null -w "%{http_code}" imca.edu.pe/es/ >/tmp/check_imca
 	fi
 
 	status_code="$(cat /tmp/check_imca)"
@@ -184,17 +104,13 @@ check_exchange_rate() {
 
 	if [ -f /tmp/check_exchange_rate ]; then
 		if [ -z "$(cat /tmp/check_exchange_rate || true)" ]; then
-			next_check="$(($(stat -c %Y "/tmp/check_exchange_rate") + 1*60))"
+			next_check="$(($(stat -c %Y "/tmp/check_exchange_rate") + 1 * 60))"
 		else
-			next_check="$(($(stat -c %Y "/tmp/check_exchange_rate") + 15*60))"
+			next_check="$(($(stat -c %Y "/tmp/check_exchange_rate") + 15 * 60))"
 		fi
 	else
 		next_check="${current_date}"
 	fi
-
-
-
-
 
 	if [ "${current_date}" -ge "${next_check}" ]; then
 		response=$(
@@ -202,7 +118,6 @@ check_exchange_rate() {
 				sed "s/class>/>/g;s/class //g;s/defer //g;s/alt //g;s/defer>/>/g;s/data-n-p//g;s/data-n-g//g;s/data-n-css//g;s/nomodule //g" |
 				xpath -q -e "/html/body/div/main/div[3]/div/div[7]/div/div[1]" 2>/dev/null
 		)
-
 
 		buy=$(
 			for i in $(seq 26); do
@@ -217,37 +132,36 @@ check_exchange_rate() {
 				[ "${exchange}" != "0.000" ] && [ -n "${exchange}" ] && echo "${exchange}"
 			done | sort | head -n 1
 		)
-		echo "${buy}" "${sell}"> /tmp/check_exchange_rate
+		echo "${buy}" "${sell}" >/tmp/check_exchange_rate
 	fi
 }
 
 wm_status() {
-		# Update RSS
-		current_date="$(date +%s)"
+	# Update RSS
+	current_date="$(date +%s)"
 
-		# shellcheck disable=SC2154
-		next_update="$(($(stat -c %Y "${XDG_DATA_HOME}/newsboat/cache.db") + 1*60*60))"
-		if [ "${current_date}" -ge "${next_update}" ]; then
-			newsboat -x reload
-		fi
-		unset current_date next_update
+	# shellcheck disable=SC2154
+	next_update="$(($(stat -c %Y "${XDG_DATA_HOME}/newsboat/cache.db") + 1 * 60 * 60))"
+	if [ "${current_date}" -ge "${next_update}" ]; then
+		newsboat -x reload
+	fi
+	unset current_date next_update
 
-		if ! systemctl -q is-active cronie; then
-			echo "cronie unit is inactive"
-			echo
-		fi
+	if ! systemctl -q is-active cronie; then
+		echo "cronie unit is inactive"
+		echo
+	fi
 
-		if grep -q '\[s2idle\]' /sys/power/mem_sleep; then
-			cat /sys/power/mem_sleep
-			echo
-		fi
+	if grep -q '\[s2idle\]' /sys/power/mem_sleep; then
+		cat /sys/power/mem_sleep
+		echo
+	fi
 
-		check_imca
-		check_exchange_rate
-		status_news
-		exchange_rate
+	check_imca
+	check_exchange_rate
+	status_news
+	exchange_rate
 }
-
 
 print_hello() {
 	if [ -z "${TMUX}" ]; then
@@ -262,7 +176,7 @@ print_hello() {
 }
 
 exchange_rate() {
-	read -r buy sell < /tmp/check_exchange_rate
+	read -r buy sell </tmp/check_exchange_rate
 
 	echo "# cuantoestaeldolar.pe"
 	{
