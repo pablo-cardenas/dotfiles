@@ -18,27 +18,18 @@ GPG_TTY=$(tty)
 
 PS1='\$ '
 
-# shellcheck disable=SC2016
-PROMPT_COMMAND+=(
-	'{
-		[[ -z "$TMUX" ]] &&
-		[[ $TERM != tmux-* ]] &&
-		[[ "$ASCIINEMA_REC" != 1 ]] && {
-			[[ -n "$DISPLAY" ]] ||
-			[[ -n "$TERMUX_VERSION" ]] ||
-			[[ -n "$MSYSTEM" ]]
-		}
-	} && {
-		[[ -z "$FIRST_COMMAND" ]] &&
-		FIRST_COMMAND=1 || exit;
-	}'
-)
 
 # shellcheck source=.config/shell/alias.sh
 source "${XDG_CONFIG_HOME:-${HOME}/.config}"/shell/alias.sh
+
 # shellcheck source=.config/shell/functions.sh
 source "${XDG_CONFIG_HOME:-${HOME}/.config}"/shell/functions.sh
 
-trap print_goodbye EXIT
+# shellcheck source=.config/shell/sessions.sh
+source "${XDG_CONFIG_HOME:-${HOME}/.config}"/shell/sessions.sh
 
+## shellcheck source=.config/shell/hardmode.sh
+#source "${XDG_CONFIG_HOME:-${HOME}/.config}"/shell/hardmode.sh
+
+trap print_goodbye EXIT
 print_hello
