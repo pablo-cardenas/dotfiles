@@ -1,1 +1,4 @@
 #$include ~/.config/readline/hardmode.inputrc
+
+"\C-xt": "vim document.tex\C-m"
+"\C-x\C-t": "vim document.tex\C-m"
