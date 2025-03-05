@@ -23,12 +23,14 @@ create_session() {
 		dirs -v
 	fi
 
+
 	if [ -z "${TMUX}" ]; then
 		tmux attach -t "${session}"
+	else
+		tmux switch-client -t "${session}"
+		tmux select-window -t "${session}:${session}"
 	fi
 
-	tmux switch-client -t "${session}"
-	tmux select-window -t "${session}:${session}"
 	unset group session path
 }
 
@@ -37,7 +39,7 @@ fa() {
 }
 
 hdp() {
-	create_session impa hdp ~/dox/dev/notes-high-dimension-probability
+	create_session impa hdp ~/dox/dev/notes-high-dimensional-probability
 }
 
 mt() {
