@@ -3,6 +3,9 @@ $env:XDG_CONFIG_HOME="$HOME\.config"
 $env:VISUAL="vim"
 $env:Path += ";C:\Program Files\Vim\vim91"
 $env:Path += ";C:\Program Files\Emacs\emacs-29.4\bin"
+$env:Path += ";C:\Program Files\Tesseract-OCR"
+$env:Path = "$HOME\AppData\Local\Programs\Python\Python312;" + $env:Path
+$env:OPENCV_SAMPLES_DATA_PATH = "$HOME\Documents\dev\opencv"
 
 function prompt {"$ "}
 
@@ -11,7 +14,7 @@ function vim {
 	if ($MyInvocation.ExpectingInput) {
 		$input | & $external_vim.Source -u $env:XDG_CONFIG_HOME/vim/vimrc --cmd "set packpath+=$env:XDG_CONFIG_HOME\vim" $args
 	} else {
-	& $external_vim.Source -u $env:XDG_CONFIG_HOME/vim/vimrc --cmd "set packpath+=$env:XDG_CONFIG_HOME\vim" $args 
+	& $external_vim.Source -u $env:XDG_CONFIG_HOME/vim/vimrc --cmd "set packpath+=$env:XDG_CONFIG_HOME\vim runtimepath+=$env:XDG_CONFIG_HOME\vim" $args
 	}
 }
 
