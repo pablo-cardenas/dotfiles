@@ -1,5 +1,6 @@
 $env:HOME="$HOME"
 $env:XDG_CONFIG_HOME="$HOME\.config"
+$env:XDG_CACHE_HOME=$env:TEMP
 $env:VISUAL="vim"
 $env:Path += ";C:\Program Files\Vim\vim91"
 $env:Path += ";C:\Program Files\Emacs\emacs-29.4\bin"
