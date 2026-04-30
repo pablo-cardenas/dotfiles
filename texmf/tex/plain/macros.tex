@@ -1,0 +1,283 @@
+\pdfcompresslevel=0
+
+\catcode`\@=11
+\def\@listi{\leftmargin\leftmargini
+            \parsep=0pt
+            \topsep=0pt
+            \itemsep=0pt
+						\partopsep=0pt}
+\let\@listI\@listi
+%\@listi
+\def\@listii {\leftmargin\leftmarginii
+              \labelwidth\leftmarginii
+              \advance\labelwidth-\labelsep}
+\def\@listiii{\leftmargin\leftmarginiii
+              \labelwidth\leftmarginiii
+              \advance\labelwidth-\labelsep}
+\def\@listiv {\leftmargin\leftmarginiv
+              \labelwidth\leftmarginiv
+              \advance\labelwidth-\labelsep}
+\def\@listv  {\leftmargin\leftmarginv
+              \labelwidth\leftmarginv
+              \advance\labelwidth-\labelsep}
+\def\@listvi {\leftmargin\leftmarginvi
+              \labelwidth\leftmarginvi
+              \advance\labelwidth-\labelsep}
+\catcode`\@=12
+
+\baselineskip=0pt
+\lineskiplimit=0pt
+\lineskip=0pt
+\parindent=0pt
+\parskip=0pt
+\topskip=0pt
+\maxdepth=0pt
+\pdfminorversion=7
+\jot=4pt
+
+% \pretolerance=-1
+% \tolerance=9999
+% \emergencystretch=8pt
+\overfullrule=5mm
+\showboxdepth=100
+\showboxbreadth=1000
+
+\def\capitalize#1#2{\uppercase{#1}#2}
+\newbox\innerbox
+\newbox\innerboxfirstline
+\newbox\innerboxi
+\newbox\partialpage
+\newdimen\heightremaining
+\newdimen\heightfirstline
+\newdimen\innerwidth
+
+\def\breakbox#1{%
+	\global\def\breakboxcolor{#1}
+	% TODO: Why do I need this? There is a problem when the page start with a breakbox. The whole line is not printed.
+	% \hbox{}
+	% First, save in \partialpage the content of the current page so far.
+	% \vbox{\unvbox255} is used instead of \box255 because the height of the
+	% \box255 is \textheight = \vsize (\pagegoal?)
+	\output{\global\setbox\partialpage=\vbox{\unvbox255}}\eject
+	\output{\myoutput}%
+	% compute the width of the innerbox
+	\innerwidth=\linewidth
+	\advance\innerwidth by-2\fboxsep
+	\advance\innerwidth by-2\fboxrule
+	% The innerbox is a vbox that will contain the content of the theorem
+	% It start a bgroup that will end at \endtheorem
+	\setbox\innerbox=\vbox\bgroup%
+		\hsize=\innerwidth
+		\linewidth=\innerwidth
+		% TODO: error when page breaking and the color was changed
+}
+
+\def\endbreakbox{%
+	% It close the innerbox that was started at \theoremii
+	\egroup
+	% Config for the vsplit's
+	\splitmaxdepth=0pt
+	\splittopskip=0pt
+	% Get the first line of the innerbox by splitting a copy
+	\setbox\innerboxfirstline=\copy\innerbox
+	\vfuzz=\maxdimen
+	\setbox\innerboxfirstline=\vsplit\innerboxfirstline to0pt
+	\vfuzz=1pt
+	\setbox\innerboxfirstline=\vbox{\hsize=\innerwidth\unvbox\innerboxfirstline}%
+	\heightfirstline=\ht\innerboxfirstline
+	\advance\heightfirstline by\dp\innerboxfirstline
+	% Compute the height remaining in the page
+	\heightremaining=\textheight
+	\advance\heightremaining by-\ht\partialpage
+	\advance\heightremaining by-\dp\partialpage
+	\advance\heightremaining by-2\fboxsep
+	\advance\heightremaining by-2\fboxrule
+	% Put the partial page back
+	\box\partialpage
+	% Check if the first line fits
+	\ifdim\heightremaining>\heightfirstline
+		% \message{First line fits}
+		% If the firstline fits, then check if the whole box fits
+		\ifdim\heightremaining<\ht\innerbox
+			% \message{The whole box does not fit}
+			% If The whole box does not fit, then split it
+			\vbadness=10000
+			\setbox\innerboxi=\vsplit\innerbox to\heightremaining
+			\vbadness=1000
+			% \vbox\unvbox\innerboxi instead of \box\innerboxi
+			\setbox\innerboxi=\vbox{\unvbox\innerboxi}
+			% Set the width of the innerbox so that the fcolorbox don't overfull
+			\wd\innerboxi=\innerwidth
+			\par\noindent\fcolorbox{\breakboxcolor}{\breakboxcolor!5}{\box\innerboxi}%
+			\eject
+		\else
+			% \message{The whole box fits}
+		\fi
+	\else
+		% If the firstline does not fit then eject to finish the current column
+		% \message{First line does not fit}
+		\eject
+	\fi
+	% If the innerbox is void after the splitting, then print it
+	\ifvoid\innerbox\else
+		% \message{The innerbox is not void}
+		% Set the width of the innerbox so that the fcolorbox don't overflow
+		\wd\innerbox=\innerwidth
+		\smallskip
+		\par\noindent\fcolorbox{\breakboxcolor}{\breakboxcolor!5}{\box\innerbox}\par
+		\smallskip
+	\fi
+	\par
+	\let\breakboxcolor=\relax
+}
+
+\newcount\thmnum
+\thmnum=0
+\def\newthm#1#2#3{
+	% \theorem
+	\expandafter\def\csname #3\endcsname{%
+		\global\advance\thmnum by1
+		% \message{\number\thmnum}%
+		\def\tmp{\futurelet\next}%
+		\expandafter\tmp\csname #3i\endcsname
+	}
+
+	% \theoremi
+	\expandafter\def\csname #3i\endcsname{%
+		\let\thmname=\relax
+		\def\tmpi[####1]{\def\thmname{####1}\csname #3ii\endcsname}%
+		\ifx\next[
+			\expandafter\tmpi
+		\else
+			\csname #3ii\endcsname
+		\fi
+	}
+
+	% \theoremii
+	\expandafter\def\csname #3ii\endcsname{%
+		\breakbox{#1}
+		{\bf \capitalize#3 \number\thmnum.}~\ifx\thmname\relax\else(\thmname)\fi%
+	}
+
+	% \endtheorem
+	\expandafter\def\csname end#3\endcsname{%
+		\endbreakbox
+	}
+}
+
+
+\edef\twocolumn{\detokenize{twocolumn}}
+\edef\fourcolumn{\detokenize{fourcolumn}}
+\edef\xjobname{\jobname}
+
+\newcount\numcol
+\ifx\xjobname\twocolumn
+	\AtBeginDocument{
+		\pdfpageheight=297mm
+		\pdfpagewidth=210mm
+	}
+	\numcol=2
+\else\ifx\xjobname\fourcolumn
+	\numcol=4
+	\AtBeginDocument{
+		\pdfpageheight=297mm
+		\pdfpagewidth=420mm
+		\mag=707
+	}
+\else
+	\numcol=1
+	\ifx\documentclass\undefined
+		\pdfpageheight=288mm
+		\pdfpagewidth=100mm
+	\else
+		\AtBeginDocument{
+			\pdfpageheight=290mm
+			\pdfpagewidth=100mm
+		}
+	\fi
+\fi\fi
+
+\hoffset=-1in
+\voffset=-1in
+
+
+\countdef\pageno=0 \pageno=1
+\newcount\curcol
+\newcount\colbox
+\newcount\firstbox
+\firstbox=100
+\curcol=0
+\def\myoutput{%
+	\global\advance\curcol by1
+	{%
+		\advance\curcol by\firstbox
+		\global\setbox\curcol=\box255
+		\global\wd\curcol=\textwidth
+	}%
+	\ifnum\curcol=\numcol
+		\global\curcol=4
+		\shipout\vbox to \pdfpageheight {%
+			\vfil
+			\hbox to \pdfpagewidth {%
+				\colbox=0
+				\hfil
+				\loop
+					\ifnum\colbox<\numcol
+					\advance\colbox by1
+					{%
+						\hfil
+						\advance\colbox by\firstbox
+						\box\colbox
+					}%
+				\repeat
+				\hfil\hfil
+			}%
+			\vfil
+		}%
+		\global\advance\pageno by1
+		\global\curcol=0
+	\fi
+}
+
+\def\xthm#1#2#3,{
+	\if\relax\detokenize{#3}\relax\else
+		\newthm{#1}{#2}{#3}
+		\def\tmpxthm{\xthm{#1}{#2}}
+		\expandafter\tmpxthm
+	\fi
+}
+
+\ifx\documentclass\undefined\else
+  \fboxsep=2mm
+  \fboxrule=1.5pt
+	\usepackage{xcolor}
+	\definecolor{red}{RGB}{247,87,130}
+	\definecolor{green}{RGB}{86,162,43}
+	\definecolor{blue}{RGB}{126,134,244}
+	\definecolor{bts}{RGB}{244,58,232}
+	\definecolor{orange}{RGB}{235,106,44}
+	\definecolor{gray}{RGB}{145,145,145}
+	\xthm{green}{green}theorem,lemma,corollary,proposition,,
+	\xthm{orange}{orange}definition,,
+	\xthm{blue}{blue}question,remark,note,notation,claim,summary,acknowledgment,case,conclusion,observation,recall,affirmation,,
+	\xthm{bts}{bts}example,application,problem,,
+	\xthm{red}{red}exercise,,
+	\xthm{gray}{gray}proof,solution,,
+
+	\textheight=287mm
+	\textwidth=97.5mm
+
+\AtBeginDocument{
+	\baselineskip=12pt
+	\abovedisplayskip=1pt
+	\belowdisplayskip=1pt
+	\abovedisplayshortskip=2pt
+	\belowdisplayshortskip=2pt
+	\output{\myoutput}%
+	\overfullrule=5mm
+}
+\fi
+
+\def\coloneqq{\mathrel{\mathop:}=}
+\def\mathclap#1{\hbox to 0pt{\hss$#1$\hss}}
+\def\mathllap{}
