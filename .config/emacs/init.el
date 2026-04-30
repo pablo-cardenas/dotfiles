@@ -7,7 +7,16 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
+(add-to-list 'package-selected-packages 'dash)
+(add-to-list 'package-selected-packages 'lsp-mode)
+(add-to-list 'package-selected-packages 'magit-section)
+(add-to-list 'package-selected-packages 'telega)
 (package-initialize)
+; (package-refresh-contents)
+; (package-install-selected-packages 'no-confirm)
+
+(add-to-list 'load-path "~/dox/dev/lean4-mode")
+(require 'lean4-mode)
 
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
