@@ -1,4 +1,4 @@
-export VISUAL="emacs -nw"
+export VISUAL="vim"
 export EDITOR="ed"
 export FCEDIT="$VISUAL"
 export PAGER=less
@@ -6,51 +6,60 @@ export LANG=en_US.UTF-8
 export BROWSER=elinks
 export TERMINAL=st
 
+# XDG Base Directory specification
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-# Add local bin directories to PATH.
-[ -d "$HOME"/.local/bin ] && PATH="$PATH:$HOME/.local/bin"
-[ -d "$XDG_DATA_HOME"/npm/bin ] && PATH="$PATH:$XDG_DATA_HOME/npm/bin/"
-[ -d /usr/local/texlive/2024/bin/x86_64-linux ] && PATH="$PATH:/usr/local/texlive/2024/bin/x86_64-linux"
-[ -d "$XDG_DATA_HOME"/gem/ruby/3.0.0/bin/ ] && PATH="$PATH:$XDG_DATA_HOME/gem/ruby/3.0.0/bin/"
-[ -d "$HOME"/perl5/bin ] && PATH="$PATH:$HOME/perl5/bin"
-[ -d "$HOME"/perl5/lib ] && LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$HOME/perl5/lib"
-[ -d "$HOME"/go/bin ] && PATH="$PATH:$HOME/go/bin"
-
-#export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+# Program-specific config paths
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+#export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export MAXIMA_USERDIR="$XDG_CONFIG_HOME"/maxima
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
-export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonstartup.py
+export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
+export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
 export RANDFILE="$XDG_RUNTIME_DIR"/rnd
 export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 
-export TERMINFO="$XDG_DATA_HOME"/terminfo
-export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
-
-export BIB="$XDG_CONFIG_HOME/bib/references.bib"
-export BIB_DATA="$XDG_DATA_HOME/bib"
-
+# Perl local::lib setup
 export PERL5LIB="$HOME/perl5/lib/perl5"
 export PERL_LOCAL_LIB_ROOT="$HOME/perl5"
 export PERL_MB_OPT="--install_base \"$HOME/perl5\""
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
 
+# TeX-related editors
 export TEXEDIT="${VISUAL:-$EDITOR} +%d %s"
 export MFEDIT="${VISUAL:-$EDITOR} +%d %s"
 export MPEDIT="${VISUAL:-$EDITOR} +%d %s"
 
-[ -z $TERMUX_VERSION ] && source "$HOME"/.bashrc
+# bib
+export BIB="$XDG_CONFIG_HOME/bib/references.bib"
+export BIB_DATA="$XDG_DATA_HOME/bib"
+
+# Terminfo
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
+
+[ -d "$HOME"/.local/bin ] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$XDG_DATA_HOME"/npm/bin ] && PATH="$PATH:$XDG_DATA_HOME/npm/bin/"
+[ -d /usr/local/texlive/2025/bin/x86_64-linux ] && PATH="$PATH:/usr/local/texlive/2025/bin/x86_64-linux"
+[ -d "$XDG_DATA_HOME"/gem/ruby/3.0.0/bin/ ] && PATH="$PATH:$XDG_DATA_HOME/gem/ruby/3.0.0/bin/"
+[ -d "$HOME"/perl5/bin ] && PATH="$PATH:$HOME/perl5/bin"
+[ -d "$HOME"/perl5/lib ] && LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$HOME/perl5/lib"
+[ -d "$HOME"/go/bin ] && PATH="$PATH:$HOME/go/bin"
+[ -d "$HOME"/.lean/bin ] && PATH="$PATH:$HOME/.lean/bin"
+[ -d "$HOME"/.elan/bin ] && PATH="$PATH:$HOME/.elan/bin"
+[ -d "$PYENV_ROOT"/bin ] && PATH="$PYENV_ROOT/bin:$PATH"
 
 export PATH
 export LD_LIBRARY_PATH
+
+[ -z $TERMUX_VERSION ] && source "$HOME"/.bashrc
 
 unset try_source
