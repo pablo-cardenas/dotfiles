@@ -91,5 +91,13 @@
 /discoverrc
 /libaccounts-glib/
 
+# Gnome
+/dconf/
+
+# Impa: CentroPI
+/BraveSoftware/
+/Slack/
+/evolution/
+
 # Windows
 /scoop/
