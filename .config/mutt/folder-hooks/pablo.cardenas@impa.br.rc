@@ -1,0 +1,17 @@
+set my_account = "pablo.cardenas@impa.br"
+
+# IMAP
+set folder = "~/.local/share/mail/${my_account}"
+set spoolfile = "+Inbox"
+set trash = "+[Gmail]/Lixeira"
+set postponed = "+[Gmail]/Rascunhos"
+unset record
+
+# SMPT
+set from = $my_account
+set hostname = "impa.br"
+set smtp_url = "smtps://${from}@smtp.gmail.com"
+set smtp_authenticators = "oauthbearer:xoauth2"
+set smtp_oauth_refresh_command = "~/.config/mutt/mutt_oauth2.py ~/.config/mutt/tokens/${from}.gpg"
+
+macro index G "!mbsync -c /home/pablo/.config/isync/mbsyncrc pablo.cardenas@impa.br^M" "Update pablo.cardenas@impa.br through mbsync"
