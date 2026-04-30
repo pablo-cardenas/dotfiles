@@ -43,3 +43,7 @@ hdp() {
 mt() {
 	create_session impa mt ~/dox/dev/notes-measure-theory
 }
+
+ts() {
+	create_session impa ts ~/dox/dev/notes-theoretical-statistics
+}
