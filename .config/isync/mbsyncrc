@@ -112,3 +112,32 @@ Patterns *
 Create Both
 Expunge Both
 SyncState *
+
+
+##########################
+# pablo.cardenas@impa.br #
+##########################
+
+IMAPAccount pablo.cardenas@impa.br
+Host imap.gmail.com
+User pablo.cardenas@impa.br
+AuthMechs XOAUTH2
+PassCmd "/home/pablo/.config/mutt/mutt_oauth2.py /home/pablo/.config/mutt/tokens/pablo.cardenas@impa.br.gpg"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore pablo.cardenas@impa.br-remote
+Account pablo.cardenas@impa.br
+
+MaildirStore pablo.cardenas@impa.br-local
+SubFolders Verbatim
+Path ~/.local/share/mail/pablo.cardenas@impa.br/
+Inbox ~/.local/share/mail/pablo.cardenas@impa.br/Inbox
+
+Channel pablo.cardenas@impa.br
+Far :pablo.cardenas@impa.br-remote:
+Near :pablo.cardenas@impa.br-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *
