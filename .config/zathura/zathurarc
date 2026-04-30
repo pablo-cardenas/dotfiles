@@ -1,4 +1,4 @@
 set database sqlite
-set show-recent 50
+set show-recent 100
 
 map Y exec 'sh -c "echo \"\\\\ref{$(basename $FILE)}{<++>}{$PAGE}{<++>}\" | xclip -sel clipboard"'
