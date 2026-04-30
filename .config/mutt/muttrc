@@ -16,6 +16,7 @@ mailboxes -label "pablocb2303@gmail.com" "=pablocb2303@gmail.com/Inbox"
 mailboxes -label "pcardenasb@uni.pe" "=pcardenasb@uni.pe/Inbox"
 mailboxes -label "pcardenasb@uni.edu.pe" "=pcardenasb@uni.edu.pe/Inbox"
 mailboxes -label "pablo.cardenas@imca.edu.pe" "=pablo.cardenas@imca.edu.pe/Inbox"
+mailboxes -label "pablo.cardenas@impa.br" "=pablo.cardenas@impa.br/Inbox"
 
 macro index G "!mbsync -c /home/pablo/.config/isync/mbsyncrc -a^M" "Update all mailboxes through mbsync"
 folder-hook ~/.local/share/mail/ 'macro index G "!mbsync -c /home/pablo/.config/isync/mbsyncrc -a^M" "Update all mailboxes through mbsync"'
@@ -24,3 +25,4 @@ folder-hook .*pablocb2303@gmail.com/ 'source ~/.config/mutt/folder-hooks/pablocb
 folder-hook .*pcardenasb@uni.pe/ 'source ~/.config/mutt/folder-hooks/pcardenasb@uni.pe.rc'
 folder-hook .*pcardenasb@uni.edu.pe/ 'source ~/.config/mutt/folder-hooks/pcardenasb@uni.edu.pe.rc'
 folder-hook .*pablo.cardenas@imca.edu.pe/ 'source ~/.config/mutt/folder-hooks/pablo.cardenas@imca.edu.pe.rc'
+folder-hook .*pablo.cardenas@impa.br/ 'source ~/.config/mutt/folder-hooks/pablocardenas@impa.br.rc'
