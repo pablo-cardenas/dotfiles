@@ -1,0 +1,16 @@
+cd ~
+if ! tmux has-session -t ausenco 2>/dev/null; then
+	tmux new-session -s ausenco -n uvicorn -d
+	tmux send-keys -t ausenco:0.0 'cd /srv/http/ausenco/asgi' C-m
+	tmux send-keys -t ausenco:0.0 '. venv/bin/activate' C-m
+	tmux send-keys -t ausenco:0.0 'uvicorn app:app --uds ../uvicorn.sock' C-m
+
+	tmux new-window -t ausenco:1 -n asgi -d
+	tmux send-keys -t ausenco:1.0 'cd /srv/http/ausenco/asgi' C-m
+	tmux send-keys -t ausenco:1.0 '. venv/bin/activate' C-m
+
+	tmux new-window -t ausenco:2 -n bin/ausenco -d
+	tmux send-keys -t ausenco:2.0 'vim ~/.local/bin/ausenco' C-m
+fi
+
+tmux attach -t ausenco
