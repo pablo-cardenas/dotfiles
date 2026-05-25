@@ -1,0 +1,63 @@
+/share/*
+!/share/applications
+/state/
+
+# miscellaneous
+/bin/fzf
+/bin/dwm
+/bin/st
+
+/bin/ffmpeg
+/bin/ffprobe
+/include/libavcodec/
+/include/libavdevice/
+/include/libavfilter/
+/include/libavformat/
+/include/libavutil/
+/include/libswresample/
+/include/libswscale/
+/lib/libavcodec.a
+/lib/libavdevice.a
+/lib/libavfilter.a
+/lib/libavformat.a
+/lib/libavutil.a
+/lib/libswresample.a
+/lib/libswscale.a
+/lib/pkgconfig/libavcodec.pc
+/lib/pkgconfig/libavdevice.pc
+/lib/pkgconfig/libavfilter.pc
+/lib/pkgconfig/libavformat.pc
+/lib/pkgconfig/libavutil.pc
+/lib/pkgconfig/libswresample.pc
+/lib/pkgconfig/libswscale.pc
+
+
+# vim
+/bin/ex
+/bin/rview
+/bin/rvim
+/bin/view
+/bin/vim
+/bin/vimdiff
+/bin/vimtutor
+/bin/xxd
+
+# dmenu
+/bin/dmenu_run
+/bin/dmenu
+/bin/dmenu_path
+/bin/stest
+
+# sqlite3
+/bin/sqlite3
+/include/sqlite3.h
+/include/sqlite3ext.h
+/lib/libsqlite3.a
+/lib/libsqlite3.so*
+/lib/pkgconfig/sqlite3.pc
+
+# qutebrowser
+/bin/qutebrowser
+!/share/qutebrowser
+/share/qutebrowser/*
+!/share/qutebrowser/userscripts
