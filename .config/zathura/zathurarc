@@ -1,5 +1,7 @@
 set database sqlite
 set show-recent 100
+set recolor true
 
 map Y exec 'sh -c "echo \"\\\\ref{$(basename $FILE)}{<++>}{$PAGE}{<++>}\" | xclip -sel clipboard"'
 map b exec 'sh -c "path=$(basename $FILE); base=${path%.*}; bibref $base"'
+map B exec 'sh -c "path=$(basename $FILE); base=${path%.*}; bibdot $base"'

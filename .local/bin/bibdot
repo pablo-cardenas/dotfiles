@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ $# = 1 ]; then
+    biblist-dot "$1" | dot -Tpdf | zathura -
+    exit
+fi
+
 [ -f "$BIB" ] || {
     echo "No BIB=$BIB"
     exit 1
