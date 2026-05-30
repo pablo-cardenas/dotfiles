@@ -1,5 +1,5 @@
 export VISUAL="vim"
-export EDITOR="ed"
+export EDITOR="ed -p>"
 export FCEDIT="$VISUAL"
 export PAGER=less
 export LANG=en_US.UTF-8
@@ -26,12 +26,23 @@ export RANDFILE="$XDG_RUNTIME_DIR"/rnd
 export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+
+# R
+export R_HOME_USER="$HOME/.config/R"
+export R_PROFILE_USER="$HOME/.config/R/profile"
+export R_HISTFILE="$HOME/.config/R/history"
 
 # Perl local::lib setup
 export PERL5LIB="$HOME/perl5/lib/perl5"
 export PERL_LOCAL_LIB_ROOT="$HOME/perl5"
 export PERL_MB_OPT="--install_base \"$HOME/perl5\""
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
+
+# TeX Live
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 
 # TeX-related editors
 export TEXEDIT="${VISUAL:-$EDITOR} +%d %s"
@@ -48,7 +59,7 @@ export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 [ -d "$HOME"/.local/bin ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$XDG_DATA_HOME"/npm/bin ] && PATH="$PATH:$XDG_DATA_HOME/npm/bin/"
-[ -d /usr/local/texlive/2025/bin/x86_64-linux ] && PATH="$PATH:/usr/local/texlive/2025/bin/x86_64-linux"
+[ -d /usr/local/texlive/2026/bin/x86_64-linux ] && PATH="$PATH:/usr/local/texlive/2026/bin/x86_64-linux"
 [ -d "$XDG_DATA_HOME"/gem/ruby/3.0.0/bin/ ] && PATH="$PATH:$XDG_DATA_HOME/gem/ruby/3.0.0/bin/"
 [ -d "$HOME"/perl5/bin ] && PATH="$PATH:$HOME/perl5/bin"
 [ -d "$HOME"/perl5/lib ] && LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$HOME/perl5/lib"

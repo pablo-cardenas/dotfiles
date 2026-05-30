@@ -1,31 +1,6 @@
 \pdfcompresslevel=0
 
-\catcode`\@=11
-\def\@listi{\leftmargin\leftmargini
-            \parsep=0pt
-            \topsep=0pt
-            \itemsep=0pt
-						\partopsep=0pt}
-\let\@listI\@listi
-%\@listi
-\def\@listii {\leftmargin\leftmarginii
-              \labelwidth\leftmarginii
-              \advance\labelwidth-\labelsep}
-\def\@listiii{\leftmargin\leftmarginiii
-              \labelwidth\leftmarginiii
-              \advance\labelwidth-\labelsep}
-\def\@listiv {\leftmargin\leftmarginiv
-              \labelwidth\leftmarginiv
-              \advance\labelwidth-\labelsep}
-\def\@listv  {\leftmargin\leftmarginv
-              \labelwidth\leftmarginv
-              \advance\labelwidth-\labelsep}
-\def\@listvi {\leftmargin\leftmarginvi
-              \labelwidth\leftmarginvi
-              \advance\labelwidth-\labelsep}
-\catcode`\@=12
-
-\baselineskip=0pt
+\baselineskip=12pt
 \lineskiplimit=0pt
 \lineskip=0pt
 \parindent=0pt
@@ -43,6 +18,8 @@
 \showboxbreadth=1000
 
 \def\capitalize#1#2{\uppercase{#1}#2}
+
+% breakbox environment {{{
 \newbox\innerbox
 \newbox\innerboxfirstline
 \newbox\innerboxi
@@ -51,8 +28,9 @@
 \newdimen\heightfirstline
 \newdimen\innerwidth
 
-\def\breakbox#1{%
-	\global\def\breakboxcolor{#1}
+\def\breakbox#1#2{
+	\global\def\breakboxcolori{#1}
+	\global\def\breakboxcolorii{#2}
 	% TODO: Why do I need this? There is a problem when the page start with a breakbox. The whole line is not printed.
 	% \hbox{}
 	% First, save in \partialpage the content of the current page so far.
@@ -108,7 +86,7 @@
 			\setbox\innerboxi=\vbox{\unvbox\innerboxi}
 			% Set the width of the innerbox so that the fcolorbox don't overfull
 			\wd\innerboxi=\innerwidth
-			\par\noindent\fcolorbox{\breakboxcolor}{\breakboxcolor!5}{\box\innerboxi}%
+			\par\noindent\fcolorbox{\breakboxcolori}{\breakboxcolorii}{\box\innerboxi}%
 			\eject
 		\else
 			% \message{The whole box fits}
@@ -124,13 +102,16 @@
 		% Set the width of the innerbox so that the fcolorbox don't overflow
 		\wd\innerbox=\innerwidth
 		\smallskip
-		\par\noindent\fcolorbox{\breakboxcolor}{\breakboxcolor!5}{\box\innerbox}\par
+		\par\noindent\fcolorbox{\breakboxcolori}{\breakboxcolorii}{\box\innerbox}\par
 		\smallskip
 	\fi
 	\par
-	\let\breakboxcolor=\relax
+	\let\breakboxcolori=\relax
+	\let\breakboxcolorii=\relax
 }
+% }}}
 
+% Theorems {{{
 \newcount\thmnum
 \thmnum=0
 \def\newthm#1#2#3{
@@ -155,8 +136,8 @@
 
 	% \theoremii
 	\expandafter\def\csname #3ii\endcsname{%
-		\breakbox{#1}
-		{\bf \capitalize#3 \number\thmnum.}~\ifx\thmname\relax\else(\thmname)\fi%
+		\breakbox{#1}{#2}
+		{\bf \capitalize#3 \number\thmnum.}~\ifx\thmname\relax\else{\bf(\thmname)}\fi%
 	}
 
 	% \endtheorem
@@ -164,10 +145,12 @@
 		\endbreakbox
 	}
 }
+% }}}
 
-
+% jobname {{{
 \edef\twocolumn{\detokenize{twocolumn}}
 \edef\fourcolumn{\detokenize{fourcolumn}}
+\edef\slides{\detokenize{slides}}
 \edef\xjobname{\jobname}
 
 \newcount\numcol
@@ -184,6 +167,13 @@
 		\pdfpagewidth=420mm
 		\mag=707
 	}
+\else\ifx\xjobname\slides
+	\numcol=2
+	\AtBeginDocument{
+		\pdfpageheight=118.125mm
+		\pdfpagewidth=210mm
+		\mag=762
+	}
 \else
 	\numcol=1
 	\ifx\documentclass\undefined
@@ -195,7 +185,7 @@
 			\pdfpagewidth=100mm
 		}
 	\fi
-\fi\fi
+\fi\fi\fi
 
 \hoffset=-1in
 \voffset=-1in
@@ -238,46 +228,95 @@
 		\global\curcol=0
 	\fi
 }
+% }}}
 
-\def\xthm#1#2#3,{
-	\if\relax\detokenize{#3}\relax\else
-		\newthm{#1}{#2}{#3}
-		\def\tmpxthm{\xthm{#1}{#2}}
-		\expandafter\tmpxthm
-	\fi
-}
-
+% if latex {{{
 \ifx\documentclass\undefined\else
   \fboxsep=2mm
   \fboxrule=1.5pt
-	\usepackage{xcolor}
+
+	\def\xthm#1#2#3,{
+		\if\relax\detokenize{#3}\relax\else
+			\newthm{#1}{#2}{#3}
+			\def\tmpxthm{\xthm{#1}{#2}}
+			\expandafter\tmpxthm
+		\fi
+	}
+
+	\usepackage[pdftex]{color}
 	\definecolor{red}{RGB}{247,87,130}
 	\definecolor{green}{RGB}{86,162,43}
 	\definecolor{blue}{RGB}{126,134,244}
 	\definecolor{bts}{RGB}{244,58,232}
 	\definecolor{orange}{RGB}{235,106,44}
 	\definecolor{gray}{RGB}{145,145,145}
-	\xthm{green}{green}theorem,lemma,corollary,proposition,,
-	\xthm{orange}{orange}definition,,
-	\xthm{blue}{blue}question,remark,note,notation,claim,summary,acknowledgment,case,conclusion,observation,recall,affirmation,,
-	\xthm{bts}{bts}example,application,problem,,
-	\xthm{red}{red}exercise,,
-	\xthm{gray}{gray}proof,solution,,
+	\definecolor{redlight}{RGB}{255,247,248}
+	\definecolor{greenlight}{RGB}{246,250,245}
+	\definecolor{bluelight}{RGB}{248,249,255}
+	\definecolor{btslight}{RGB}{255,247,254}
+	\definecolor{orangelight}{RGB}{255,248,245}
+	\definecolor{graylight}{RGB}{249,249,249}
 
-	\textheight=287mm
+	\xthm{green}{greenlight}theorem,lemma,corollary,proposition,,
+	\xthm{orange}{orangelight}definition,,
+	\xthm{blue}{bluelight}question,remark,note,notation,claim,summary,acknowledgment,case,conclusion,observation,recall,affirmation,paragraph,,
+	\xthm{bts}{btslight}example,application,problem,,
+	\xthm{red}{redlight}exercise,,
+	\xthm{gray}{graylight}proof,solution,,
+
+	\ifx\xjobname\slides
+		\textheight=108.125mm
+	\else
+		\textheight=287mm
+	\fi
 	\textwidth=97.5mm
 
-\AtBeginDocument{
-	\baselineskip=12pt
-	\abovedisplayskip=1pt
-	\belowdisplayskip=1pt
-	\abovedisplayshortskip=2pt
-	\belowdisplayshortskip=2pt
-	\output{\myoutput}%
-	\overfullrule=5mm
-}
+	\AtBeginDocument{
+		\baselineskip=12pt
+		\abovedisplayskip=1pt
+		\belowdisplayskip=1pt
+		\abovedisplayshortskip=2pt
+		\belowdisplayshortskip=2pt
+		\output{\myoutput}%
+		\overfullrule=5mm
+	}
+
+	% list {{{
+	\catcode`\@=11
+	\def\@listi{\leftmargin\leftmargini
+	            \parsep=0pt
+	            \topsep=0pt
+	            \itemsep=0pt
+	            \partopsep=0pt}
+	\let\@listI\@listi
+	%\@listi
+	\def\@listii {\leftmargin\leftmarginii
+	              \labelwidth\leftmarginii
+	              \advance\labelwidth-\labelsep}
+	\def\@listiii{\leftmargin\leftmarginiii
+	              \labelwidth\leftmarginiii
+	              \advance\labelwidth-\labelsep}
+	\def\@listiv {\leftmargin\leftmarginiv
+	              \labelwidth\leftmarginiv
+	              \advance\labelwidth-\labelsep}
+	\def\@listv  {\leftmargin\leftmarginv
+	              \labelwidth\leftmarginv
+	              \advance\labelwidth-\labelsep}
+	\def\@listvi {\leftmargin\leftmarginvi
+	              \labelwidth\leftmarginvi
+	              \advance\labelwidth-\labelsep}
+
+        \def\labelitemi{$\circ$}
+	\catcode`\@=12
+	% }}}
 \fi
+% }}}
 
 \def\coloneqq{\mathrel{\mathop:}=}
 \def\mathclap#1{\hbox to 0pt{\hss$#1$\hss}}
 \def\mathllap{}
+
+\let\mymathbb=\mathbb
+\def\mathbb#1{\ifx1#11\hskip-4pt 1\else\mymathbb{#1}\fi}
+
+% vim: fen fdm=marker
