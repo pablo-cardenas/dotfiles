@@ -1,0 +1,20 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use Text::BibTeX;
+
+my $bib = $ENV{BIB} or die "BIB is not set\n";
+-f $bib or die "No BIB=$bib\n";
+
+my $bibfile = Text::BibTeX::File->new($bib);
+
+while (my $entry = Text::BibTeX::Entry->new($bibfile)) {
+    my $key = $entry->key;
+    next unless defined $key;
+
+    my @details = map { $entry->get($_) }
+        grep { $entry->exists($_) }
+        qw(title author journal year);
+
+    print "$key | ", join(" | ", @details), "\n";
+}

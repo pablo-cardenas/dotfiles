@@ -1,0 +1,45 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use Text::BibTeX;
+
+my ($src) = @ARGV;
+my $bib = $ENV{BIB} or die "BIB is not set\n";
+-f $bib or die "No BIB=$bib\n";
+
+my $bibfile = Text::BibTeX::File->new($bib);
+
+print "digraph G {\n";
+print "rankdir = RL\n";
+
+my %entry;
+while (my $e = Text::BibTeX::Entry->new($bibfile)) {
+    next unless $e->parse_ok;
+    next unless $e->metatype eq BTE_REGULAR;
+
+    my $key = $e->key;
+
+    $entry{$key} = {
+        author    => $e->get("author")    // "",
+        title     => $e->get("title")     // "",
+        year      => $e->get("year")      // "",
+        localrefs => $e->get("localrefs") // "",
+    };
+}
+
+die "key not found: $src\n" unless exists $entry{$src};
+
+my %seen;
+my @stack = ($src);
+
+while (@stack) {
+    my $u = pop @stack;
+    next if $seen{$u}++;
+
+    my %localrefs = $entry{$u}{localrefs} =~ /\s*([^=]+)=(\S+)\s*/g;
+    while (my ($k, $v) = each %localrefs) {
+        print "  $u -> $v [label=\"$k\"]\n";
+        push @stack, $v;
+    }
+}
+print "}\n";

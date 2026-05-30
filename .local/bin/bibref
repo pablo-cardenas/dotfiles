@@ -1,0 +1,18 @@
+#!/bin/sh
+
+[ -f "$BIB" ] || {
+    echo "No BIB=$BIB"
+    exit 1
+}
+
+if [ -t 0 ]; then
+    command="fzf"
+else
+    command="dmenu -i -l 20"
+fi
+
+biblist-ref $1 |
+    $command |
+    cut -d" " -f1 |
+    xargs -I{} find "$BIB_DATA" -name '{}.*' |
+    xargs -r -n 1 xdg-open
