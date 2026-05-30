@@ -104,7 +104,7 @@ windows:
   - history:
     - active: true
       title: ''
-      url: https://git.impa.br/centropi/susepreclamacoes
+      url: https://git.impa.br/groups/centropi/susepreclamacoes/-/activity
     treetab_node_data:
       children: []
       collapsed: false
