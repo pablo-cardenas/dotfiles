@@ -59,10 +59,13 @@
 # qutebrowser
 /bin/qutebrowser
 !/share/qutebrowser
-/share/qutebrowser/*
+/share/qutebrowser/
 !/share/qutebrowser/userscripts
-!/share/qutebrowser/sessions
+!/share/qutebrowser/sessions/
 /share/qutebrowser/sessions/default.yml
+/share/qutebrowser/sessions/_autosave.yml
+/share/qutebrowser/sessions/before-qt-515/
+
 
 # texlive
 !/share/texmf
