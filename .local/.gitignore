@@ -61,3 +61,8 @@
 !/share/qutebrowser
 /share/qutebrowser/*
 !/share/qutebrowser/userscripts
+!/share/qutebrowser/sessions
+/share/qutebrowser/sessions/default.yml
+
+# texlive
+!/share/texmf

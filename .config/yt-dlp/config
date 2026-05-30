@@ -1,1 +1,5 @@
--f "best[height<=720]"
+--format best[height<=720]
+--sub-langs en,es,fr,it,pt
+--write-subs
+--write-auto-subs
+--cookies-from-browser chromium:~/.local/share/qutebrowser/webengine

@@ -1,9 +1,11 @@
 http_request = require("http.request")
 json = require("dkjson")
 
+
 DEEPL_API_KEY = os.getenv("DEEPL_API_KEY")
 overlay = mp.create_osd_overlay("ass-events")
 overlay.z = 10
+
 
 function show_translation_deepl()
 	local sub_text = mp.get_property('sub-text')
@@ -25,7 +27,6 @@ function show_translation_deepl()
 	else
 		print("No text to show")
 	end
-	
 end
 
 
@@ -52,6 +53,7 @@ function translate_deepl(source_text)
 	return translated_text
 end
 
+
 function sub_ab_loop()
    local a = mp.get_property("sub-start")
    local b = mp.get_property("sub-end")
@@ -61,9 +63,10 @@ function sub_ab_loop()
    mp.set_property("ab-loop-b", b+delay)
 end
 
-mp.add_key_binding('F5', 'sub_ab_loop', sub_ab_loop)
-mp.add_key_binding('C', 'show-translation-deepl', show_translation_deepl)
+
+mp.add_key_binding(nil, 'sub_ab_loop', sub_ab_loop)
+mp.add_key_binding(nil, 'show-translation-deepl', show_translation_deepl)
+
 mp.observe_property('sub-end', 'number', function (_, sub_end)
    overlay:remove()
 end)
-

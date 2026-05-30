@@ -1,0 +1,117 @@
+windows:
+- active: true
+  geometry: null
+  tabs:
+  - history:
+    - active: true
+      title: ''
+      url: qute://treegroup/Communication
+    treetab_node_data:
+      children:
+      - 4
+      - 5
+      - 8
+      collapsed: false
+      parent: 2
+      uid: 3
+  - history:
+    - active: true
+      title: ''
+      url: https://web.whatsapp.com/
+    treetab_node_data:
+      children: []
+      collapsed: false
+      parent: 3
+      uid: 4
+  - history:
+    - active: true
+      title: ''
+      url: qute://treegroup/Google
+    treetab_node_data:
+      children:
+      - 6
+      - 7
+      collapsed: false
+      parent: 3
+      uid: 5
+  - history:
+    - active: true
+      title: ''
+      url: https://mail.google.com/mail/u/0/#inbox
+    treetab_node_data:
+      children: []
+      collapsed: false
+      parent: 5
+      uid: 6
+  - history:
+    - active: true
+      title: ''
+      url: https://mail.google.com/mail/u/1/#inbox
+    treetab_node_data:
+      children: []
+      collapsed: false
+      parent: 5
+      uid: 7
+  - history:
+    - active: true
+      title: ''
+      url: qute://treegroup/slack
+    treetab_node_data:
+      children:
+      - 9
+      - 10
+      collapsed: false
+      parent: 3
+      uid: 8
+  - history:
+    - active: true
+      title: ''
+      url: https://app.slack.com/client/T0B1RM2MF29/C0AEY8RCMC2
+    treetab_node_data:
+      children: []
+      collapsed: false
+      parent: 8
+      uid: 9
+  - history:
+    - active: true
+      title: ''
+      url: https://app.slack.com/client/T0AQ846HNS1/C0AR5QCUMNU
+    treetab_node_data:
+      children:
+      - 16
+      collapsed: false
+      parent: 8
+      uid: 10
+  - history:
+    - active: true
+      title: ''
+      url: https://homolog2.susep.gov.br/bibliotecaweb/glossario.aspx#null
+    treetab_node_data:
+      children: []
+      collapsed: false
+      parent: 10
+      uid: 16
+  - history:
+    - active: true
+      title: ''
+      url: qute://treegroup/centro-pi
+    treetab_node_data:
+      children:
+      - 12
+      collapsed: false
+      parent: 2
+      uid: 11
+  - history:
+    - active: true
+      title: ''
+      url: https://git.impa.br/centropi/susepreclamacoes
+    treetab_node_data:
+      children: []
+      collapsed: false
+      parent: 11
+      uid: 12
+  treetab_root:
+    children:
+    - 3
+    - 11
+    uid: 2
