@@ -29,9 +29,9 @@ export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 
 # R
-export R_HOME_USER="$HOME/.config/R"
 export R_PROFILE_USER="$HOME/.config/R/profile"
-export R_HISTFILE="$HOME/.config/R/history"
+export R_HISTFILE="$XDG_STATE_HOME/R/history"
+export R_LIBS_USER="$XDG_DATA_HOME/R"
 
 # Perl local::lib setup
 export PERL5LIB="$HOME/perl5/lib/perl5"
