@@ -14,7 +14,7 @@ while (my $entry = Text::BibTeX::Entry->new($bibfile)) {
 
     my @details = map { $entry->get($_) }
         grep { $entry->exists($_) }
-        qw(title author journal year);
+        qw(alias title author journal year);
 
     print "$key | ", join(" | ", @details), "\n";
 }

@@ -19,6 +19,7 @@ while (my $e = Text::BibTeX::Entry->new($bibfile)) {
     $entry{$key} = {
         author    => $e->get("author")    // "",
         title     => $e->get("title")     // "",
+        alias     => $e->get("alias")     // "",
         year      => $e->get("year")      // "",
         localrefs => $e->get("localrefs") // "",
     };
@@ -37,6 +38,7 @@ for my $n (@sorted) {
     my $author = $entry{$dst}{author} // "?";
     my $year   = $entry{$dst}{year}   // "?";
     my $title  = $entry{$dst}{title}  // "?";
+    my $alias  = $entry{$dst}{alias}  // "?";
 
-    print "$dst | $n | $title | $author | $year\n";
+    print "$dst | $n | $alias | $title | $author | $year\n";
 }
