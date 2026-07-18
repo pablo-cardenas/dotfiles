@@ -57,6 +57,9 @@ export BIB_DATA="$XDG_DATA_HOME/bib"
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
+# nvm
+export NVM_DIR="$HOME/.config/nvm"
+
 [ -d "$HOME"/.local/bin ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$XDG_DATA_HOME"/npm/bin ] && PATH="$PATH:$XDG_DATA_HOME/npm/bin/"
 [ -d /usr/local/texlive/2026/bin/x86_64-linux ] && PATH="$PATH:/usr/local/texlive/2026/bin/x86_64-linux"
