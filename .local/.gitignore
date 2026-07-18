@@ -66,6 +66,16 @@
 /share/qutebrowser/sessions/_autosave.yml
 /share/qutebrowser/sessions/before-qt-515/
 
-
 # texlive
 !/share/texmf
+
+# redis
+/bin/redis-benchmark
+/bin/redis-check-aof
+/bin/redis-check-rdb
+/bin/redis-cli
+/bin/redis-sentinel
+/bin/redis-server
+
+# python
+/lib/python3.*/
